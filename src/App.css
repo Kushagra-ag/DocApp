@@ -7,3 +7,14 @@ body {
 .App {
   text-align: center;
 }
+
+@media only screen and (max-width: 767px) {
+	
+	.docProfile {
+		background-color: #4A6BC5;
+	}
+
+	.docProfile--icons {
+		background-color: #fff!important;
+	}
+}

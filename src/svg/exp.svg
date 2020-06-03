@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="72" height="72" viewBox="0 0 72 72">
+  <defs>
+    <filter id="Ellipse_6" x="0" y="0" width="72" height="72" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#5f82e2" flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_293" data-name="Group 293" transform="translate(-53 -830)">
+    <g transform="matrix(1, 0, 0, 1, 53, 830)" filter="url(#Ellipse_6)">
+      <circle id="Ellipse_6-2" data-name="Ellipse 6" cx="27" cy="27" r="27" transform="translate(9 6)" fill="#5f82e2" opacity="0.1"/>
+    </g>
+    <g id="experiment-results" transform="translate(41.224 852.543)">
+      <path id="Path_16" data-name="Path 16" d="M53.672.946H51.253V0H44.3V.946H41.881A1.981,1.981,0,0,0,39.9,2.925v15.2A1.981,1.981,0,0,0,41.881,20.1H53.672a1.981,1.981,0,0,0,1.979-1.979V2.925A1.981,1.981,0,0,0,53.672.946ZM45.117.818h5.318V1.892H45.117Zm9.715,17.3a1.162,1.162,0,0,1-1.161,1.161H41.881a1.162,1.162,0,0,1-1.161-1.161V2.925a1.162,1.162,0,0,1,1.161-1.161H44.3V2.71h6.954V1.764h2.418a1.162,1.162,0,0,1,1.161,1.161Z" fill="#5f82e2"/>
+      <path id="Path_17" data-name="Path 17" d="M88.756,143.252l-.425.646a.229.229,0,0,1-.38,0l-.012-.017a1.047,1.047,0,0,0-1.814.151l-.227.49a.229.229,0,0,1-.429-.04l-.495-1.949a1.032,1.032,0,0,0-1.014-.789h-.006a1.032,1.032,0,0,0-1.012.8l-.446,1.838a.229.229,0,0,1-.432.037l-.44-1.011a1.046,1.046,0,0,0-.96-.63H79.485v.818h1.179a.229.229,0,0,1,.21.138l.44,1.011a1.047,1.047,0,0,0,1.977-.171l.446-1.838a.229.229,0,0,1,.444,0l.494,1.949a1.036,1.036,0,0,0,.918.785q.051,0,.1,0a1.034,1.034,0,0,0,.946-.607l.227-.49a.229.229,0,0,1,.4-.033l.012.017a1.045,1.045,0,0,0,.864.456h.009a1.045,1.045,0,0,0,.865-.471l.425-.646a.228.228,0,0,1,.191-.1h1.285v-.818H89.63A1.044,1.044,0,0,0,88.756,143.252Z" transform="translate(-37.424 -134.015)" fill="#5f82e2"/>
+      <rect id="Rectangle_10" data-name="Rectangle 10" width="4.619" height="0.818" transform="translate(42.061 14.823)" fill="#5f82e2"/>
+      <rect id="Rectangle_11" data-name="Rectangle 11" width="9.238" height="0.818" transform="translate(42.061 16.822)" fill="#5f82e2"/>
+    </g>
+  </g>
+</svg>

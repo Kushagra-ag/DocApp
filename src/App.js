@@ -18,6 +18,10 @@ const theme = createMuiTheme({
     ].join(','),
   },
   palette: {
+    text: {
+      primary: '#000',
+      secondary: '#fff'
+    },
     primary: {
       main: '#5F82E2',
       dark: '#4A6BC5'
