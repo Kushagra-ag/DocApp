@@ -44,19 +44,18 @@ export default function MenuAppBar() {
   };
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <div style={{marginLeft:'auto'}}>
-          <Typography variant="h6" className={classes.title} >
-            DocApp
-          </Typography>
-          </div>
-          
-            
-          
-        </Toolbar>
-      </AppBar>
-    </div>
+    <div className="row">
+	    <div className={classes.root}>
+	      <AppBar position="static">
+	        <Toolbar>
+	          <div style={{marginLeft:'auto'}}>
+	          <Typography variant="h6" className={classes.title} >
+	            DocApp
+	          </Typography>
+	          </div>
+	        </Toolbar>
+	      </AppBar>
+	    </div>
+	</div>
   );
 }

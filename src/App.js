@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+import Introduction from './Introduction.js';
 import Home from './Home.js';
 import Login from './Login.js';
 import DocProfile from './DocProfile.js';
@@ -36,7 +37,8 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={Introduction} />
+        <Route path="/home" component={Home} />
         <Route  path="/login" component={Login} />
         <Route  path="/signup" component={DocProfile} />
       </Switch>

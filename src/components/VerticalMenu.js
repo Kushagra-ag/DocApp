@@ -36,36 +36,38 @@ export default function MenuListComposition() {
 
 
   return (
-    <div className={classes.root}>
-      <Paper className={classes.paper}>
-        <MenuList className="pt-5">
-        	<Link to='#' className={classes.link}>
-	          	<MenuItem>
-			    	<HomeRoundedIcon color="primary" className={classes.margin}/>
-		          	<Typography variant="h6">Home</Typography>
-	        	</MenuItem>
-	        </Link>
-	        <Link to='#' className={classes.link}>
-          		<MenuItem>
-		          	<FavoriteRoundedIcon color="primary" className={classes.margin}/>
-		          	<Typography variant="h6">Favourites</Typography>
-          		</MenuItem>
-          	</Link>
-          	<Link to='#' className={classes.link}>
-          		<MenuItem>
-		          	<PersonRoundedIcon color="primary" className={classes.margin}/>
-		          	<Typography variant="h6">Profile</Typography>
-          		</MenuItem>
-          	</Link>
-          	<Link to='#' className={classes.link}>
-          		<MenuItem>
-		          	<SearchRoundedIcon color="primary" className={classes.margin}/>
-		          	<Typography variant="h6">Search</Typography>
-          		</MenuItem>
-          	</Link>
-        </MenuList>
-      </Paper>
-      
-    </div>
+    <div className="col-2 d-none d-md-block">
+	    <div className={classes.root}>
+	      <Paper className={classes.paper}>
+	        <MenuList className="pt-5">
+	        	<Link to='/home' className={classes.link}>
+		          	<MenuItem>
+				    	<HomeRoundedIcon color="primary" className={classes.margin}/>
+			          	<Typography variant="h6">Home</Typography>
+		        	</MenuItem>
+		        </Link>
+		        <Link to='#' className={classes.link}>
+	          		<MenuItem>
+			          	<FavoriteRoundedIcon color="primary" className={classes.margin}/>
+			          	<Typography variant="h6">Favourites</Typography>
+	          		</MenuItem>
+	          	</Link>
+	          	<Link to='#' className={classes.link}>
+	          		<MenuItem>
+			          	<PersonRoundedIcon color="primary" className={classes.margin}/>
+			          	<Typography variant="h6">Profile</Typography>
+	          		</MenuItem>
+	          	</Link>
+	          	<Link to='#' className={classes.link}>
+	          		<MenuItem>
+			          	<SearchRoundedIcon color="primary" className={classes.margin}/>
+			          	<Typography variant="h6">Search</Typography>
+	          		</MenuItem>
+	          	</Link>
+	        </MenuList>
+	      </Paper>
+	      
+	    </div>
+	</div>
   );
 }

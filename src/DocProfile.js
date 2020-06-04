@@ -4,9 +4,6 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import CallIcon from '@material-ui/icons/Call';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import StarsRoundedIcon from '@material-ui/icons/StarsRounded';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Card from '@material-ui/core/Card';
@@ -18,10 +15,11 @@ import justin from './svg/justin.png';
 import ryan from './svg/ryan.png';
 import lara from './svg/lara.png';
 import doc1 from './svg/doc1.png';
-import Exp from './svg/exp.svg';
-import Rec from './svg/rec.svg';
 import VerticalMenu from './components/VerticalMenu.js';
 import TopBar from './components/TopBar.js';
+import ExperienceIcon from './components/ExperienceIcon.js';
+import DoctorProfileIcons from './components/DoctorProfileIcons.js';
+import BottomNav from './components/BottomNav.js';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -58,14 +56,10 @@ function DocProfile() {
   const matches = useMediaQuery('(max-width:767px)');
   const txt = matches ? 'textSecondary' : 'primary';
   return (
-    <div className="container-fluid" style={{backgroundColor:'#F4F5FB'}} >
+    <>
+      <TopBar />
       <div className="row">
-        <TopBar />
-      </div>
-      <div className="row mb-5">
-        <div className="col-2 d-none d-md-block">
-          <VerticalMenu />
-        </div>
+        <VerticalMenu />
         <div className="col-md-10">
         	<div className="row pt-5 docProfile">
             <div className="col-md-4 d-flex justify-content-center">
@@ -80,23 +74,7 @@ function DocProfile() {
               <Typography variant="subtitle1" color={txt} gutterBottom>
                 Gastroenterologists, MBBS
               </Typography>
-                <div className="d-flex">
-                  <Link to="#" className="m-2" style={{marginLeft: 0}} >
-                    <IconButton className="docProfile--icons" color="primary" aria-label="call" component="div" edge="start">
-                      <CallIcon />
-                    </IconButton>
-                  </Link>
-                  <Link to="#" className='m-2'>
-                      <IconButton className="docProfile--icons" color="primary" aria-label="location" component="div">
-                        <LocationOnIcon />
-                      </IconButton>
-                  </Link>
-                  <Link to="#" className="m-2">
-                      <IconButton className="docProfile--icons" color="primary" aria-label="review" component="div">
-                        <StarsRoundedIcon />
-                      </IconButton>
-                  </Link>
-                </div>
+              <DoctorProfileIcons />
             </div>
           </div>
           <div className="row my-5 my-md-4">
@@ -154,41 +132,25 @@ function DocProfile() {
             </div>
             <div className="col-md-8">
               <Card className="p-3">
-                <CardContent style={{padding:'5px'}}>
+                <CardContent className="text-center text-md-left p-1">
                   <Typography variant="h5" display='block' gutterBottom>
                     About Dr. Nirmala Reddy
                   </Typography>
-                  <Typography className="w-75" display="block" variant="body1" style={{opacity:'0.5'}}>
+                  <Typography display="block" variant="body1" style={{opacity:'0.5'}}>
                     Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur
                   </Typography>
                   <div className="d-flex mt-3">
-                    <div className="text-center mx-2">
-                      <img src={Exp} />
-                      <Typography variant="body2" className="font-weight-bold">
-                        25 years
-                      </Typography>
-                      <Typography variant="caption" className={`font-weight-bold ${classes.opacity50}`} gutterBottom>
-                        Experience
-                      </Typography>
-                    </div>
-                    <div className="text-center mx-2">
-                      <img src={Rec} />
-                      <Typography variant="body2" className="font-weight-bold">
-                        10 awards
-                      </Typography>
-                      <Typography variant="caption" className={`font-weight-bold ${classes.opacity50}`} gutterBottom>
-                        Recognition
-                      </Typography>
-                    </div>
+                    <ExperienceIcon type="experience" number="25" />
+                    <ExperienceIcon type="recognition" number="10" />
                   </div>
                 </CardContent>
               </Card>
               <Card className="p-3 my-4" elevation={2}>
-                <CardContent style={{padding:'5px'}}>
+                <CardContent className="text-center text-md-left p-1">
                   <Typography variant="h5" display='block' gutterBottom>
                     Expertise
                   </Typography>
-                  <Typography className="w-75" display="block" variant="body1" style={{opacity:'0.5'}}>
+                  <Typography display="block" variant="body1" style={{opacity:'0.5'}}>
                     Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur
                   </Typography>
                 </CardContent>
@@ -197,7 +159,8 @@ function DocProfile() {
           </div>
         </div>
       </div>
-    </div>
+      <BottomNav />
+    </>
           
         
   );
