@@ -4,8 +4,16 @@ body {
   font-family: 'Nunito Sans', sans-serif;
 }
 
-.App {
-  text-align: center;
+.colorYellow {
+  color: #ED8A19!important;
+}
+
+.homeReviewNo:before {
+	content: '(';
+}
+
+.homeReviewNo:after {
+	content: ')';
 }
 
 @media only screen and (max-width: 767px) {

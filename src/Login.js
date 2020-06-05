@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button, Typography, TextField } from '@material-ui/core';
+import { Button, Typography, FilledInput } from '@material-ui/core';
 import FacebookIcon from '@material-ui/icons/Facebook';
-import { makeStyles } from '@material-ui/core/styles';
-import { Route, Router, Switch, Link } from 'react-router-dom';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,10 +36,45 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Home() {
+const CustomFilledInput = withStyles({
+  root: {
+    borderRadius: '10px',
+  },
+  input: {
+    padding: '20px 12px',
+  },
+})(FilledInput);
+
+function Form() {
+
+  const classes = useStyles();
+  return(
+    <form className={classes.form}>
+            <Typography variant="h6" className={classes.margin} gutterBottom>
+                Sign In
+              </Typography>
+            <CustomFilledInput id="filled-basic" label="Phone Number" className={classes.margin} disableUnderline placeholder="Phone number" required />
+            <CustomFilledInput id="filled-basic" label="Password" type="password" className={classes.margin} disableUnderline color="primary" placeholder="Password" required />
+            <Button variant="contained" className={`${classes.margin} ${classes.facebook}`}>
+              <Typography variant="caption" className={classes.margin}>
+                Sign In
+              </Typography>
+            </Button>
+            <div className="py-2 text-center">
+              <Typography variant="caption" color="primary" gutterBottom>
+                <Link to="#" variant="inherit" style={{color:'inherit'}}>
+            Forgot Password?
+        </Link>
+              </Typography>
+            </div>
+        </form>
+    )
+}
+
+export default function Home() {
   const classes = useStyles();
   return (
-    <div className="container-fluid">
+    <>
       <div className="row" style={{minHeight:'100vh'}}>
         <div className="col-md-6 d-flex justify-content-center" style={{backgroundImage:'linear-gradient(225deg, #4A6BC5, #5F82E2)', color:'#fff'}}>
           <div className="row">
@@ -71,34 +106,6 @@ function Home() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
-
-function Form() {
-
-	const classes = useStyles();
-	return(
-		<form className={classes.form}>
-           	<Typography variant="h6" className={classes.margin} gutterBottom>
-                Sign In
-              </Typography>
-           	<TextField id="filled-basic" label="Phone Number" variant="filled" className={classes.margin} size="small" />
-           	<TextField id="filled-basic" label="Password" type="password" variant="filled" className={classes.margin} size="small" />
-           	<Button variant="contained" className={`${classes.margin} ${classes.facebook}`}>
-              <Typography variant="caption" className={classes.margin}>
-                Sign In
-              </Typography>
-            </Button>
-            <div className="py-2 text-center">
-              <Typography variant="caption" color="primary" gutterBottom>
-                <Link to="#" variant="inherit" style={{color:'inherit'}}>
-				    Forgot Password?
-				</Link>
-              </Typography>
-            </div>
-        </form>
-		)
-}
-
-export default Home;

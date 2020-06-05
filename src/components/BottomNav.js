@@ -26,8 +26,8 @@ export default function BottomNav() {
 	};
 
 	return(
-		<div className="row">
-			<BottomNavigation value={value} onChange={handleChange} className="d-md-none" style={{position:'fixed',bottom:0,width:'100%'}}>			        
+		<div className="row d-md-none">
+			<BottomNavigation value={value} onChange={handleChange} style={{position:'fixed',bottom:0,width:'100%'}}>			        
 		        <StyledNav label="Home" value="home" icon={<HomeRoundedIcon />} />
 		        <StyledNav label="Search" value="search" icon={<SearchRoundedIcon />} />
 	            <StyledNav label="Favorites" value="favorites" icon={<FavoriteRoundedIcon />} />
