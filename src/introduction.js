@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import banner1 from './svg/banner1.svg';
 import DoctoIcon from './components/DoctoIcon.js';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
