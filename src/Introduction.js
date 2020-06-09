@@ -1,10 +1,10 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import {Typography, Button, useMediaQuery} from '@material-ui/core';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import banner1 from './svg/banner1.svg';
+import DoctoIcon from './components/DoctoIcon.js';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,43 +32,47 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Home() {
+export default function Home() {
   const classes = useStyles();
+  const margin = useMediaQuery('(max-width:767px)') ? '-130px' : '0' ;
   return (
       <div className="row" style={{minHeight:'100vh'}}>
         <div className="col-md-6 d-flex justify-content-center" style={{backgroundImage:'linear-gradient(225deg, #4A6BC5, #5F82E2)', color:'#fff'}}>
           <div className="row">
-            <div className="col-12 d-flex flex-column justify-content-center align-items-center">
-              <img className="w-75 mb-3" src={banner1} alt="" />
+            <div className="col-12 d-flex flex-column justify-content-center align-items-center" style={{marginBottom:margin}} >
+              <img className="w-75 mb-3 d-none" src={banner1} alt="" />
+               
               <Typography variant="h4" gutterBottom>
-                Hey There!
+                               Hey There!
               </Typography>
               <Typography variant="subtitle1" gutterBottom>
-                Sign In to continue
+                               Sign In to continue
               </Typography>
+              
+              <DoctoIcon />
             </div>
           </div>
         </div>
-        <div className="col-md-6 d-flex justify-content-center align-items-center">
+        <div className="col-md-6 d-flex justify-content-center align-items-center mt-5 mt-md-0">
           <div className="d-flex flex-column">
-            <Button variant="contained" className={`${classes.margin} ${classes.facebook}`} startIcon={<FacebookIcon />}>
+            <Button variant="contained" className={`${classes.margin} ${classes.facebook}`} startIcon={<FacebookIcon />} href="#" >
               <Typography variant="caption" className={classes.margin}>
                 Continue with Facebook
               </Typography>
             </Button> 
-            <Button variant="contained" className={`${classes.margin} ${classes.phone}`} component={Link} to="/login">
+            <Button variant="contained" className={`${classes.margin} ${classes.phone}`} href="/auth/login">
               <Typography variant="caption" className={classes.margin}>
                 Sign in with Phone Number
               </Typography>
             </Button>
             <div className="pt-4 pb-2 text-center">
               <Typography variant="caption" color="primary" gutterBottom>
-                <Link to="/signup" variant="inherit" style={{color:'inherit'}}>
+                <Link to="/auth/signup" variant="inherit" style={{color:'inherit'}}>
                   Don't have an account?
               </Link>
               </Typography>
             </div>
-            <Button variant="contained" className={`${classes.margin} ${classes.facebook}`}>
+            <Button variant="contained" className={`${classes.margin} ${classes.facebook}`} href='/auth/signup'>
               <Typography variant="caption" className={classes.margin}>
                 Sign Up now
               </Typography>
@@ -78,5 +82,3 @@ function Home() {
       </div>
   );
 }
-
-export default Home;

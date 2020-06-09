@@ -2,10 +2,11 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import Introduction from './Introduction.js';
-import Home from './Home.js';
-import Login from './Login.js';
-import DocProfile from './DocProfile.js';
+import Introduction from './introduction.js';
+import Home from './home.js';
+import Auth from './auth/auth.js';
+import DocProfile from './docProfile.js';
+
 import './App.css';
 
 const theme = createMuiTheme({
@@ -33,18 +34,15 @@ const theme = createMuiTheme({
   }
 });
 
-function App() {
+export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <Switch>
         <Route exact path="/" component={Introduction} />
         <Route path="/home" component={Home} />
-        <Route  path="/login" component={Login} />
-        <Route  path="/signup" component={DocProfile} />
+        <Route  path="/auth" component={Auth} />
+        <Route  path="/profile" component={DocProfile} />
       </Switch>
     </ThemeProvider>
-    
   );
 }
-
-export default App;

@@ -11,8 +11,8 @@ export default function DoctorProfileIcons() {
 
 	return(
 		<div className="d-flex">
-            <Link to="#" className="m-2" style={{marginLeft: 0}} >
-                <IconButton className="docProfile--icons" color="primary" aria-label="call" component="div" edge="start">
+            <Link to="#" className="m-2 ml-md-0">
+                <IconButton className="docProfile--icons" color="primary" aria-label="call" component="div">
                     <CallIcon />
                 </IconButton>
             </Link>

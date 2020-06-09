@@ -8,9 +8,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around',
-    backgroundColor: '#fff',
-    overflow: 'hidden',
-    height: 'unset',
     borderRadius: '10px',
     wordBreak: 'break-all'
   },
@@ -31,20 +28,20 @@ export default function DoctorTile(props) {
 				<img src={props.img} />
 			</div>
 			<Typography className="font-weight-bold" variant="body1">
-				Dr. Nirmala Reddy
+				{props.name}
 			</Typography>
 			<Typography className="text-black-50" variant="caption">
-	        	Gastroenterologists
+	        	{props.speciality}
 		   	</Typography>
 		   	<div className="d-flex align-items-center mb-2">
 		   		<IconButton className="colorYellow" aria-label="review" component="div" size="small">
                     <StarRoundedIcon />
                 </IconButton>
                 <Typography className="colorYellow mx-2 font-weight-bold" variant="caption">
-                	4.5
+                	{props.rating}
                 </Typography>
                 <Typography className="font-weight-bold homeReviewNo" variant="caption">
-                	211
+                	{props.number}
                 </Typography>
 		   	</div>
 		</Card>

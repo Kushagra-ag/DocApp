@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -32,9 +32,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function MenuListComposition() {
+export default function MenuListComposition(props) {
   const classes = useStyles();
 
+  const [selectedItem, setSelectedItem] = useState(props.page || 'home')
 
   return (
     <div className="col-2 d-none d-md-block">
@@ -42,25 +43,25 @@ export default function MenuListComposition() {
 	      <Paper className={classes.paper}>
 	        <MenuList className="pt-5">
 	        	<Link to='/home' className={classes.link}>
-		          	<MenuItem>
+		          	<MenuItem selected={selectedItem==='home'}>
 				    	<HomeRoundedIcon color="primary" className={classes.margin}/>
 			          	<Typography variant="h6">Home</Typography>
 		        	</MenuItem>
 		        </Link>
 		        <Link to='#' className={classes.link}>
-	          		<MenuItem>
+	          		<MenuItem selected={selectedItem==='fav'}>
 			          	<FavoriteRoundedIcon color="primary" className={classes.margin}/>
 			          	<Typography variant="h6">Favourites</Typography>
 	          		</MenuItem>
 	          	</Link>
 	          	<Link to='#' className={classes.link}>
-	          		<MenuItem>
+	          		<MenuItem selected={selectedItem==='profile'}>
 			          	<PersonRoundedIcon color="primary" className={classes.margin}/>
 			          	<Typography variant="h6">Profile</Typography>
 	          		</MenuItem>
 	          	</Link>
 	          	<Link to='#' className={classes.link}>
-	          		<MenuItem>
+	          		<MenuItem selected={selectedItem==='search'}>
 			          	<SearchRoundedIcon color="primary" className={classes.margin}/>
 			          	<Typography variant="h6">Search</Typography>
 	          		</MenuItem>

@@ -1,8 +1,10 @@
 import React from 'react';
-import { Button, Typography, FilledInput } from '@material-ui/core';
+import { Button, Typography, FilledInput, useMediaQuery } from '@material-ui/core';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import AuthTextField from '../components/AuthTextField.js';
+import DoctoIcon from '../components/DoctoIcon.js';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,26 +38,17 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const CustomFilledInput = withStyles({
-  root: {
-    borderRadius: '10px',
-  },
-  input: {
-    padding: '20px 12px',
-  },
-})(FilledInput);
-
 function Form() {
 
   const classes = useStyles();
   return(
-    <form className={classes.form}>
+    <form className={classes.form} method="POST">
             <Typography variant="h6" className={classes.margin} gutterBottom>
                 Sign In
               </Typography>
-            <CustomFilledInput id="filled-basic" label="Phone Number" className={classes.margin} disableUnderline placeholder="Phone number" required />
-            <CustomFilledInput id="filled-basic" label="Password" type="password" className={classes.margin} disableUnderline color="primary" placeholder="Password" required />
-            <Button variant="contained" className={`${classes.margin} ${classes.facebook}`}>
+            <AuthTextField id="phone" label="Phone Number" className={classes.margin} disableUnderline placeholder="Phone number" required />
+            <AuthTextField id="pass" label="Password" type="password" className={classes.margin} disableUnderline color="primary" placeholder="Password" required />
+            <Button variant="contained" className={`${classes.margin} ${classes.facebook}`} type="submit">
               <Typography variant="caption" className={classes.margin}>
                 Sign In
               </Typography>
@@ -73,18 +66,15 @@ function Form() {
 
 export default function Home() {
   const classes = useStyles();
+  const color = useMediaQuery('(max-width:767px)') ? 'linear-gradient(225deg, rgba(74, 107, 197,0), rgba(95, 130, 226,0))' : 'linear-gradient(225deg, rgb(74, 107, 197), rgb(95, 130, 226))' ;
+
   return (
     <>
       <div className="row" style={{minHeight:'100vh'}}>
-        <div className="col-md-6 d-flex justify-content-center" style={{backgroundImage:'linear-gradient(225deg, #4A6BC5, #5F82E2)', color:'#fff'}}>
+        <div className="col-md-6 d-flex justify-content-center" style={{backgroundImage:color, color:'#fff'}}>
           <div className="row">
             <div className="col-12 d-flex flex-column justify-content-center align-items-center">
-              <Typography variant="h4" gutterBottom>
-                Hey There!
-              </Typography>
-              <Typography variant="subtitle1" gutterBottom>
-                Sign In to continue
-              </Typography>
+              <DoctoIcon />
             </div>
           </div>
         </div>
@@ -93,12 +83,12 @@ export default function Home() {
             <Form />
             <div className="pt-4 pb-2 text-center">
               <Typography variant="caption" color="primary" gutterBottom>
-              	<Link to="#" variant="inherit" style={{color:'inherit'}}>
+              	<Link to="/auth/signup" variant="inherit" style={{color:'inherit'}}>
 				          Don't have an account?
 				        </Link>
               </Typography>
             </div>
-            <Button variant="outlined" className={`${classes.margin}`} style={{backgroundColor: '#fff'}}>
+            <Button variant="outlined" className={`${classes.margin}`} style={{backgroundColor: '#fff'}} href="/auth/signup">
               <Typography variant="caption" className={classes.margin}>
                 Sign Up now
               </Typography>
