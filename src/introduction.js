@@ -54,12 +54,12 @@ export default function Home() {
         </div>
         <div className="col-md-6 d-flex justify-content-center align-items-center mt-5 mt-md-0">
           <div className="d-flex flex-column">
-            <Button variant="contained" className={`${classes.margin} ${classes.facebook}`} startIcon={<FacebookIcon />} href="#" >
+            <Button variant="contained" className={`${classes.margin} ${classes.facebook}`} startIcon={<FacebookIcon />} component={Link} to='#' >
               <Typography variant="caption" className={classes.margin}>
                 Continue with Facebook
               </Typography>
             </Button> 
-            <Button variant="contained" className={`${classes.margin} ${classes.phone}`} href="/auth/login">
+            <Button variant="contained" className={`${classes.margin} ${classes.phone}`} component={Link} to='/auth/login'>
               <Typography variant="caption" className={classes.margin}>
                 Sign in with Phone Number
               </Typography>
@@ -71,7 +71,7 @@ export default function Home() {
               </Link>
               </Typography>
             </div>
-            <Button variant="contained" className={`${classes.margin} ${classes.facebook}`} href='/auth/signup'>
+            <Button variant="contained" className={`${classes.margin} ${classes.facebook}`} component={Link} to='/auth/signup'>
               <Typography variant="caption" className={classes.margin}>
                 Sign Up now
               </Typography>

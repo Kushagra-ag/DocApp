@@ -64,7 +64,7 @@ function Form() {
     )
 }
 
-export default function Home() {
+export default function Signup() {
   const classes = useStyles();
   return (
     <>
@@ -91,7 +91,7 @@ export default function Home() {
 				        </Link>
               </Typography>
             </div>
-            <Button variant="outlined" className={`${classes.margin}`} style={{backgroundColor: '#fff'}} href="/auth/login">
+            <Button variant="outlined" className={`${classes.margin}`} style={{backgroundColor: '#fff'}} component={Link} to='/auth/login'>
               <Typography variant="caption" className={classes.margin}>
                 Sign In now
               </Typography>

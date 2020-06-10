@@ -88,7 +88,7 @@ export default function Login() {
 				        </Link>
               </Typography>
             </div>
-            <Button variant="outlined" className={`${classes.margin}`} style={{backgroundColor: '#fff'}} href="/auth/signup">
+            <Button variant="outlined" className={`${classes.margin}`} style={{backgroundColor: '#fff'}} component={Link} to='/auth/signup'>
               <Typography variant="caption" className={classes.margin}>
                 Sign Up now
               </Typography>
