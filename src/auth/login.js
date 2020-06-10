@@ -64,7 +64,7 @@ function Form() {
     )
 }
 
-export default function Home() {
+export default function Login() {
   const classes = useStyles();
   const color = useMediaQuery('(max-width:767px)') ? 'linear-gradient(225deg, rgba(74, 107, 197,0), rgba(95, 130, 226,0))' : 'linear-gradient(225deg, rgb(74, 107, 197), rgb(95, 130, 226))' ;
 
