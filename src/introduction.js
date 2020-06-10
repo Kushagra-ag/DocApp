@@ -39,7 +39,9 @@ export default function Home() {
         <div className="col-md-6 d-flex justify-content-center" style={{backgroundImage:'linear-gradient(225deg, #4A6BC5, #5F82E2)', color:'#fff'}}>
           <div className="row">
             <div className="col-12 d-flex flex-column justify-content-center align-items-center" style={{marginBottom:margin}} >
-              <img className="w-75 mb-3 d-none" src={banner1} alt="" />
+              {
+                //<img className="w-75 mb-3 d-none" src={banner1} alt="" />
+              }
                
               <Typography variant="h4" gutterBottom>
                                Hey There!

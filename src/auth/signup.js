@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Typography, FilledInput } from '@material-ui/core';
+import { Button, Typography, FilledInput, useMediaQuery } from '@material-ui/core';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(2),
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
-    borderRadius: '20px'
+    borderRadius: '10px'
   },
   margin: {
     margin: theme.spacing(1),
@@ -54,7 +54,7 @@ function Form() {
               </Typography>
             </Button>
             <div className="py-2 text-center">
-              <Typography variant="caption" color="primary" component={Link} to="#" gutterBottom>
+              <Typography variant="caption" color="primary" component={Link} to="/auth/forgot" gutterBottom>
                 
             Forgot Password?
         
@@ -66,17 +66,21 @@ function Form() {
 
 export default function Signup() {
   const classes = useStyles();
+  const match = useMediaQuery('(max-width:767px)') ? true : false;
+  const color = match ? 'linear-gradient(225deg, rgba(74, 107, 197,0), rgba(95, 130, 226,0))' : 'linear-gradient(225deg, rgb(74, 107, 197), rgb(95, 130, 226))';
+  const txt = match ? 'textPrimary' : 'textSecondary';
+  const height = match ? 'unset' : '100vh';
   return (
     <>
-      <div className="row" style={{minHeight:'100vh'}}>
-        <div className="col-md-6 d-flex justify-content-center" style={{backgroundImage:'linear-gradient(225deg, #4A6BC5, #5F82E2)', color:'#fff'}}>
+      <div className="row" style={{minHeight:height}}>
+        <div className="col-md-6 d-flex justify-content-center my-4 my-md-0" style={{backgroundImage:color}}>
           <div className="row">
-            <div className="col-12 d-flex flex-column justify-content-center align-items-center">
-              <Typography variant="h4" gutterBottom>
-                Hey There!
+            <div className="col-12 d-flex flex-column justify-content-center text-left text-md-center">
+              <Typography variant="h4" color={txt} gutterBottom>
+                Welcome!
               </Typography>
-              <Typography variant="subtitle1" gutterBottom>
-                Sign In to continue
+              <Typography variant="subtitle1" color={txt} gutterBottom>
+                Let's create your account
               </Typography>
             </div>
           </div>
