@@ -80,8 +80,8 @@ export default function Forgot() {
                 Don't Panic!
               </Typography>
               <Typography variant="subtitle1" color={txt} gutterBottom>
-                We will help you recover your password.<br/>
-				Let us know you phone number first.
+                We will help you recover your password.
+				
               </Typography>
             </div>
           </div>

@@ -1,1 +1,1 @@
-myProfile.js
+import React from 'react';
