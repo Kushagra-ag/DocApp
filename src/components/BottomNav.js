@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
@@ -10,7 +11,7 @@ import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 
 const StyledNav = withStyles({
   root: {
-    color: '#ecf1fc',
+    color: '#a5aab5',
   },
   label: {
     textTransform: 'capitalize',
@@ -27,8 +28,8 @@ export default function BottomNav() {
 
 	return(
 		<div className="row d-md-none">
-			<BottomNavigation value={value} onChange={handleChange} style={{position:'fixed',bottom:0,width:'100%'}}>			        
-		        <StyledNav label="Home" value="home" icon={<HomeRoundedIcon />} />
+			<BottomNavigation value={value} onChange={handleChange} className="fixed-bottom">			        
+		        <StyledNav label="Home" value="home" icon={<HomeRoundedIcon />} component={Link} to="/home" />
 		        <StyledNav label="Search" value="search" icon={<SearchRoundedIcon />} />
 	            <StyledNav label="Favorites" value="favorites" icon={<FavoriteRoundedIcon />} />
 			    <StyledNav label="Profile" value="profile" icon={<PersonRoundedIcon />} />

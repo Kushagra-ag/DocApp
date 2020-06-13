@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import AuthTextField from '../components/AuthTextField.js';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -54,7 +53,7 @@ function Form() {
     )
 }
 
-export default function Forgot() {
+export default function Reset() {
   const classes = useStyles();
   const match = useMediaQuery('(max-width:767px)') ? true : false;
   const color = match ? 'linear-gradient(225deg, rgba(74, 107, 197,0), rgba(95, 130, 226,0))' : 'linear-gradient(225deg, rgb(74, 107, 197), rgb(95, 130, 226))';

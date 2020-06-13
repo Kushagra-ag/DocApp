@@ -6,6 +6,7 @@ import Introduction from './introduction.js';
 import Home from './home.js';
 import Auth from './auth/auth.js';
 import DocProfile from './docProfile.js';
+import Settings from './settings.js';
 
 import './App.css';
 
@@ -42,6 +43,7 @@ export default function App() {
         <Route path="/home" component={Home} />
         <Route  path="/auth" component={Auth} />
         <Route  path="/profile" component={DocProfile} />
+        <Route  path="/settings" component={Settings} />
       </Switch>
     </ThemeProvider>
   );

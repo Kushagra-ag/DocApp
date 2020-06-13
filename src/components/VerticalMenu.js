@@ -66,6 +66,12 @@ export default function MenuListComposition(props) {
 			          	<Typography variant="h6">Search</Typography>
 	          		</MenuItem>
 	          	</Link>
+	          	<Link to='/settings' className={classes.link}>
+	          		<MenuItem selected={selectedItem==='search'}>
+			          	
+			          	<Typography variant="h6">Settings</Typography>
+	          		</MenuItem>
+	          	</Link>
 	        </MenuList>
 	      </Paper>
 	      

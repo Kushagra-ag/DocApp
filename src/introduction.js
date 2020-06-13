@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     textTransform: 'capitalize'
   },
-  facebook: {
+  blueBtn: {
     color: '#fff',
     backgroundImage: "linear-gradient(to bottom, #5F7EBE, #3B5998)"
   },
@@ -56,7 +56,7 @@ export default function Home() {
         </div>
         <div className="col-md-6 d-flex justify-content-center align-items-center mt-5 mt-md-0">
           <div className="d-flex flex-column">
-            <Button variant="contained" className={`${classes.margin} ${classes.facebook}`} startIcon={<FacebookIcon />} component={Link} to='#' >
+            <Button variant="contained" className={`${classes.margin} ${classes.blueBtn}`} startIcon={<FacebookIcon />} component={Link} to='#' >
               <Typography variant="caption" className={classes.margin}>
                 Continue with Facebook
               </Typography>
@@ -73,7 +73,7 @@ export default function Home() {
               </Link>
               </Typography>
             </div>
-            <Button variant="contained" className={`${classes.margin} ${classes.facebook}`} component={Link} to='/auth/signup'>
+            <Button variant="contained" className={`${classes.margin} ${classes.blueBtn}`} component={Link} to='/auth/signup'>
               <Typography variant="caption" className={classes.margin}>
                 Sign Up now
               </Typography>

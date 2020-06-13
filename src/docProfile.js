@@ -72,7 +72,7 @@ function DocProfile() {
           </div>
           <div className="row my-5 my-md-4">
             <div className="col-md-4 text-center text-md-left">
-              <Card className="d-inline-block" style={{display:'inlineBlock'}}>
+              <Card className="d-inline-block">
                 <CardContent className="d-flex justify-content-around align-items-center" style={{padding:'5px'}}>
                   <div>
                     <div className={classes.imgContainer} style={{zIndex:10}}>
@@ -98,7 +98,7 @@ function DocProfile() {
                   </Link>
                 </CardContent>
               </Card><br/>
-              <Card className="my-4 d-inline-block d-md-block" style={{backgroundColor:'#5F82E2',maxWidth:'320px'}}>
+              <Card className="my-4 d-inline-block d-md-block" style={{backgroundColor:'#5F82E2',width:'320px',maxWidth:'100%'}}>
                     <CardContent className="d-flex justify-content-around align-items-center" style={{padding:'5px'}}>
                       
                       <Link to="#" className={classes.margin}>

@@ -5,8 +5,8 @@ import recognition from '../svg/recognition.svg';
 
 export default function ExperienceIcon(props) {
 
-	const txt = props.type == 'experience' ? 'Years' : 'Awards';
-	const imgPath = props.type == 'experience' ? experience : recognition;
+	const txt = props.type === 'experience' ? 'Years' : 'Awards';
+	const imgPath = props.type === 'experience' ? experience : recognition;
 	return(
 		<div className="text-center mx-2">
 			<img src={imgPath} />

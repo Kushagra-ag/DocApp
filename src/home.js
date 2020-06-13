@@ -62,7 +62,7 @@ export default function Home() {
 							<div className={classes.root}>
 						      	<GridList className= {classes.gridList} cols={4.5}>
 						        	{DoctorList.map((tile) => (
-						          		<GridListTile style={{height:'unset',width:'200px'}}>
+						          		<GridListTile style={{height:'unset',width:'200px'}} key={tile.key}>
 						            		
 						            		<DoctorTile img={doc1} name={tile.name} speciality={tile.speciality} rating={tile.rating} number={tile.numberOfReviews} />
 						            		
@@ -85,7 +85,7 @@ export default function Home() {
 							<div className={classes.root}>
 						      	<GridList className= {classes.gridList} cols={4.5}>
 						        	{DoctorList.map((tile) => (
-						          		<GridListTile key={tile} style={{height:'unset',width:'200px'}}>
+						          		<GridListTile key={tile} style={{height:'unset',width:'200px'}} key={tile.key}>
 						            		
 						            		<DoctorTile img={doc1} name={tile.name} speciality={tile.speciality} rating={tile.rating} number={tile.numberOfReviews} />
 						            		
