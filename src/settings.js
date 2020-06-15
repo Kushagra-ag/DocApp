@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Button, Typography, useMediaQuery, IconButton, Card, CardContent, CardActions, Collapse} from '@material-ui/core';
+import {Button, Typography, IconButton, Card, CardContent, CardActions, Collapse} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import VerticalMenu from './components/VerticalMenu.js';

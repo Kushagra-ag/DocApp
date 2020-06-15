@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import justin from './svg/justin.png';
 import ryan from './svg/ryan.png';
 import lara from './svg/lara.png';
-import doc1 from './svg/doc1.png';
+import doc1 from './svg/doc1.jpg';
 import VerticalMenu from './components/VerticalMenu.js';
 import TopBar from './components/TopBar.js';
 import ExperienceIcon from './components/ExperienceIcon.js';

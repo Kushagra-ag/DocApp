@@ -23,9 +23,9 @@ export default function DoctorTile(props) {
 
 	const classes = useStyles();
 	return(
-		<Card className={`mx-4 px-2 ${classes.root}`}>
+		<Card className={`mx-2 px-2 ${classes.root}`}>
 			<div className={`mb-2 mx-n2 ${classes.imgContainer}`}>
-				<img src={props.img} />
+				<img src={props.img} className="w-100"/>
 			</div>
 			<Typography className="font-weight-bold" variant="body1">
 				{props.name}

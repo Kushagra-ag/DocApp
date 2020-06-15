@@ -34,8 +34,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MenuListComposition(props) {
   const classes = useStyles();
-
   const [selectedItem, setSelectedItem] = useState(props.page || 'home')
+
+  const changeMenuSelected = (el) => {
+  	setSelectedItem(el);
+  }
 
   return (
     <div className="col-2 d-none d-md-block">
@@ -43,31 +46,31 @@ export default function MenuListComposition(props) {
 	      <Paper className={classes.paper}>
 	        <MenuList className="pt-5">
 	        	<Link to='/home' className={classes.link}>
-		          	<MenuItem selected={selectedItem==='home'}>
+		          	<MenuItem selected={selectedItem==='home'} onClick={()=>changeMenuSelected('home')}>
 				    	<HomeRoundedIcon color="primary" className={classes.margin}/>
 			          	<Typography variant="h6">Home</Typography>
 		        	</MenuItem>
 		        </Link>
 		        <Link to='#' className={classes.link}>
-	          		<MenuItem selected={selectedItem==='fav'}>
+	          		<MenuItem selected={selectedItem==='fav'} onClick={()=>changeMenuSelected('fav')}>
 			          	<FavoriteRoundedIcon color="primary" className={classes.margin}/>
 			          	<Typography variant="h6">Favourites</Typography>
 	          		</MenuItem>
 	          	</Link>
 	          	<Link to='#' className={classes.link}>
-	          		<MenuItem selected={selectedItem==='profile'}>
+	          		<MenuItem selected={selectedItem==='profile'} onClick={()=>changeMenuSelected('profile')}>
 			          	<PersonRoundedIcon color="primary" className={classes.margin}/>
 			          	<Typography variant="h6">Profile</Typography>
 	          		</MenuItem>
 	          	</Link>
 	          	<Link to='#' className={classes.link}>
-	          		<MenuItem selected={selectedItem==='search'}>
+	          		<MenuItem selected={selectedItem==='search'} onClick={()=>changeMenuSelected('search')}>
 			          	<SearchRoundedIcon color="primary" className={classes.margin}/>
 			          	<Typography variant="h6">Search</Typography>
 	          		</MenuItem>
 	          	</Link>
-	          	<Link to='/settings' className={classes.link}>
-	          		<MenuItem selected={selectedItem==='search'}>
+	          	<Link to='/settings' className={classes.link} onClick={()=>changeMenuSelected('settings')}>
+	          		<MenuItem selected={selectedItem==='settings'}>
 			          	
 			          	<Typography variant="h6">Settings</Typography>
 	          		</MenuItem>
