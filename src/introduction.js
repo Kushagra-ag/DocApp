@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home() {
   const classes = useStyles();
-  const margin = useMediaQuery('(max-width:767px)') ? '-130px' : '0' ;
+  const margin = useMediaQuery('(max-width:767px)') ? '-150px' : '0' ;
   return (
       <div className="row" style={{minHeight:'100vh'}}>
         <div className="col-md-6 d-flex justify-content-center" style={{backgroundImage:'linear-gradient(225deg, #4A6BC5, #5F82E2)', color:'#fff'}}>

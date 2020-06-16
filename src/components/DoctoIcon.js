@@ -22,7 +22,7 @@ export default function DoctorIcon() {
 
   	return(
     	<div className="my-4 position-relative">
-        <div className={`h-50 position-absolute d-${display}`} style={{top:'50%',left:'-100vw',width:'200vw',backgroundColor:'#f4f5fb'}}>
+        <div className={`h-100 position-absolute d-${display}`} style={{top:'50%',left:'-100vw',width:'200vw',backgroundColor:'#f4f5fb'}}>
         </div>
         <div className= {`font-weight-bold d-flex justify-content-center align-items-center ${classes.icon}`} >
           Docto.

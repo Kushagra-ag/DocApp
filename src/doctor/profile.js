@@ -4,15 +4,15 @@ import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import justin from './svg/justin.png';
-import ryan from './svg/ryan.png';
-import lara from './svg/lara.png';
-import doc1 from './svg/doc1.jpg';
-import VerticalMenu from './components/VerticalMenu.js';
-import TopBar from './components/TopBar.js';
-import ExperienceIcon from './components/ExperienceIcon.js';
-import DoctorProfileIcons from './components/DoctorProfileIcons.js';
-import BottomNav from './components/BottomNav.js';
+import justin from '../svg/justin.png';
+import ryan from '../svg/ryan.png';
+import lara from '../svg/lara.png';
+import doc1 from '../svg/doc1.jpg';
+import VerticalMenu from '../components/VerticalMenu.js';
+import TopBar from '../components/TopBar.js';
+import ExperienceIcon from '../components/ExperienceIcon.js';
+import DoctorProfileIcons from '../components/DoctorProfileIcons.js';
+import BottomNav from '../components/BottomNav.js';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function DocProfile() {
+export default function Profile() {
   const classes = useStyles();
   const txt = useMediaQuery('(max-width:767px)') ? 'textSecondary' : 'primary';
   
@@ -153,10 +153,6 @@ function DocProfile() {
         </div>
       </div>
       <BottomNav />
-    </>
-          
-        
+    </>      
   );
 }
-
-export default DocProfile;

@@ -9,6 +9,7 @@ import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
+
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -63,12 +64,14 @@ export default function MenuListComposition(props) {
 			          	<Typography variant="h6">Profile</Typography>
 	          		</MenuItem>
 	          	</Link>
-	          	<Link to='#' className={classes.link}>
-	          		<MenuItem selected={selectedItem==='search'} onClick={()=>changeMenuSelected('search')}>
-			          	<SearchRoundedIcon color="primary" className={classes.margin}/>
-			          	<Typography variant="h6">Search</Typography>
-	          		</MenuItem>
-	          	</Link>
+	          	{
+	          		// <Link to='#' className={classes.link}>
+	          		//           		<MenuItem selected={selectedItem==='search'} onClick={()=>changeMenuSelected('search')}>
+	          		// 		          	<SearchRoundedIcon color="primary" className={classes.margin}/>
+	          		// 		          	<Typography variant="h6">Search</Typography>
+	          		//           		</MenuItem>
+	          		//           	</Link>
+	          	}
 	          	<Link to='/settings' className={classes.link} onClick={()=>changeMenuSelected('settings')}>
 	          		<MenuItem selected={selectedItem==='settings'}>
 			          	

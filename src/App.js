@@ -5,7 +5,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import Introduction from './introduction.js';
 import Home from './home.js';
 import Auth from './auth/auth.js';
-import DocProfile from './docProfile.js';
+import DocProfile from './doctor/profile.js';
 import Settings from './settings.js';
 
 import './App.css';
