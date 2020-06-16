@@ -30,10 +30,10 @@ const useStyles = makeStyles((theme) => ({
 const CustomFilledInput = withStyles({
   root: {
     borderRadius: '10px',
-    transform: 'scale(0.8)'
+    fontSize: '85%',
   },
   input: {
-    padding: '15px 12px',
+    padding: '10px 5px',
   },
 })(FilledInput);
 
@@ -52,9 +52,9 @@ export default function Home() {
 					<div className="row pt-5">
 						<div className="col-12">
 							<Typography variant="h5" gutterBottom>
-				               	Find nearby doctors and clinic
+				               	Find Nearby Doctors and Clinics
 							</Typography>
-							<CustomFilledInput placeholder="Search Conditions, Specialities..." disableUnderline startAdornment={<InputAdornment position="start"><SearchRoundedIcon /></InputAdornment>} />
+							<CustomFilledInput className="mt-2" placeholder="Search Conditions, Specialities..." disableUnderline startAdornment={<InputAdornment position="start"><SearchRoundedIcon /></InputAdornment>} />
 					    </div>
 					</div>
 					<div className="row my-5">
