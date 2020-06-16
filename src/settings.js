@@ -9,7 +9,7 @@ import Privacy from './components/settings/privacy.js';
 import Refer from './components/settings/refer.js';
 import Faq from './components/settings/faq.js';
 import About from './components/settings/about.js';
-import SettingsBanner from './svg/settings.png';
+import SettingsBanner from './svg/settings.svg';
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -39,7 +39,7 @@ export default function Settings() {
 			<div className="row settings">
 				<VerticalMenu page="settings"/>
 				<div className="col-md-10 overflow-hidden">
-					<div className="position-absolute d-none d-md-block" style={{right:'-10%',top:'20%'}}>
+					<div className="position-absolute d-none d-md-block" style={{right:'-10%',bottom:'-10%',width:'40%'}}>
 						
 				        	<img src={SettingsBanner} />
 				        
