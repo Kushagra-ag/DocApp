@@ -5,7 +5,7 @@ import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import VerticalMenu from './components/VerticalMenu.js';
 import BottomNav from './components/BottomNav.js';
 import TopBar from './components/TopBar.js';
-import DoctorTile from './components/DoctorTile.js';
+import DoctorTile from './components/doctor/DoctorTile.js';
 import doc1 from './svg/doc1.jpg';
 import DoctorList from './data/DoctorList.js';
 

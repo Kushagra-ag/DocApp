@@ -11,7 +11,7 @@ import doc1 from '../svg/doc1.jpg';
 import VerticalMenu from '../components/VerticalMenu.js';
 import TopBar from '../components/TopBar.js';
 import ExperienceIcon from '../components/ExperienceIcon.js';
-import DoctorProfileIcons from '../components/DoctorProfileIcons.js';
+import DoctorProfileIcons from '../components/doctor/DoctorProfileIcons.js';
 import BottomNav from '../components/BottomNav.js';
 
 
