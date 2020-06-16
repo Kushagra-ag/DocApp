@@ -53,8 +53,8 @@ export default function Profile() {
       <TopBar />
       <div className="row">
         <VerticalMenu />
-        <div className="col-md-10">
-        	<div className="row pt-5 docProfile">
+        <div className="col-md-9 col-lg-10">
+        	<div className="row pt-4 docProfile">
             <div className="col-md-4 d-flex justify-content-center">
               <div style={{overflow:'hidden',borderRadius:'10px',width:'maxContent'}}>
                 <img src={doc1} />

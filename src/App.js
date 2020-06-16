@@ -5,7 +5,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import Introduction from './introduction.js';
 import Home from './home.js';
 import Auth from './auth/auth.js';
-import DocProfile from './doctor/profile.js';
+import Doctor from './doctor/index.js';
 import Settings from './settings.js';
 
 import './App.css';
@@ -42,8 +42,8 @@ export default function App() {
         <Route exact path="/" component={Introduction} />
         <Route path="/home" component={Home} />
         <Route  path="/auth" component={Auth} />
-        <Route  path="/profile" component={DocProfile} />
         <Route  path="/settings" component={Settings} />
+        <Route  path="/doctor" component={Doctor} />
       </Switch>
     </ThemeProvider>
   );

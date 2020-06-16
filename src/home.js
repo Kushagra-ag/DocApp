@@ -48,7 +48,7 @@ export default function Home() {
 			<TopBar />
 			<div className="row home">
 				<VerticalMenu page="home"/>
-				<div className="col-md-10">
+				<div className="col-md-9 col-lg-10">
 					<div className="row pt-5">
 						<div className="col-12">
 							<Typography variant="h5" gutterBottom>

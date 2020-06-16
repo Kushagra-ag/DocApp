@@ -38,13 +38,13 @@ export default function Settings() {
 			<TopBar />
 			<div className="row settings">
 				<VerticalMenu page="settings"/>
-				<div className="col-md-10 overflow-hidden">
+				<div className="col-md-9 col-lg-10 overflow-hidden">
 					<div className="position-absolute d-none d-md-block" style={{right:'-10%',bottom:'-10%',width:'40%'}}>
 						
 				        	<img src={SettingsBanner} />
 				        
 				    </div>
-					<div className="row pt-5">
+					<div className="row pt-4">
 						<div className="col-sm-9 col-md-6 text-center">
 							<Privacy expanded={privacy} click={()=>handleExpandClick('privacy')} />
 							<Refer />
