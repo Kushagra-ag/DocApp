@@ -29,13 +29,13 @@ export default function BottomNav() {
 	return(
 		<div className="row d-md-none">
 			<BottomNavigation value={value} onChange={handleChange} className="col-12 w-100 position-fixed" style={{bottom:0}}>			        
-		        <StyledNav label="Home" value="home" icon={<HomeRoundedIcon />} component={Link} to="/home" />
+		        <StyledNav label="Home" value="home" icon={<HomeRoundedIcon />} component={Link} to="/user/home" />
 		        {
 		        	//<StyledNav label="Search" value="search" icon={<SearchRoundedIcon />} />
 		        }
 	            <StyledNav label="Favorites" value="favorites" icon={<FavoriteRoundedIcon />} />
 			    <StyledNav label="Profile" value="profile" icon={<PersonRoundedIcon />} />
-			    <StyledNav label="Menu" value="menu" icon={<MenuRoundedIcon />} component={Link} to="/settings" />
+			    <StyledNav label="Menu" value="menu" icon={<MenuRoundedIcon />} component={Link} to="/user/settings" />
 			</BottomNavigation>
 		</div>
 	)

@@ -2,7 +2,7 @@ import { FilledInput } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 
-const AuthTextField = withStyles({
+const CustomTextField = withStyles({
   root: {
     borderRadius: '10px',
   },
@@ -11,4 +11,4 @@ const AuthTextField = withStyles({
   },
 })(FilledInput);
 
-export default AuthTextField;
+export default CustomTextField;

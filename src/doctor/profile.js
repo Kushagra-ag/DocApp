@@ -50,9 +50,7 @@ export default function Profile() {
   
   return (
     <>
-      <TopBar />
-      <div className="row">
-        <VerticalMenu />
+      
         <div className="col-md-9 col-lg-10">
         	<div className="row pt-4 docProfile">
             <div className="col-md-4 d-flex justify-content-center">
@@ -151,8 +149,7 @@ export default function Profile() {
             </div>
           </div>
         </div>
-      </div>
-      <BottomNav />
+      
     </>      
   );
 }

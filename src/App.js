@@ -3,10 +3,9 @@ import { Route, Switch } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Introduction from './introduction.js';
-import Home from './home.js';
-import Auth from './auth/auth.js';
+import Auth from './auth/index.js';
 import Doctor from './doctor/index.js';
-import Settings from './settings.js';
+import User from './user/index.js';
 
 import './App.css';
 
@@ -40,9 +39,8 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <Switch>
         <Route exact path="/" component={Introduction} />
-        <Route path="/home" component={Home} />
         <Route  path="/auth" component={Auth} />
-        <Route  path="/settings" component={Settings} />
+        <Route  path="/user" component={User} />
         <Route  path="/doctor" component={Doctor} />
       </Switch>
     </ThemeProvider>

@@ -3,7 +3,7 @@ import { Button, Typography, FilledInput, useMediaQuery } from '@material-ui/cor
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import AuthTextField from '../components/AuthTextField.js';
+import CustomTextField from '../components/CustomTextField.js';
 import DoctoIcon from '../components/DoctoIcon.js';
 
 
@@ -46,8 +46,8 @@ function Form() {
             <Typography variant="h6" className={classes.margin} gutterBottom>
                 Sign In
               </Typography>
-            <AuthTextField id="phone" label="Phone Number" className={classes.margin} disableUnderline placeholder="Phone number" required />
-            <AuthTextField id="pass" label="Password" type="password" className={classes.margin} disableUnderline color="primary" placeholder="Password" required />
+            <CustomTextField id="phone" label="Phone Number" className={classes.margin} disableUnderline placeholder="Phone number" required />
+            <CustomTextField id="pass" label="Password" type="password" className={classes.margin} disableUnderline color="primary" placeholder="Password" required />
             <Button variant="contained" className={`${classes.margin} ${classes.facebook}`} type="submit">
               <Typography variant="caption" className={classes.margin}>
                 Sign In
@@ -79,7 +79,7 @@ export default function Login() {
           </div>
         </div>
         <div className="col-md-6 d-flex justify-content-center align-items-center" style={{backgroundColor:'#F4F5FB'}}>
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column" style={{width:'275px'}}>
             <Form />
             <div className="pt-4 pb-2 text-center">
               <Typography variant="caption" color="primary" gutterBottom>

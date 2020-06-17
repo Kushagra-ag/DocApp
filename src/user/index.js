@@ -1,22 +1,20 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Profile from './profile.js';
-import Places from './places.js';
-import Refer from './refer.js';
+import Home from './home.js';
+import Settings from './settings.js';
 import TopBar from '../components/TopBar.js';
 import BottomNav from '../components/BottomNav.js';
 import VerticalMenu from '../components/VerticalMenu.js';
 
-export default function Doctor() {
+export default function App() {
   return (
-      <>
+    <>
 		<TopBar />
 		<div className="row">
 			<VerticalMenu />
 		    <Switch>
-		        <Route path="/doctor/profile" component={Profile} />
-		        <Route  path="/doctor/places" component={Places} />
-		        <Route  path="/doctor/refer" component={Refer} />
+		        <Route  path="/user/home" component={Home} />
+		        <Route  path="/user/settings" component={Settings} />
 		    </Switch>
 		</div>
 		<BottomNav />

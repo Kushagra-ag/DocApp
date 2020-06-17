@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import {Button, Typography, IconButton, Card, CardContent, CardActions, Collapse} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import VerticalMenu from './components/VerticalMenu.js';
-import BottomNav from './components/BottomNav.js';
-import TopBar from './components/TopBar.js';
-import Privacy from './components/settings/privacy.js';
-import Refer from './components/settings/refer.js';
-import Faq from './components/settings/faq.js';
-import About from './components/settings/about.js';
-import SettingsBanner from './svg/settings.svg';
+import VerticalMenu from '../components/VerticalMenu.js';
+import BottomNav from '../components/BottomNav.js';
+import TopBar from '../components/TopBar.js';
+import Privacy from '../components/settings/privacy.js';
+import Refer from '../components/settings/refer.js';
+import Faq from '../components/settings/faq.js';
+import About from '../components/settings/about.js';
+import SettingsBanner from '../svg/settings.svg';
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -35,11 +35,9 @@ export default function Settings() {
 
 	return(
 		<>
-			<TopBar />
-			<div className="row settings">
-				<VerticalMenu page="settings"/>
-				<div className="col-md-9 col-lg-10 overflow-hidden">
-					<div className="position-absolute d-none d-md-block" style={{right:'-10%',bottom:'-10%',width:'40%'}}>
+			
+				<div className="col-md-9 col-lg-10 overflow-hidden settings">
+					<div className="position-absolute d-none d-md-block" style={{right:'-10%',bottom:'-40%',width:'450px'}}>
 						
 				        	<img src={SettingsBanner} />
 				        
@@ -61,8 +59,7 @@ export default function Settings() {
 							
 					</div>
 				</div>
-			</div>
-			<BottomNav />
+			
 		</>
 	)
 }

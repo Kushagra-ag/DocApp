@@ -46,7 +46,7 @@ export default function MenuListComposition(props) {
 	    <div className={classes.root}>
 	      <Paper className={classes.paper}>
 	        <MenuList className="pt-4">
-	        	<Link to='/home' className={classes.link}>
+	        	<Link to='/user/home' className={classes.link}>
 		          	<MenuItem selected={selectedItem==='home'} onClick={()=>changeMenuSelected('home')}>
 				    	<HomeRoundedIcon color="primary" className={classes.margin}/>
 			          	<Typography variant="h6">Home</Typography>
@@ -72,7 +72,7 @@ export default function MenuListComposition(props) {
 	          		//           		</MenuItem>
 	          		//           	</Link>
 	          	}
-	          	<Link to='/settings' className={classes.link} onClick={()=>changeMenuSelected('settings')}>
+	          	<Link to='/user/settings' className={classes.link} onClick={()=>changeMenuSelected('settings')}>
 	          		<MenuItem selected={selectedItem==='settings'}>
 			          	
 			          	<Typography variant="h6">Settings</Typography>
