@@ -1,7 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
+import { Typography, IconButton, Paper, useMediaQuery } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import CallIcon from '@material-ui/icons/Call';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
@@ -9,14 +7,24 @@ import StarsRoundedIcon from '@material-ui/icons/StarsRounded';
 
 export default function DoctorProfileIcons() {
 
+    const smallWidth = {
+        backgroundColor: '#fff',
+        elevation: 2,
+    }
+    const largeWidth = {
+        backgroundColor: 'transparent',
+        elevation: 0,
+    }
+    const styles = useMediaQuery('(max-width:767px)') ? smallWidth : largeWidth;
+
 	return(
-		<div className="d-flex">
+		<Paper className="d-flex px-md-0 px-3 mt-3 mt-md-0" elevation={styles.elevation} style={{backgroundColor: styles.backgroundColor, borderRadius:16}}>
             <Link to="#" className="m-2 ml-md-0">
                 <IconButton className="docProfile--icons" color="primary" aria-label="call" component="div">
                     <CallIcon />
                 </IconButton>
             </Link>
-            <Link to="#" className='m-2'>
+            <Link to="/doctor/places" className='m-2'>
                 <IconButton className="docProfile--icons" color="primary" aria-label="location" component="div">
                     <LocationOnIcon />
                 </IconButton>
@@ -26,6 +34,6 @@ export default function DoctorProfileIcons() {
                     <StarsRoundedIcon />
                 </IconButton>
             </Link>
-        </div>
+        </Paper>
     )
 }
