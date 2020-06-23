@@ -53,7 +53,7 @@ export default function Home() {
                             disableUnderline
                             startAdornment={
                                 <InputAdornment position="start">
-                                    <SearchRoundedIcon />
+                                    <SearchRoundedIcon color="disabled"/>
                                 </InputAdornment>
                             }
                         />

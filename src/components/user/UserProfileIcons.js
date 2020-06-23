@@ -9,10 +9,10 @@ import StarsRoundedIcon from '@material-ui/icons/StarsRounded';
 export default function UserProfileIcons() {
 
     const location = path.basename(useLocation().pathname);
-    
+    console.log(location);
 	const [color, setColor] = useState({
 		contacts: location==='contacts',
-		reviews: location==='reviews',
+		reviews: location==='reviews' || location==='profile',
 		favourites: location==='favourites',
 	});
 

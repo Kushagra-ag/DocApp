@@ -58,7 +58,7 @@ export default function Profile() {
                         <UserProfileIcons />
                     </div>
                 </div>
-                <div className="row my-5 my-md-4">
+                <div className="row my-5 my-md-4 justify-content-center justify-content-md-start">
                         
                     <Switch>
 				        <Route exact path="/user/profile" render={() => (<Redirect to="/user/profile/reviews" />)} />

@@ -58,7 +58,7 @@ export default function Reviews() {
             	UserReviews.map( doctor => (
 
             		<div key={doctor.key}>
-            			<Card className="p-3">
+            			<Card className="p-3 mb-4">
                                                <CardContent className="text-center text-md-left p-1">
                                                    <Typography
                                                        variant="h5"
@@ -69,7 +69,10 @@ export default function Reviews() {
                                                    </Typography>
                                                    <Avatar src={doc1} variant="rounded" className={`my-3 mx-auto ${classes.avatar}`} alt="doctor" />
                                                    <div className={`text-center ${classes.rating}`}>
-                                                   		<IconButton aria-label="rating" component="span" color={doctor.rating>1?'primary':'default'}>
+                                                   		<IconButton aria-label="rating" component="span" color={doctor.rating>0?'primary':'default'}>
+								                          	<StarRoundedIcon />
+								                        </IconButton>
+								                        <IconButton aria-label="rating" component="span" color={doctor.rating>1?'primary':'default'}>
 								                          	<StarRoundedIcon />
 								                        </IconButton>
 								                        <IconButton aria-label="rating" component="span" color={doctor.rating>2?'primary':'default'}>
@@ -79,9 +82,6 @@ export default function Reviews() {
 								                          	<StarRoundedIcon />
 								                        </IconButton>
 								                        <IconButton aria-label="rating" component="span" color={doctor.rating>4?'primary':'default'}>
-								                          	<StarRoundedIcon />
-								                        </IconButton>
-								                        <IconButton aria-label="rating" component="span" color={doctor.rating>5?'primary':'default'}>
 								                          	<StarRoundedIcon />
 								                        </IconButton>
                                                    </div>
@@ -103,27 +103,7 @@ export default function Reviews() {
                                                    </div>
                                                </CardContent>
                                            </Card>
-                                           <Card className="p-3 my-4" elevation={2}>
-                                               <CardContent className="text-center text-md-left p-1">
-                                                   <Typography
-                                                       variant="h5"
-                                                       display="block"
-                                                       gutterBottom
-                                                   >
-                                                       Expertise
-                                                   </Typography>
-                                                   <Typography
-                                                       display="block"
-                                                       variant="body1"
-                                                       style={{ opacity: "0.5" }}
-                                                   >
-                                                       Quis autem vel eum iure reprehenderit qui in
-                                                       ea voluptate velit esse quam nihil molestiae
-                                                       consequatur, vel illum qui dolorem eum
-                                                       fugiat quo voluptas nulla pariatur
-                                                   </Typography>
-                                               </CardContent>
-                                           </Card>
+                                           
                     </div>
 
             	))
