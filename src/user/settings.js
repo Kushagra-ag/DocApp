@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
-import {Button, Typography, IconButton, Card, CardContent, CardActions, Collapse} from '@material-ui/core';
+import React from 'react';
+import {Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import VerticalMenu from '../components/VerticalMenu.js';
-import BottomNav from '../components/BottomNav.js';
-import TopBar from '../components/TopBar.js';
 import Privacy from '../components/settings/privacy.js';
 import Refer from '../components/settings/refer.js';
 import Faq from '../components/settings/faq.js';
@@ -39,7 +36,7 @@ export default function Settings() {
 				<div className="col-md-9 col-lg-10 overflow-hidden settings">
 					<div className="position-absolute d-none d-md-block" style={{right:'-10%',bottom:'-40%',width:'450px'}}>
 						
-				        	<img src={SettingsBanner} />
+				        	<img src={SettingsBanner} alt="" />
 				        
 				    </div>
 					<div className="row pt-4">

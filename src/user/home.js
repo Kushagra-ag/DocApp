@@ -2,9 +2,6 @@ import React from "react";
 import { GridList, GridListTile, FilledInput, Typography, InputAdornment } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
-import VerticalMenu from "../components/VerticalMenu.js";
-import BottomNav from "../components/BottomNav.js";
-import TopBar from "../components/TopBar.js";
 import DoctorTile from "../components/doctor/DoctorTile.js";
 import doc1 from "../svg/doc1.jpg";
 import DoctorList from "../data/DoctorList.js";
@@ -108,7 +105,6 @@ export default function Home() {
                             <GridList className={classes.gridList} cols={4.5}>
                                 {DoctorList.map(tile => (
                                     <GridListTile
-                                        key={tile}
                                         style={{
                                             height: "unset",
                                             width: "200px",

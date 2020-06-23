@@ -1,7 +1,6 @@
 import React from "react";
-import { Button, Typography, FilledInput, useMediaQuery } from "@material-ui/core";
-import FacebookIcon from "@material-ui/icons/Facebook";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { Button, Typography, useMediaQuery } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import CustomTextField from "../components/CustomTextField.js";
 

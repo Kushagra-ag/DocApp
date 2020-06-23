@@ -1,8 +1,5 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
-import VerticalMenu from "../components/VerticalMenu.js";
-import BottomNav from "../components/BottomNav.js";
-import TopBar from "../components/TopBar.js";
 import PlaceData from "../data/DoctorPlaces.js";
 import DoctorPlaces from "../components/doctor/DoctorPlaces.js";
 

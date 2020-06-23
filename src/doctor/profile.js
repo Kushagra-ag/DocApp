@@ -1,47 +1,32 @@
 import React from 'react';
-import {useMediaQuery, Typography, IconButton, Card, CardContent } from '@material-ui/core';
+import {useMediaQuery, Typography, IconButton, Card, CardContent, Avatar } from '@material-ui/core';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import justin from '../svg/justin.png';
 import ryan from '../svg/ryan.png';
 import lara from '../svg/lara.png';
 import doc1 from '../svg/doc1.jpg';
-import VerticalMenu from '../components/VerticalMenu.js';
-import TopBar from '../components/TopBar.js';
 import ExperienceIcon from '../components/ExperienceIcon.js';
 import DoctorProfileIcons from '../components/doctor/DoctorProfileIcons.js';
-import BottomNav from '../components/BottomNav.js';
 
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    maxWidth: 500,
-  },
-  flex: {
-    display: 'flex',
-    justifyCcontent: 'center',
-    alignItems: 'center'
-  },
+
   margin: {
     margin: theme.spacing(1),
     textTransform: 'capitalize'
   },
-  facebook: {
-    color: '#fff',
-    backgroundImage: "linear-gradient(to bottom, #5F7EBE, #3B5998)"
+  avatar: {
+    width: theme.spacing(20),
+    height: theme.spacing(20),
   },
-  imgContainer: {
-    position: 'absolute',
-    borderRadius: 10,
-    border: '2px solid #fff',
-    overflow: 'hidden'
+  avatarGroup: {
+    width: theme.spacing(6),
+    height: theme.spacing(5),
   },
-  opacity50: {
-    opacity: '0.5'
-  }
 }));
 
 export default function Profile() {
@@ -54,9 +39,7 @@ export default function Profile() {
         <div className="col-md-9 col-lg-10">
         	<div className="row pt-4 docProfile">
             <div className="col-md-4 d-flex justify-content-center">
-              <div style={{overflow:'hidden',borderRadius:'10px',width:'maxContent'}}>
-                <img src={doc1} />
-              </div>
+              <Avatar src={doc1} className={classes.avatar} variant="rounded" alt="doctor" />
             </div>
             <div className="col-md-8 mt-3 mt-md-0 mb-n4 mb-md-n0 d-flex flex-column align-items-center align-items-md-start">
               <Typography variant="h4" color={txt} gutterBottom>
@@ -72,17 +55,13 @@ export default function Profile() {
             <div className="col-md-4 text-center text-md-left">
               <Card className="d-inline-block">
                 <CardContent className="d-flex justify-content-around align-items-center" style={{padding:'5px'}}>
-                  <div>
-                    <div className={classes.imgContainer} style={{zIndex:10}}>
-                      <img src={justin} />
-                    </div>
-                    <div className={classes.imgContainer} style={{marginLeft:'20px', zIndex: 5}}>
-                      <img src={ryan} />
-                    </div>
-                    <div className={classes.imgContainer} style={{marginLeft:'40px',position:'relative'}}>
-                      <img src={lara} />
-                    </div>
-                  </div>
+                  <AvatarGroup max={3}>
+                    <Avatar src={justin} className={classes.avatarGroup} variant="rounded" alt="friends" />
+                    <Avatar src={ryan} className={classes.avatarGroup} variant="rounded" alt="friends" />
+                    <Avatar src={lara} className={classes.avatarGroup} variant="rounded" alt="friends" />
+                    
+                    
+                  </AvatarGroup>
                   
                   <Typography className="px-3" variant="subtitle2" color="primary">
                     7 of your friends <br/>recommend this doctor

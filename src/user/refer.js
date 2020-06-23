@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Typography, MenuItem, Select } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
 import CustomTextField from '../components/CustomTextField.js';
 
 const useStyles = makeStyles(theme => ({
@@ -51,13 +50,14 @@ function Form() {
 		       	id="demo-customized-select"
 		       	className={classes.margin}
 		        disableUnderline
+                displayEmpty
 		        placeholder="Speciality"
 	          	value={age}
 	         	onChange={handleChange}
 		       	input={<CustomTextField />}
 		        >
 		      	<MenuItem value="">
-	            	<em>Select Speciality</em>
+	            	Select Speciality
 	          	</MenuItem>
 		      	<MenuItem value='surgeon'>Surgeon</MenuItem>
 	          	<MenuItem value='dentist'>Dentist</MenuItem>

@@ -1,6 +1,6 @@
 import React from 'react';
-import {Typography, IconButton, Card, CardContent } from '@material-ui/core';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import {Typography, IconButton, Card } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 
@@ -27,7 +27,7 @@ export default function DoctorTile(props) {
     <Link to="/doctor/places">
   		<Card className={`mx-2 px-2 ${classes.root}`}>
   			<div className={`mb-2 mx-n2 ${classes.imgContainer}`}>
-  				<img src={props.img} className="w-100"/>
+  				<img src={props.img} className="w-100" alt="doctor image"/>
   			</div>
   			<Typography className="font-weight-bold" variant="body1">
   				{props.name}

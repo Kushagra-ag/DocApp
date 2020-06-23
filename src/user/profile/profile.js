@@ -1,15 +1,12 @@
 import React from "react";
-import{ useMediaQuery, Typography, IconButton, Card, CardContent } from "@material-ui/core";
-import StarRoundedIcon from "@material-ui/icons/StarRounded";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import{ useMediaQuery, Typography, Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link, Route, Switch, Redirect } from "react-router-dom";
-import ExperienceIcon from "../../components/ExperienceIcon.js";
+import { Route, Switch, Redirect } from "react-router-dom";
 import UserProfileIcons from "../../components/user/UserProfileIcons.js";
 import Reviews from './reviews';
 import Contacts from './contacts';
 import Favourites from './favourites';
-import doc1 from '../../svg/doc1.jpg';
+import user1 from '../../svg/user1.jpg';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -25,18 +22,9 @@ const useStyles = makeStyles(theme => ({
         margin: theme.spacing(1),
         textTransform: "capitalize",
     },
-    facebook: {
-        color: "#fff",
-        backgroundImage: "linear-gradient(to bottom, #5F7EBE, #3B5998)",
-    },
-    imgContainer: {
-        position: "absolute",
-        borderRadius: 10,
-        border: "2px solid #fff",
-        overflow: "hidden",
-    },
-    opacity50: {
-        opacity: "0.5",
+    avatar: {
+        width: theme.spacing(24),
+        height: theme.spacing(20),
     },
 }));
 
@@ -51,19 +39,13 @@ export default function Profile() {
             <div className="col-md-9 col-lg-10">
                 <div className="row pt-4 docProfile">
                     <div className="col-md-4 d-flex justify-content-center">
-                        <div
-                            style={{
-                                overflow: "hidden",
-                                borderRadius: "10px",
-                                width: "maxContent",
-                            }}
-                        >
-                            <img src={doc1} />
-                        </div>
+                        
+                        <Avatar src={user1} className={classes.avatar} alt="doctor" variant="rounded" />
+                        
                     </div>
                     <div className="col-md-8 mt-3 mt-md-0 mb-n4 mb-md-n0 d-flex flex-column align-items-center align-items-md-start">
                         <Typography variant="h4" color={txt} gutterBottom>
-                            Tushar Palei
+                            Apoorva Sen
                         </Typography>
                         <Typography
                             className="mt-n2"

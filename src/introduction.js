@@ -3,7 +3,6 @@ import {Typography, Button, useMediaQuery} from '@material-ui/core';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import banner1 from './svg/banner1.svg';
 import DoctoIcon from './components/DoctoIcon.js';
 
 const useStyles = makeStyles((theme) => ({

@@ -9,7 +9,7 @@ export default function ExperienceIcon(props) {
 	const imgPath = props.type === 'experience' ? experience : recognition;
 	return(
 		<div className="text-center mx-2">
-			<img src={imgPath} />
+			<img src={imgPath} alt="icon" />
 			<Typography variant="body2" className="font-weight-bold">
 				{`${props.number} ${txt}`}
 			</Typography>
