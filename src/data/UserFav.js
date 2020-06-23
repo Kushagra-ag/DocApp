@@ -2,22 +2,30 @@ const Favourites = [
 	
 	{
 		name: 'Dr. Nirmala Reddy',
-		mutual: 4,
+		distance: 4,
+		rating: 4,
+		speciality: 'General Physician',
 		key: 1,
 	},
 	{
 		name: 'Dr. Nirmala Reddy',
-		mutual: 2,
+		distance: 2,
+		rating: 2,
+		speciality: 'General Physician',
 		key: 2,
 	},
 	{
 		name: 'Dr. Nirmala Reddy',
-		mutual: 2,
+		distance: 2,
+		rating: 2,
+		speciality: 'General Physician',
 		key: 3,
 	},
 	{
 		name: 'Dr. Nirmala Reddy',
-		mutual: 2,
+		distance: 2,
+		rating: 2,
+		speciality: 'General Physician',
 		key: 4,
 	},
 ]
