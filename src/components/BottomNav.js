@@ -33,7 +33,7 @@ export default function BottomNav() {
 		        {
 		        	//<StyledNav label="Search" value="search" icon={<SearchRoundedIcon />} />
 		        }
-	            <StyledNav label="Favorites" value="favorites" icon={<FavoriteRoundedIcon />} />
+	            <StyledNav label="Favorites" value="favorites" icon={<FavoriteRoundedIcon />} component={Link} to="/user/profile/favourites"/>
 			    <StyledNav label="Profile" value="profile" icon={<PersonRoundedIcon />} component={Link} to="/user/profile/reviews"/>
 			    <StyledNav label="Menu" value="menu" icon={<MenuRoundedIcon />} component={Link} to="/user/settings" />
 			</BottomNavigation>

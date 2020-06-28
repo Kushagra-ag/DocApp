@@ -34,7 +34,7 @@ export default function DoctorPlace(props) {
 									<div className="row my-2">
 										<div className="col-12">
 											<Typography variant="body1" color="textPrimary" style={{marginLeft:'calc(0.5rem + 30px)'}}>
-												{props.address1}<br/> {props.address2}
+												{props.values.address1}<br/> {props.values.address2}
 											</Typography>
 										</div>
 									</div>
@@ -46,7 +46,7 @@ export default function DoctorPlace(props) {
 									                	Get Directions
 									              	</Typography>
 									              	<Typography variant="caption" className={`ml-3 text-white-50 ${classes.margin}`}>
-									                	{props.distance}
+									                	{props.values.distance}
 									              	</Typography>
 
 									            </div>

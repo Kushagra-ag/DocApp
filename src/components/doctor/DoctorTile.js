@@ -24,7 +24,7 @@ export default function DoctorTile(props) {
 
 	const classes = useStyles();
 	return(
-    <Link to="/doctor/places">
+    <Link to="/doctor/profile">
   		<Card className={`mx-2 px-2 ${classes.root}`}>
   			<div className={`mb-2 mx-n2 ${classes.imgContainer}`}>
   				<img src={props.img} className="w-100" alt="doctor image"/>

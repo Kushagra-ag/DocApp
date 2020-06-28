@@ -30,9 +30,9 @@ const useStyles = makeStyles(theme => ({
 function Form() {
     const classes = useStyles();
 
-      const [age, setAge] = React.useState('');
+      const [speciality, setSpeciality] = React.useState('');
 	  const handleChange = (event) => {
-	    setAge(event.target.value);
+	    setSpeciality(event.target.value);
 	  };
 
     return (
@@ -52,7 +52,7 @@ function Form() {
 		        disableUnderline
                 displayEmpty
 		        placeholder="Speciality"
-	          	value={age}
+	          	value={speciality}
 	         	onChange={handleChange}
 		       	input={<CustomTextField />}
 		        >

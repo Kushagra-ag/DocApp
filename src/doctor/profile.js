@@ -53,7 +53,7 @@ export default function Profile() {
           </div>
           <div className="row my-5 my-md-4">
             <div className="col-md-4 text-center text-md-left">
-              <Card className="d-inline-block">
+              <Card className="d-inline-block" component={Link} to="/doctor/reviews">
                 <CardContent className="d-flex justify-content-around align-items-center" style={{padding:'5px'}}>
                   <AvatarGroup max={3}>
                     <Avatar src={justin} className={classes.avatarGroup} variant="rounded" alt="friends" />
@@ -68,14 +68,14 @@ export default function Profile() {
                   </Typography>
                     
                   
-                  <Link to="#" className={classes.margin}>
-                   <IconButton color="primary" aria-label="call" component="span" size="medium" edge="start">
+                  
+                   <IconButton className={classes.margin} color="primary" aria-label="call" component="span" size="medium" edge="start">
                       <ChevronRightIcon />
                     </IconButton>
-                  </Link>
+                  
                 </CardContent>
               </Card><br/>
-              <Card className="my-4 d-inline-block d-md-block" style={{backgroundColor:'#5F82E2',width:'320px',maxWidth:'100%'}}>
+              <Card className="my-4 d-inline-block d-md-block" style={{backgroundColor:'#5F82E2',width:'370px',maxWidth:'100%'}}>
                     <CardContent className="d-flex justify-content-around align-items-center" style={{padding:'5px'}}>
                       
                       <Link to="#" className={classes.margin}>

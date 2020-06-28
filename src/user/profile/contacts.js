@@ -25,7 +25,7 @@ export default function Favourites() {
             	UserContacts.map( contact => (
 
             		<div key={contact.key}>
-            			<Card className="p-3 mb-4">
+            			<Card className="p-3 mb-2">
                                                <CardContent className="d-flex justify-content-around align-items-center text-center text-md-left p-1">
                                                    <Avatar src={user1} variant="rounded" alt="contact" />
 	                                                <div>

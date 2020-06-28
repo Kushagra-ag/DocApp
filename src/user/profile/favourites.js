@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme => ({
 	avatar: {
 		width: theme.spacing(10),
 		height: theme.spacing(10),
+		marginRight: theme.spacing(1),
 	},
 	rating: {
 		'&>span': {
@@ -58,6 +59,7 @@ export default function Favourites() {
 			                                                   <Typography
 			                                                       variant="h6"
 			                                                       display="block"
+			                                                       align="left"
 			                                                   >
 			                                                       {doctor.name}
 			                                                   </Typography>
