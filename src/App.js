@@ -10,42 +10,42 @@ import User from './user/index.js';
 import './App.css';
 
 const theme = createMuiTheme({
-  typography: {
-    fontFamily: [
-      'Nunito Sans',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif'
-    ].join(','),
-  },
-  palette: {
-    text: {
-      primary: '#000',
-      secondary: '#fff'
+    typography: {
+        fontFamily: [
+            'Nunito Sans',
+            'Roboto',
+            '"Helvetica Neue"',
+            'Arial',
+            'sans-serif'
+        ].join(',')
     },
-    primary: {
-      main: '#5F82E2',
-      dark: '#4A6BC5'
+    palette: {
+        text: {
+            primary: '#000',
+            secondary: '#fff'
+        },
+        primary: {
+            main: '#5F82E2',
+            dark: '#4A6BC5'
+        },
+        secondary: {
+            main: '#4A6BC5'
+        }
     },
-    secondary: {
-      main: '#4A6BC5'
+    shape: {
+        borderRadius: '10px'
     }
-  },
-  shape: {
-    borderRadius: '10px',
-  }
 });
 
 export default function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Switch>
-        <Route exact path="/" component={Introduction} />
-        <Route  path="/auth" component={Auth} />
-        <Route  path="/user" component={User} />
-        <Route  path="/doctor" component={Doctor} />
-      </Switch>
-    </ThemeProvider>
-  );
+    return (
+        <ThemeProvider theme={theme}>
+            <Switch>
+                <Route exact path="/" component={Introduction} />
+                <Route path="/auth" component={Auth} />
+                <Route path="/user" component={User} />
+                <Route path="/doctor" component={Doctor} />
+            </Switch>
+        </ThemeProvider>
+    );
 }

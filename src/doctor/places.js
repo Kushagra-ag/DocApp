@@ -1,7 +1,7 @@
-import React from "react";
-import { Typography } from "@material-ui/core";
-import DoctorPlacesData from "../data/DoctorPlaces.js";
-import DoctorPlaces from "../components/doctor/DoctorPlaces.js";
+import React from 'react';
+import { Typography } from '@material-ui/core';
+import DoctorPlacesData from '../data/DoctorPlaces.js';
+import DoctorPlaces from '../components/doctor/DoctorPlaces.js';
 
 export default function Places() {
     return (
@@ -22,10 +22,7 @@ export default function Places() {
                 <div className="row my-3">
                     <div className="col-sm-9 col-md-6">
                         {DoctorPlacesData.map(place => (
-                            <DoctorPlaces
-                                values={place}
-                                key={place.key}
-                            />
+                            <DoctorPlaces values={place} key={place.key} />
                         ))}
                     </div>
                 </div>

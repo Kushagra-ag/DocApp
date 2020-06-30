@@ -36,5 +36,13 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "prettier": {
+    "tabWidth": 4,
+    "parser": "babel",
+    "singleQuote": true,
+    "arrowParens": "avoid",
+    "trailingComma": "none",
+    "endOfLine": "crlf"
+  }
 }

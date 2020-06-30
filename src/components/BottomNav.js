@@ -10,33 +10,61 @@ import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 
 const StyledNav = withStyles({
-  root: {
-    color: '#a5aab5',
-  },
-  label: {
-    textTransform: 'capitalize',
-  },
+    root: {
+        color: '#a5aab5'
+    },
+    label: {
+        textTransform: 'capitalize'
+    }
 })(BottomNavigationAction);
 
 export default function BottomNav() {
+    const [value, setValue] = useState('home');
 
-	const [value, setValue] = useState('home');
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
 
-	const handleChange = (event, newValue) => {
-		setValue(newValue);
-	};
-
-	return(
-		<div className="row d-md-none">
-			<BottomNavigation value={value} onChange={handleChange} className="col-12 w-100 position-fixed" style={{bottom:0}}>			        
-		        <StyledNav label="Home" value="home" icon={<HomeRoundedIcon />} component={Link} to="/user/home" />
-		        {
-		        	//<StyledNav label="Search" value="search" icon={<SearchRoundedIcon />} />
-		        }
-	            <StyledNav label="Favorites" value="favorites" icon={<FavoriteRoundedIcon />} component={Link} to="/user/profile/favourites"/>
-			    <StyledNav label="Profile" value="profile" icon={<PersonRoundedIcon />} component={Link} to="/user/profile/reviews"/>
-			    <StyledNav label="Menu" value="menu" icon={<MenuRoundedIcon />} component={Link} to="/user/settings" />
-			</BottomNavigation>
-		</div>
-	)
+    return (
+        <div className="row d-md-none">
+            <BottomNavigation
+                value={value}
+                onChange={handleChange}
+                className="col-12 w-100 position-fixed"
+                style={{ bottom: 0 }}
+            >
+                <StyledNav
+                    label="Home"
+                    value="home"
+                    icon={<HomeRoundedIcon />}
+                    component={Link}
+                    to="/user/home"
+                />
+                {
+                    //<StyledNav label="Search" value="search" icon={<SearchRoundedIcon />} />
+                }
+                <StyledNav
+                    label="Favorites"
+                    value="favorites"
+                    icon={<FavoriteRoundedIcon />}
+                    component={Link}
+                    to="/user/profile/favourites"
+                />
+                <StyledNav
+                    label="Profile"
+                    value="profile"
+                    icon={<PersonRoundedIcon />}
+                    component={Link}
+                    to="/user/profile/reviews"
+                />
+                <StyledNav
+                    label="Menu"
+                    value="menu"
+                    icon={<MenuRoundedIcon />}
+                    component={Link}
+                    to="/user/settings"
+                />
+            </BottomNavigation>
+        </div>
+    );
 }

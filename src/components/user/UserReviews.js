@@ -1,33 +1,33 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
     Typography,
     IconButton,
     Card,
     CardContent,
-    Avatar,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import AntSwitch from "../AntSwitch.js";
-import StarRoundedIcon from "@material-ui/icons/StarRounded";
-import doc1 from "../../svg/doc1.jpg";
+    Avatar
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import AntSwitch from '../AntSwitch.js';
+import StarRoundedIcon from '@material-ui/icons/StarRounded';
+import doc1 from '../../svg/doc1.jpg';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
     avatar: {
         width: theme.spacing(24),
-        height: theme.spacing(20),
+        height: theme.spacing(20)
     },
     rating: {
-        "&>span": {
-            padding: "10px 6px",
-        },
-    },
+        '&>span': {
+            padding: '10px 6px'
+        }
+    }
 }));
 
 export default function UserReviews(props) {
     const classes = useStyles();
     const [state, setState] = useState(true);
 
-    const handleChange = (event) => {
+    const handleChange = event => {
         setState(event.target.checked);
     };
 
@@ -47,35 +47,35 @@ export default function UserReviews(props) {
                     <IconButton
                         aria-label="rating"
                         component="span"
-                        color={props.values.rating > 0 ? "primary" : "default"}
+                        color={props.values.rating > 0 ? 'primary' : 'default'}
                     >
                         <StarRoundedIcon />
                     </IconButton>
                     <IconButton
                         aria-label="rating"
                         component="span"
-                        color={props.values.rating > 1 ? "primary" : "default"}
+                        color={props.values.rating > 1 ? 'primary' : 'default'}
                     >
                         <StarRoundedIcon />
                     </IconButton>
                     <IconButton
                         aria-label="rating"
                         component="span"
-                        color={props.values.rating > 2 ? "primary" : "default"}
+                        color={props.values.rating > 2 ? 'primary' : 'default'}
                     >
                         <StarRoundedIcon />
                     </IconButton>
                     <IconButton
                         aria-label="rating"
                         component="span"
-                        color={props.values.rating > 3 ? "primary" : "default"}
+                        color={props.values.rating > 3 ? 'primary' : 'default'}
                     >
                         <StarRoundedIcon />
                     </IconButton>
                     <IconButton
                         aria-label="rating"
                         component="span"
-                        color={props.values.rating > 4 ? "primary" : "default"}
+                        color={props.values.rating > 4 ? 'primary' : 'default'}
                     >
                         <StarRoundedIcon />
                     </IconButton>
