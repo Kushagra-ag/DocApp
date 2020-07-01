@@ -5,10 +5,13 @@ import {
     GridListTile,
     FilledInput,
     Typography,
-    InputAdornment
+    InputAdornment,
+    IconButton
 } from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import DoctorTile from '../components/doctor/DoctorTile.js';
 import doc1 from '../svg/doc1.jpg';
 import DoctorList from '../data/DoctorList.js';
@@ -18,15 +21,25 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
+        alignItems: 'center',
         overflow: 'hidden'
         // backgroundColor: theme.palette.background.paper,
     },
     gridList: {
         flexWrap: 'nowrap',
-        // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
         transform: 'translateZ(0)',
         '&::-webkit-scrollbar': {
             width: 0
+        }
+    },
+    navIcons: {
+        '& svg': {
+            zIndex: '10',
+            fontSize: '70px'
+        },
+        '& button:focus,button:hover': {
+            outline: 'none',
+            backgroundColor: 'transparent'
         }
     }
 }));
@@ -46,6 +59,19 @@ const CustomFilledInput = withStyles({
 export default function Home() {
     const classes = useStyles();
     const w = useMediaQuery('(max-width:575px)') ? 'w-100' : 'w-50';
+
+    const scrollLeft = event => {
+        event.currentTarget.parentNode.nextSibling.scrollBy({
+            left: -100,
+            behavior: 'smooth'
+        });
+    };
+    const scrollRight = event => {
+        event.currentTarget.parentNode.nextSibling.scrollBy({
+            left: 100,
+            behavior: 'smooth'
+        });
+    };
 
     return (
         <>
@@ -70,6 +96,24 @@ export default function Home() {
                 <div className="row my-5">
                     <div className="col-12">
                         <div className={classes.root}>
+                            <div
+                                className={`d-none d-sm-flex w-100 h-100 position-absolute justify-content-between align-content-center ${classes.navIcons}`}
+                            >
+                                <IconButton
+                                    disableRipple={true}
+                                    disableFocusRipple={true}
+                                    onClick={scrollLeft}
+                                >
+                                    <ChevronLeftIcon />
+                                </IconButton>
+                                <IconButton
+                                    disableRipple
+                                    disableFocusRipple
+                                    onClick={scrollRight}
+                                >
+                                    <ChevronRightIcon />
+                                </IconButton>
+                            </div>
                             <GridList className={classes.gridList} cols={4.5}>
                                 {DoctorList.map(tile => (
                                     <GridListTile
@@ -114,6 +158,24 @@ export default function Home() {
                             </Typography>
                         </div>
                         <div className={classes.root}>
+                            <div
+                                className={`d-none d-sm-flex w-100 h-100 position-absolute justify-content-between align-content-center ${classes.navIcons}`}
+                            >
+                                <IconButton
+                                    disableRipple={true}
+                                    disableFocusRipple={true}
+                                    onClick={scrollLeft}
+                                >
+                                    <ChevronLeftIcon />
+                                </IconButton>
+                                <IconButton
+                                    disableRipple
+                                    disableFocusRipple
+                                    onClick={scrollRight}
+                                >
+                                    <ChevronRightIcon />
+                                </IconButton>
+                            </div>
                             <GridList className={classes.gridList} cols={4.5}>
                                 {DoctorList.map(tile => (
                                     <GridListTile

@@ -5,6 +5,7 @@ const Reviews = [
         review:
             'Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur',
         time: '1d',
+        liked: true,
         key: 1
     },
     {
@@ -13,6 +14,7 @@ const Reviews = [
         review:
             'Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur',
         time: '29d',
+        liked: false,
         key: 2
     }
 ];

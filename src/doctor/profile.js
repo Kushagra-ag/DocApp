@@ -132,7 +132,7 @@ export default function Profile() {
                         >
                             <CardContent
                                 className="d-flex justify-content-around align-items-center"
-                                style={{ padding: '5px' }}
+                                style={{ padding: '16px' }}
                             >
                                 <IconButton
                                     aria-label="rating"
