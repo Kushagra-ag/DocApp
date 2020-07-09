@@ -7,6 +7,7 @@ import Refer from '../components/settings/refer.js';
 import Faq from '../components/settings/faq.js';
 import About from '../components/settings/about.js';
 import SettingsBanner from '../svg/settings.svg';
+import Contact from './contact.js';
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -29,13 +30,7 @@ export default function Settings() {
 
     return (
         <>
-            <div className="col-md-9 col-lg-10 overflow-hidden settings">
-                <div
-                    className="position-absolute d-none"
-                    style={{ right: '-10%', bottom: '-40%', width: '450px' }}
-                >
-                    <img src={SettingsBanner} alt="" />
-                </div>
+            <div className="col-md-8 pl-md-5 overflow-hidden settings">
                 <div className="row pt-4">
                     <div className="col-sm-9 col-md-6 text-center">
                         <Privacy
@@ -62,6 +57,7 @@ export default function Settings() {
                     </div>
                 </div>
             </div>
+            <Contact />
         </>
     );
 }

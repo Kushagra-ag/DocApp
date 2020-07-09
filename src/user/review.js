@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 import CustomTextField from '../components/CustomTextField.js';
 import AntSwitch from '../components/AntSwitch.js';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
+import Contact from './contact.js';
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -52,7 +53,7 @@ export default function Review() {
 
     return (
         <>
-            <div className="col-sm-8 text-center text-md-left col-lg-5 pt-4">
+            <div className="col-sm-8 col-lg-5 pt-4 pl-md-5 text-center text-md-left mr-auto">
                 <Card className="mb-3 p-3 text-left">
                     <CardContent>
                         <Typography
@@ -189,6 +190,7 @@ export default function Review() {
                     </Typography>
                 </Button>
             </div>
+            <Contact />
         </>
     );
 }

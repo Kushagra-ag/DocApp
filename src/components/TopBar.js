@@ -1,14 +1,13 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
+import { Link } from 'react-router-dom';
+import { AppBar, Toolbar, Typography, InputBase } from '@material-ui/core';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -70,9 +69,14 @@ const useStyles = makeStyles(theme => ({
             }
         }
     },
-    navBrand: {
-        fontSize: '32px',
-        color: theme.palette.primary.dark
+    navBar: {
+        '& .navbar-brand': {
+            fontSize: '32px',
+            color: theme.palette.primary.dark
+        },
+        '& .nav-link': {
+            color: `${theme.palette.primary.dark}!important`
+        }
     }
 }));
 
@@ -107,14 +111,14 @@ export default function SearchAppBar() {
                     </Toolbar>
                 </AppBar>
             </div>
-            <div className="row d-none d-md-block">
+            <div className={`row d-none d-md-block ${classes.navBar}`}>
                 <nav
                     className="navbar navbar-light bg-light px-5"
                     style={{ borderBottom: '1px solid #e9ecef' }}
                 >
-                    <a className={`navbar-brand ${classes.navBrand}`} href="#">
+                    <Link className={`navbar-brand`} to="/user/home">
                         Docto.
-                    </a>
+                    </Link>
                     <ul className="navbar-nav mr-auto ml-4 flex-row">
                         <li className="nav-item">
                             <div className="input-group input-group-sm">
@@ -153,18 +157,18 @@ export default function SearchAppBar() {
                                 style={{ left: 'auto', right: 0 }}
                                 aria-labelledby="navbarDropdownMenuLink"
                             >
-                                <a className="dropdown-item" href="#">
-                                    {' '}
-                                    <PersonRoundedIcon />
+                                <Link className="dropdown-item" to="/user/profile">
+                                    <PersonRoundedIcon color="secondary" />
                                     &nbsp; Account
-                                </a>
-                                <a className="dropdown-item" href="#">
-                                    <FavoriteRoundedIcon />
+                                </Link>
+                                <Link className="dropdown-item" to="/user/profile/favourites">
+                                    <FavoriteRoundedIcon color="secondary" />
                                     &nbsp; Favourites
-                                </a>
-                                <a className="dropdown-item" href="#">
-                                    Settings
-                                </a>
+                                </Link>
+                                <Link className="dropdown-item" to="/user/settings">
+                                    <SettingsIcon color="secondary" />
+                                    &nbsp; Settings
+                                </Link>
                             </div>
                             {
                                 //<KeyboardArrowDownIcon fontSize="small" />
@@ -172,7 +176,7 @@ export default function SearchAppBar() {
                         </li>
                         <li className="nav-item active">
                             <a className="nav-link px-2" href="#">
-                                Contact Us{' '}
+                                Contact Us
                                 <span className="sr-only">(current)</span>
                             </a>
                         </li>

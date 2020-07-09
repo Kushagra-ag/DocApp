@@ -41,7 +41,7 @@ export default function Contact() {
     return (
         <>
             <div className="d-none d-xl-block col-md-4 px-4">
-                <form className={`mt-5 mx-5 bg-light ${classes.form}`}>
+                <form className={`mt-4 mx-5 bg-light ${classes.form}`}>
                     <Typography variant="h5" gutterBottom>
                         Contact Us
                     </Typography>

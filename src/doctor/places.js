@@ -2,11 +2,12 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 import DoctorPlacesData from '../data/DoctorPlaces.js';
 import DoctorPlaces from '../components/doctor/DoctorPlaces.js';
+import Contact from '../user/contact.js';
 
 export default function Places() {
     return (
         <>
-            <div className="col-md-9 col-lg-10 overflow-hidden text-center text-sm-left">
+            <div className="col-md-8 pl-md-5 overflow-hidden text-center text-sm-left">
                 <div className="row pt-4">
                     <div className="col-12">
                         <div className="row">
@@ -27,6 +28,7 @@ export default function Places() {
                     </div>
                 </div>
             </div>
+            <Contact />
         </>
     );
 }

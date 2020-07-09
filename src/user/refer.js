@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Typography, MenuItem, Select } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CustomTextField from '../components/CustomTextField.js';
+import Contact from './contact.js';
 
 const useStyles = makeStyles(theme => ({
     form: {
@@ -93,7 +94,7 @@ function Form() {
 export default function Refer() {
     return (
         <>
-            <div className="col-md-9 col-lg-10 overflow-hidden text-center text-sm-left">
+            <div className="col-md-8 pl-md-5 overflow-hidden text-center text-sm-left">
                 <div className="row py-4">
                     <div className="col-12">
                         <div className="row">
@@ -112,6 +113,7 @@ export default function Refer() {
                     </div>
                 </div>
             </div>
+            <Contact />
         </>
     );
 }

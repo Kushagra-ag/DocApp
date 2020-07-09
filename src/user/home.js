@@ -79,7 +79,7 @@ export default function Home() {
     return (
         <>
             <div className="home col-xl-8 pl-md-5">
-                <div className="row pt-5">
+                <div className="row pt-4">
                     <div className="col-12">
                         <Typography variant="h5" gutterBottom>
                             Find Nearby Doctors and Clinics
