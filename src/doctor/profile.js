@@ -12,6 +12,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
+import Contact from '../user/contact.js';
 import justin from '../svg/justin.png';
 import ryan from '../svg/ryan.png';
 import lara from '../svg/lara.png';
@@ -29,8 +30,8 @@ const useStyles = makeStyles(theme => ({
         height: theme.spacing(20)
     },
     avatarGroup: {
-        width: theme.spacing(6),
-        height: theme.spacing(5)
+        width: theme.spacing(4),
+        height: theme.spacing(4)
     }
 }));
 
@@ -42,7 +43,7 @@ export default function Profile() {
 
     return (
         <>
-            <div className="col-md-9 col-lg-10">
+            <div className="col-xl-8 pl-md-5">
                 <div className="row pt-4 docProfile">
                     <div className="col-md-4 d-flex justify-content-center">
                         <Avatar
@@ -99,12 +100,11 @@ export default function Profile() {
                                 </AvatarGroup>
 
                                 <Typography
-                                    className="px-3"
+                                    className="pl-3"
                                     variant="subtitle2"
                                     color="primary"
                                 >
-                                    7 of your friends <br />
-                                    recommend this doctor
+                                    7 of your friends refer this doctor
                                 </Typography>
 
                                 <IconButton
@@ -221,6 +221,7 @@ export default function Profile() {
                     </div>
                 </div>
             </div>
+            <Contact />
         </>
     );
 }

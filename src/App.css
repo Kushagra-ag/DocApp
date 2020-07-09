@@ -25,6 +25,10 @@ a:hover {
 	overflow: visible;
 }
 
+.dropdown-toggle::after {
+	display: none;
+}
+
 @media only screen and (max-width: 767px) {
 	
 	.docProfile {
@@ -32,6 +36,13 @@ a:hover {
 	}
 
 	.docProfile--icons {
+		background-color: #fff!important;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+
+	.container-fluid {
 		background-color: #fff!important;
 	}
 }

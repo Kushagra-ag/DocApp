@@ -13,6 +13,7 @@ import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import DoctorTile from '../components/doctor/DoctorTile.js';
+import Contact from './contact.js';
 import doc1 from '../svg/doc1.jpg';
 import DoctorList from '../data/DoctorList.js';
 
@@ -28,6 +29,7 @@ const useStyles = makeStyles(theme => ({
     gridList: {
         flexWrap: 'nowrap',
         transform: 'translateZ(0)',
+        scrollbarWidth: 'none',
         '&::-webkit-scrollbar': {
             width: 0
         }
@@ -59,6 +61,7 @@ const CustomFilledInput = withStyles({
 export default function Home() {
     const classes = useStyles();
     const w = useMediaQuery('(max-width:575px)') ? 'w-100' : 'w-50';
+    const width = useMediaQuery('(max-width:575px)') ? '200px' : '380px';
 
     const scrollLeft = event => {
         event.currentTarget.parentNode.nextSibling.scrollBy({
@@ -75,7 +78,7 @@ export default function Home() {
 
     return (
         <>
-            <div className="home col-md-9 col-lg-10">
+            <div className="home col-xl-8 pl-md-5">
                 <div className="row pt-5">
                     <div className="col-12">
                         <Typography variant="h5" gutterBottom>
@@ -95,6 +98,15 @@ export default function Home() {
                 </div>
                 <div className="row my-5">
                     <div className="col-12">
+                        <div className="d-flex justify-content-end align-content-center my-2">
+                            <Typography
+                                variant="body1"
+                                color="primary"
+                                gutterBottom
+                            >
+                                View all
+                            </Typography>
+                        </div>
                         <div className={classes.root}>
                             <div
                                 className={`d-none d-sm-flex w-100 h-100 position-absolute justify-content-between align-content-center ${classes.navIcons}`}
@@ -114,12 +126,15 @@ export default function Home() {
                                     <ChevronRightIcon />
                                 </IconButton>
                             </div>
-                            <GridList className={classes.gridList} cols={4.5}>
+                            <GridList
+                                className={`m-0 ${classes.gridList}`}
+                                cols={4.5}
+                            >
                                 {DoctorList.map(tile => (
                                     <GridListTile
                                         style={{
                                             height: 'unset',
-                                            width: '200px'
+                                            width: width
                                         }}
                                         key={tile.key}
                                     >
@@ -176,12 +191,15 @@ export default function Home() {
                                     <ChevronRightIcon />
                                 </IconButton>
                             </div>
-                            <GridList className={classes.gridList} cols={4.5}>
+                            <GridList
+                                className={`m-0 ${classes.gridList}`}
+                                cols={4.5}
+                            >
                                 {DoctorList.map(tile => (
                                     <GridListTile
                                         style={{
                                             height: 'unset',
-                                            width: '200px'
+                                            width: width
                                         }}
                                         key={tile.key}
                                     >
@@ -199,6 +217,7 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+            <Contact />
         </>
     );
 }

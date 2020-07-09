@@ -31,7 +31,7 @@ export default function Settings() {
         <>
             <div className="col-md-9 col-lg-10 overflow-hidden settings">
                 <div
-                    className="position-absolute d-none d-md-block"
+                    className="position-absolute d-none"
                     style={{ right: '-10%', bottom: '-40%', width: '450px' }}
                 >
                     <img src={SettingsBanner} alt="" />

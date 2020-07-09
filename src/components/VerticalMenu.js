@@ -41,7 +41,7 @@ export default function MenuListComposition(props) {
     };
 
     return (
-        <div className="col-3 col-lg-2 d-none d-md-block">
+        <div className="col-3 col-lg-2 d-none">
             <div className={classes.root}>
                 <Paper className={classes.paper}>
                     <MenuList className="pt-4">

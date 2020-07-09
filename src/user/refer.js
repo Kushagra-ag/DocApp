@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
         margin: theme.spacing(1),
         textTransform: 'capitalize'
     },
-    facebook: {
+    blueBtn: {
         color: '#fff',
         backgroundImage: 'linear-gradient(to bottom, #5F7EBE, #3B5998)'
     },
@@ -79,7 +79,7 @@ function Form() {
             />
             <Button
                 variant="contained"
-                className={`${classes.margin} ${classes.facebook}`}
+                className={`${classes.margin} ${classes.blueBtn}`}
                 type="submit"
             >
                 <Typography variant="caption" className={classes.margin}>
