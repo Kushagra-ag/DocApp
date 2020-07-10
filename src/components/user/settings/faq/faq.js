@@ -8,15 +8,20 @@ import {
     CardActions
 } from '@material-ui/core';
 import ChevronRightRoundedIcon from '@material-ui/icons/ChevronRightRounded';
+import LiveHelpRoundedIcon from '@material-ui/icons/LiveHelpRounded';
 
-export default function Privacy(props) {
+export default function Faq(props) {
     return (
-        <Link to="/user/refer">
+        <>
+            <Link to="/user/faq">
             <Card className="my-3 text-left">
                 <div className="d-flex justify-content-between">
                     <CardContent className="d-flex justify-content-around align-items-center">
+                        <IconButton className="pl-0 pr-2 py-0" color="primary">
+                            <LiveHelpRoundedIcon />
+                        </IconButton>
                         <Typography variant="h6" color="primary">
-                            Refer a Doctor
+                            FAQ
                         </Typography>
                     </CardContent>
                     <CardActions>
@@ -26,6 +31,7 @@ export default function Privacy(props) {
                     </CardActions>
                 </div>
             </Card>
-        </Link>
+            </Link>
+        </>
     );
 }

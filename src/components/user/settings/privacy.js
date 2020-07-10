@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Typography,
     IconButton,
@@ -10,7 +10,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import ChevronRightRoundedIcon from '@material-ui/icons/ChevronRightRounded';
-import AntSwitch from '../AntSwitch.js';
+import AntSwitch from '../../AntSwitch.js';
 
 const useStyles = makeStyles(theme => ({
     expand: {
@@ -25,13 +25,18 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function Privacy(props) {
+export default function Privacy() {
     const classes = useStyles();
-    const [state, setState] = React.useState({
+    const [state, setState] = useState({
         checkedA: false,
         checkedB: true,
         checkedC: true
     });
+    const [privacy, setPrivacy] = useState(true);
+
+    const handleExpandClick = () => {
+        setPrivacy(!privacy);
+    };
 
     const handleChange = event => {
         setState({ ...state, [event.target.name]: event.target.checked });
@@ -49,10 +54,10 @@ export default function Privacy(props) {
                     <CardActions>
                         <IconButton
                             className={clsx(classes.expand, {
-                                [classes.expandOpen]: props.expanded
+                                [classes.expandOpen]: privacy
                             })}
-                            onClick={props.click}
-                            aria-expanded={props.expanded}
+                            onClick={handleExpandClick}
+                            aria-expanded={privacy}
                             aria-label="show more"
                         >
                             <ChevronRightRoundedIcon />
@@ -62,7 +67,7 @@ export default function Privacy(props) {
                 <div className="row">
                     <Collapse
                         className="col-12"
-                        in={props.expanded}
+                        in={privacy}
                         timeout="auto"
                         unmountOnExit
                     >

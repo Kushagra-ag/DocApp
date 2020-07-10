@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Typography, MenuItem, Select } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import CustomTextField from '../components/CustomTextField.js';
-import Contact from './contact.js';
+import CustomTextField from '../../../CustomTextField.js';
+import Contact from '../../../../user/contact.js';
 
 const useStyles = makeStyles(theme => ({
     form: {

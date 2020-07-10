@@ -2,11 +2,10 @@ import React from 'react';
 import { Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import Privacy from '../components/settings/privacy.js';
-import Refer from '../components/settings/refer.js';
-import Faq from '../components/settings/faq.js';
-import About from '../components/settings/about.js';
-import SettingsBanner from '../svg/settings.svg';
+import Privacy from '../components/user/settings/privacy.js';
+import Refer from '../components/user/settings/refer/refer.js';
+import Faq from '../components/user/settings/faq/faq.js';
+import About from '../components/user/settings/about.js';
 import Contact from './contact.js';
 
 const useStyles = makeStyles(theme => ({
@@ -22,21 +21,13 @@ const useStyles = makeStyles(theme => ({
 
 export default function Settings() {
     const classes = useStyles();
-    const [privacy, setPrivacy] = React.useState(true);
-
-    const handleExpandClick = el => {
-        if (el === 'privacy') setPrivacy(!privacy);
-    };
 
     return (
         <>
             <div className="col-md-8 pl-md-5 overflow-hidden settings">
                 <div className="row pt-4">
-                    <div className="col-sm-9 col-md-6 text-center">
-                        <Privacy
-                            expanded={privacy}
-                            click={() => handleExpandClick('privacy')}
-                        />
+                    <div className="col-sm-9 col-xl-6 text-center">
+                        <Privacy />
                         <Refer />
                         <Faq />
                         <About />
