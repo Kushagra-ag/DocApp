@@ -57,7 +57,9 @@ export default function Q2() {
                 </div>
                 <Collapse in={expand} timeout="auto" unmountOnExit>
                     <CardContent>
-                    	You can create a list of your favourite physicians and access them any time under the Favourites tab of your profile.
+                        You can create a list of your favourite physicians and
+                        access them any time under the Favourites tab of your
+                        profile.
                     </CardContent>
                 </Collapse>
             </Card>

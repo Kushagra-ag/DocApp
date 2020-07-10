@@ -39,7 +39,7 @@ export default function Q1() {
                 <div className="d-flex justify-content-between">
                     <CardContent className="d-flex justify-content-around align-items-center">
                         <Typography variant="h6" color="primary">
-                            I Cannot find a doctor
+                            I cannot find a doctor
                         </Typography>
                     </CardContent>
                     <CardActions>
@@ -57,7 +57,14 @@ export default function Q1() {
                 </div>
                 <Collapse in={expand} timeout="auto" unmountOnExit>
                     <CardContent>
-                    	If you are unable to find a doctor on this platform, please go to the <b>Refer</b> section under the settings tab. Fill in the details asked and paste the link of the doctor's profile on the Practo <a href="https://www.practo.com/doctors">(www.prato.com)</a> platform
+                        If you are unable to find a doctor on this platform,
+                        please go to the <b>Refer</b> section under the settings
+                        tab. Fill in the details asked and paste the link of the
+                        doctor's profile on the Practo{' '}
+                        <a href="https://www.practo.com/doctors">
+                            (www.prato.com)
+                        </a>{' '}
+                        platform.
                     </CardContent>
                 </Collapse>
             </Card>

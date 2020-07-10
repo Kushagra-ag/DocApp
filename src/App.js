@@ -9,7 +9,18 @@ import User from './user/index.js';
 
 import './App.css';
 
+// 5F82E2
+
 const theme = createMuiTheme({
+    breakpoints: {
+        values: {
+            xs: 0,
+            sm: 576,
+            md: 768,
+            lg: 992,
+            xl: 1200
+        }
+    },
     typography: {
         fontFamily: [
             'Nunito Sans',
@@ -25,8 +36,7 @@ const theme = createMuiTheme({
             secondary: '#fff'
         },
         primary: {
-            main: '#5F82E2',
-            dark: '#4A6BC5'
+            main: '#4A6BC5'
         },
         secondary: {
             main: '#4A6BC5'

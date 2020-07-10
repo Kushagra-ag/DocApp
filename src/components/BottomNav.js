@@ -7,7 +7,7 @@ import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
-import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 const StyledNav = withStyles({
     root: {
@@ -60,7 +60,7 @@ export default function BottomNav() {
                 <StyledNav
                     label="Menu"
                     value="menu"
-                    icon={<MenuRoundedIcon />}
+                    icon={<SettingsIcon />}
                     component={Link}
                     to="/user/settings"
                 />

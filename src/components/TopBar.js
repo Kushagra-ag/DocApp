@@ -157,15 +157,24 @@ export default function SearchAppBar() {
                                 style={{ left: 'auto', right: 0 }}
                                 aria-labelledby="navbarDropdownMenuLink"
                             >
-                                <Link className="dropdown-item" to="/user/profile">
+                                <Link
+                                    className="dropdown-item"
+                                    to="/user/profile"
+                                >
                                     <PersonRoundedIcon color="secondary" />
                                     &nbsp; Account
                                 </Link>
-                                <Link className="dropdown-item" to="/user/profile/favourites">
+                                <Link
+                                    className="dropdown-item"
+                                    to="/user/profile/favourites"
+                                >
                                     <FavoriteRoundedIcon color="secondary" />
                                     &nbsp; Favourites
                                 </Link>
-                                <Link className="dropdown-item" to="/user/settings">
+                                <Link
+                                    className="dropdown-item"
+                                    to="/user/settings"
+                                >
                                     <SettingsIcon color="secondary" />
                                     &nbsp; Settings
                                 </Link>

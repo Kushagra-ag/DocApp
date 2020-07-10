@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     useMediaQuery,
     Typography,
@@ -18,6 +18,7 @@ import ryan from '../svg/ryan.png';
 import lara from '../svg/lara.png';
 import doc1 from '../svg/doc1.jpg';
 import ExperienceIcon from '../components/ExperienceIcon.js';
+import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import DoctorProfileIcons from '../components/doctor/DoctorProfileIcons.js';
 
 const useStyles = makeStyles(theme => ({
@@ -37,6 +38,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function Profile() {
     const classes = useStyles();
+    const [favourite, setFavourite] = useState(false);
+
+    const handleFav = () => {
+        setFavourite(!favourite);
+    };
+
     const txt = useMediaQuery('(max-width:767px)')
         ? 'textSecondary'
         : 'primary';
@@ -179,6 +186,7 @@ export default function Profile() {
                                     display="block"
                                     variant="body1"
                                     style={{ opacity: '0.5' }}
+                                    gutterBottom
                                 >
                                     Quis autem vel eum iure reprehenderit qui in
                                     ea voluptate velit esse quam nihil molestiae
@@ -194,6 +202,31 @@ export default function Profile() {
                                         type="recognition"
                                         number="10"
                                     />
+                                    <div
+                                        className="ml-auto"
+                                        onClick={handleFav}
+                                    >
+                                        <IconButton
+                                            className={classes.margin}
+                                            color={
+                                                favourite
+                                                    ? 'primary'
+                                                    : 'default'
+                                            }
+                                            aria-label="favourite"
+                                            component="span"
+                                            size="medium"
+                                        >
+                                            <FavoriteRoundedIcon fontSize="large" />
+                                        </IconButton>
+                                        <Typography
+                                            variant="subtitle2"
+                                            align="center"
+                                        >
+                                            Add{favourite ? 'ed' : ''} to <br />
+                                            favourites
+                                        </Typography>
+                                    </div>
                                 </div>
                             </CardContent>
                         </Card>

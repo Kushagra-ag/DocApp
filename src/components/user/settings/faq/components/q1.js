@@ -57,7 +57,10 @@ export default function Q1() {
                 </div>
                 <Collapse in={expand} timeout="auto" unmountOnExit>
                     <CardContent>
-                        <b>Docto.</b> is a platform where you can find doctors in every field near you. You can view the rating of any doctor and give reviews about your experience which will help other users.
+                        <b>Docto.</b> is a platform where you can find doctors
+                        in every field. You can view the rating of any doctor
+                        and give reviews about your experience which will help
+                        the other users.
                     </CardContent>
                 </Collapse>
             </Card>
