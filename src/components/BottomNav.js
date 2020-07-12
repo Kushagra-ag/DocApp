@@ -58,8 +58,8 @@ export default function BottomNav() {
                     to="/user/profile/reviews"
                 />
                 <StyledNav
-                    label="Menu"
-                    value="menu"
+                    label="Settings"
+                    value="settings"
                     icon={<SettingsIcon />}
                     component={Link}
                     to="/user/settings"

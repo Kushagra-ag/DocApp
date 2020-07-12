@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, InputBase } from '@material-ui/core';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
@@ -83,6 +83,14 @@ const useStyles = makeStyles(theme => ({
 export default function SearchAppBar() {
     const classes = useStyles();
 
+    let arr = useLocation().search.substr(1).split('&');
+    arr.forEach(el => {
+        let e = el.split('=');
+        arr[e[0]] = e[1];
+    });
+
+    const [search, setSearch] = useState(arr['query'] || '');
+
     return (
         <>
             <div className={`row d-md-none ${classes.root}`}>
@@ -95,18 +103,22 @@ export default function SearchAppBar() {
                         >
                             Docto.
                         </Typography>
+
                         <div className={classes.search}>
-                            <div className={classes.searchIcon}>
-                                <SearchIcon />
-                            </div>
-                            <InputBase
-                                placeholder="Search…"
-                                classes={{
-                                    root: classes.inputRoot,
-                                    input: classes.inputInput
-                                }}
-                                inputProps={{ 'aria-label': 'search' }}
-                            />
+                            <form>
+                                <div className={classes.searchIcon}>
+                                    <SearchIcon />
+                                </div>
+                                <InputBase
+                                    placeholder="Search…"
+                                    classes={{
+                                        root: classes.inputRoot,
+                                        input: classes.inputInput
+                                    }}
+                                    inputProps={{ 'aria-label': 'search' }}
+                                    defaultValue={search}
+                                />
+                            </form>
                         </div>
                     </Toolbar>
                 </AppBar>
@@ -194,26 +206,38 @@ export default function SearchAppBar() {
                 <nav className="navbar navbar-light bg-light pt-3 px-5">
                     <ul className="navbar-nav ml-auto flex-row">
                         <li className="nav-item">
-                            <div className="input-group input-group-sm">
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="Search"
-                                    aria-label="Location"
-                                />
-                                <div className="input-group-append">
-                                    <span
-                                        className="input-group-text"
-                                        id="basic-addon1"
-                                        style={{ backgroundColor: '#4A6BC5' }}
-                                    >
-                                        <SearchIcon
-                                            className={classes.white}
-                                            fontSize="small"
+                            <form method="GET" action="/user/search">
+                                <div className="input-group input-group-sm">
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        placeholder="Search"
+                                        aria-label="Location"
+                                        name="query"
+                                        defaultValue={search}
+                                        required
+                                    />
+                                    <div className="input-group-append position-relative">
+                                        <span
+                                            className="input-group-text"
+                                            id="basic-addon1"
+                                            style={{
+                                                backgroundColor: '#4A6BC5'
+                                            }}
+                                        >
+                                            <SearchIcon
+                                                className={classes.white}
+                                                fontSize="small"
+                                            />
+                                        </span>
+                                        <input
+                                            type="submit"
+                                            className="position-absolute w-100"
+                                            style={{ opacity: 0 }}
                                         />
-                                    </span>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </li>
                     </ul>
                 </nav>
