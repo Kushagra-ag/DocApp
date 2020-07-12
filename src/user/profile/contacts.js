@@ -26,7 +26,7 @@ export default function Favourites() {
                     }
                 />
             </div>
-            <div className="col-sm-8 text-center text-md-left col-lg-5">
+            <div className="col-sm-8 text-center text-md-left col-xl-5">
                 {UserContacts.map(contact => (
                     <div key={contact.key}>
                         <Card className="p-3 mb-2">

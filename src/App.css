@@ -9,6 +9,10 @@ a:hover {
 	text-decoration: none;
 }
 
+button:focus {
+	outline: none;
+}
+
 .colorYellow {
   color: #ED8A19!important;
 }

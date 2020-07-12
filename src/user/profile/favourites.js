@@ -54,7 +54,7 @@ export default function Favourites() {
                     }
                 />
             </div>
-            <div className="col-sm-8 text-center text-md-left col-lg-5">
+            <div className="col-sm-8 text-center text-md-left">
                 {UserFav.map(doctor => (
                     <div key={doctor.key}>
                         <Card className="p-3 mb-4">

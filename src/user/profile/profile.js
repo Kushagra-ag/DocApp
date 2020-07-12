@@ -7,6 +7,7 @@ import Reviews from './reviews';
 import Contacts from './contacts';
 import Favourites from './favourites';
 import user1 from '../../svg/user1.jpg';
+import Contact from '../contact.js';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -36,7 +37,7 @@ export default function Profile() {
 
     return (
         <>
-            <div className="col-md-9 col-lg-10">
+            <div className="col-md-8 pl-md-5">
                 <div className="row pt-4 docProfile">
                     <div className="col-md-4 d-flex justify-content-center">
                         <Avatar
@@ -83,112 +84,9 @@ export default function Profile() {
                             component={Favourites}
                         />
                     </Switch>
-                    {
-                        // <Card
-                        //         className="my-4 d-inline-block d-md-block"
-                        //         style={{
-                        //             backgroundColor: "#5F82E2",
-                        //             width: "320px",
-                        //             maxWidth: "100%",
-                        //         }}
-                        // >
-                        //         <CardContent
-                        //             className="d-flex justify-content-around align-items-center"
-                        //             style={{ padding: "5px" }}
-                        //         >
-                        //             <Link to="#" className={classes.margin}>
-                        //                 <IconButton
-                        //                     aria-label="rating"
-                        //                     component="span"
-                        //                     style={{
-                        //                         color: "#fff",
-                        //                         border: "3px solid #3654A8",
-                        //                     }}
-                        //                 >
-                        //                     <StarRoundedIcon fontSize="large" />
-                        //                 </IconButton>
-                        //             </Link>
-                        //             <div
-                        //                 className="d-flex justify-content-around align-items-left flex-column"
-                        //                 style={{ color: "#fff" }}
-                        //             >
-                        //                 <Typography variant="h6">4.5</Typography>
-                        //                 <Typography variant="subtitle2">
-                        //                     1800 reviews
-                        //                 </Typography>
-                        //             </div>
-                        //             <Link
-                        //                 to="#"
-                        //                 className={classes.margin}
-                        //                 edge="start"
-                        //             >
-                        //                 <IconButton
-                        //                     aria-label="call"
-                        //                     component="span"
-                        //                     style={{ color: "#fff" }}
-                        //                 >
-                        //                     <ChevronRightIcon />
-                        //                 </IconButton>
-                        //             </Link>
-                        //         </CardContent>
-                        // </Card>
-                        // <div className="col-md-8">
-                        //                        <Card className="p-3">
-                        //                            <CardContent className="text-center text-md-left p-1">
-                        //                                <Typography
-                        //                                    variant="h5"
-                        //                                    display="block"
-                        //                                    gutterBottom
-                        //                                >
-                        //                                    About Dr. Nirmala Reddy
-                        //                                </Typography>
-                        //                                <Typography
-                        //                                    display="block"
-                        //                                    variant="body1"
-                        //                                    style={{ opacity: "0.5" }}
-                        //                                >
-                        //                                    Quis autem vel eum iure reprehenderit qui in
-                        //                                    ea voluptate velit esse quam nihil molestiae
-                        //                                    consequatur, vel illum qui dolorem eum
-                        //                                    fugiat quo voluptas nulla pariatur
-                        //                                </Typography>
-                        //                                <div className="d-flex mt-3">
-                        //                                    <ExperienceIcon
-                        //                                        type="experience"
-                        //                                        number="25"
-                        //                                    />
-                        //                                    <ExperienceIcon
-                        //                                        type="recognition"
-                        //                                        number="10"
-                        //                                    />
-                        //                                </div>
-                        //                            </CardContent>
-                        //                        </Card>
-                        //                        <Card className="p-3 my-4" elevation={2}>
-                        //                            <CardContent className="text-center text-md-left p-1">
-                        //                                <Typography
-                        //                                    variant="h5"
-                        //                                    display="block"
-                        //                                    gutterBottom
-                        //                                >
-                        //                                    Expertise
-                        //                                </Typography>
-                        //                                <Typography
-                        //                                    display="block"
-                        //                                    variant="body1"
-                        //                                    style={{ opacity: "0.5" }}
-                        //                                >
-                        //                                    Quis autem vel eum iure reprehenderit qui in
-                        //                                    ea voluptate velit esse quam nihil molestiae
-                        //                                    consequatur, vel illum qui dolorem eum
-                        //                                    fugiat quo voluptas nulla pariatur
-                        //                                </Typography>
-                        //                            </CardContent>
-                        //                        </Card>
-                        //                    </div>
-                    }
                 </div>
             </div>
+            <Contact />
         </>
     );
 }
