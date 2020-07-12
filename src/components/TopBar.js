@@ -105,7 +105,7 @@ export default function SearchAppBar() {
                         </Typography>
 
                         <div className={classes.search}>
-                            <form>
+                            <form method="GET" action="/user/search">
                                 <div className={classes.searchIcon}>
                                     <SearchIcon />
                                 </div>
