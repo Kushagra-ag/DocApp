@@ -1,47 +1,23 @@
 import React from 'react';
-import { Button, Typography, useMediaQuery } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Link } from 'react-router-dom';
 import CustomTextField from '../components/CustomTextField.js';
-
-const useStyles = makeStyles(theme => ({
-    form: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'spaceAround',
-        backgroundColor: '#fff',
-        paddingTop: theme.spacing(2),
-        paddingBottom: theme.spacing(2),
-        paddingLeft: theme.spacing(1),
-        paddingRight: theme.spacing(1),
-        borderRadius: '10px'
-    },
-    margin: {
-        margin: theme.spacing(1),
-        textTransform: 'capitalize'
-    },
-    facebook: {
-        color: '#fff',
-        backgroundImage: 'linear-gradient(to bottom, #5F7EBE, #3B5998)'
-    },
-    phone: {
-        color: '#5F82E2',
-        border: '1px solid #5F82E2',
-        backgroundColor: '#fff'
-    }
-}));
+import importedStyles from '../styles/styles.js'
 
 function Form() {
-    const classes = useStyles();
+    const styles = importedStyles();
     return (
-        <form className={classes.form} method="POST">
-            <Typography variant="h6" className={classes.margin} gutterBottom>
+        <form className={styles.form} method="POST" action="http://157.245.105.212:3000/api/signup">
+            <Typography variant="h6" className={styles.margin} gutterBottom>
                 Register
             </Typography>
             <CustomTextField
                 id="name"
                 label="name"
-                className={classes.margin}
+                name="name"
+                className={styles.margin}
                 disableUnderline
                 placeholder="Full Name"
                 required
@@ -49,16 +25,27 @@ function Form() {
             <CustomTextField
                 id="phone"
                 label="phone"
-                className={classes.margin}
+                name="mobile"
+                className={styles.margin}
                 disableUnderline
                 placeholder="Phone number"
                 required
             />
             <CustomTextField
+                id="email"
+                label="email"
+                name="email"
+                className={styles.margin}
+                disableUnderline
+                placeholder="Email address"
+                required
+            />
+            <CustomTextField
                 id="pass"
                 label="password"
+                name="password"
                 type="password"
-                className={classes.margin}
+                className={styles.margin}
                 disableUnderline
                 color="primary"
                 placeholder="Password"
@@ -66,10 +53,10 @@ function Form() {
             />
             <Button
                 variant="contained"
-                className={`${classes.margin} ${classes.facebook}`}
+                className={`${styles.margin} ${styles.blueBtn}`}
                 type="submit"
             >
-                <Typography variant="caption" className={classes.margin}>
+                <Typography variant="caption" className={styles.margin}>
                     Sign Up
                 </Typography>
             </Button>
@@ -89,7 +76,7 @@ function Form() {
 }
 
 export default function Signup() {
-    const classes = useStyles();
+    const styles = importedStyles();
     const match = useMediaQuery('(max-width:767px)') ? true : false;
     const color = match
         ? 'linear-gradient(225deg, rgba(74, 107, 197,0), rgba(95, 130, 226,0))'
@@ -144,14 +131,14 @@ export default function Signup() {
                         </div>
                         <Button
                             variant="outlined"
-                            className={`${classes.margin}`}
+                            className={`${styles.margin}`}
                             style={{ backgroundColor: '#fff' }}
                             component={Link}
                             to="/auth/login"
                         >
                             <Typography
                                 variant="caption"
-                                className={classes.margin}
+                                className={styles.margin}
                             >
                                 Sign In now
                             </Typography>

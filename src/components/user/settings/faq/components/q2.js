@@ -1,32 +1,17 @@
 import React, { useState } from 'react';
-import {
-    Typography,
-    IconButton,
-    Card,
-    CardContent,
-    CardActions,
-    Collapse
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Typography from '@material-ui/core/Typography';
+import Collapse from '@material-ui/core/Collapse';
 import clsx from 'clsx';
 import ChevronRightRoundedIcon from '@material-ui/icons/ChevronRightRounded';
 import HelpRoundedIcon from '@material-ui/icons/HelpRounded';
-
-const useStyles = makeStyles(theme => ({
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest
-        })
-    },
-    expandOpen: {
-        transform: 'rotate(90deg)'
-    }
-}));
+import importedStyles from '../../../../../styles/styles.js';
 
 export default function Q2() {
-    const classes = useStyles();
+    const styles = importedStyles();
     const [expand, setExpand] = useState(false);
 
     const handleExpandClick = () => {
@@ -44,8 +29,8 @@ export default function Q2() {
                     </CardContent>
                     <CardActions>
                         <IconButton
-                            className={clsx(classes.expand, {
-                                [classes.expandOpen]: expand
+                            className={clsx(styles.expand, {
+                                [styles.expandOpen]: expand
                             })}
                             onClick={handleExpandClick}
                             aria-expanded={expand}

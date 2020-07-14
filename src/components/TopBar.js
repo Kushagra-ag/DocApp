@@ -111,6 +111,7 @@ export default function SearchAppBar() {
                                 </div>
                                 <InputBase
                                     placeholder="Search…"
+                                    name="query"
                                     classes={{
                                         root: classes.inputRoot,
                                         input: classes.inputInput
