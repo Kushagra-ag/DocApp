@@ -1,7 +1,8 @@
 import React from 'react';
+import axios from 'axios';
 import { Button, Typography, useMediaQuery } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import CustomTextField from '../components/CustomTextField.js';
 import DoctoIcon from '../components/DoctoIcon.js';
 
@@ -38,14 +39,39 @@ const useStyles = makeStyles(theme => ({
 
 function Form() {
     const classes = useStyles();
+    const history = useHistory();
+    console.log(history)
+    
+    const onSubmitForm = (e) => {
+        e.preventDefault();
+        let formData = new FormData(e.target)
+
+        let data = JSON.stringify(Object.fromEntries(formData));
+
+        const options = {
+            'content-type': 'application/json'
+        }
+
+        axios.post("http://157.245.105.212:3000/api/signin", data, {headers: options})
+        .then( data => {
+            console.log(data);
+            const token = data.data.token;
+            document.cookie= `_id=${token}`;
+            history.push('/user/home')
+        })
+        .catch(err => console.log(err))
+
+    }
     return (
-        <form className={classes.form} method="POST">
+        <form className={classes.form} onSubmit={onSubmitForm} >
             <Typography variant="h6" className={classes.margin} gutterBottom>
                 Sign In
             </Typography>
             <CustomTextField
                 id="phone"
                 label="Phone Number"
+                name="mobile"
+                autoComplete="username"
                 className={classes.margin}
                 disableUnderline
                 placeholder="Phone number"
@@ -54,7 +80,9 @@ function Form() {
             <CustomTextField
                 id="pass"
                 label="Password"
+                name="password"
                 type="password"
+                autoComplete="current-password"
                 className={classes.margin}
                 disableUnderline
                 color="primary"
