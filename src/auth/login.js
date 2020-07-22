@@ -49,14 +49,14 @@ function Form() {
         let data = JSON.stringify(Object.fromEntries(formData));
 
         const options = {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
         }
 
         axios.post("http://157.245.105.212:3000/api/signin", data, {headers: options})
         .then( data => {
             console.log(data);
             const token = data.data.token;
-            document.cookie= `_id=${token}`;
+            
             history.push('/user/home')
         })
         .catch(err => console.log(err))

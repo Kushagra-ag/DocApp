@@ -1,5 +1,5 @@
-import React from 'react';
-import { useMediaQuery, Typography, Avatar } from '@material-ui/core';
+import React, { useState, useLayoutEffect } from 'react';
+import { Button, Typography, useMediaQuery, Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import UserProfileIcons from '../../components/user/UserProfileIcons.js';
@@ -34,6 +34,10 @@ export default function Profile() {
     const txt = useMediaQuery('(max-width:767px)')
         ? 'textSecondary'
         : 'primary';
+
+    useLayoutEffect(() => {
+        
+    }) 
 
     return (
         <>
