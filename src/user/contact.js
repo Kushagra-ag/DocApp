@@ -38,6 +38,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function Contact() {
     const classes = useStyles();
+
+    const spin = <i class="fas fa-circle-notch fa-spin my-2"></i>;
     return (
         <>
             <div className="d-none d-xl-block col-md-4 px-4">

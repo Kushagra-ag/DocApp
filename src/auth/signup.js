@@ -1,34 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Link, useHistory } from 'react-router-dom';
 import CustomTextField from '../components/CustomTextField.js';
-import importedStyles from '../styles/styles.js'
+import importedStyles from '../styles/styles.js';
 
 function Form() {
     const styles = importedStyles();
     const history = useHistory();
+    const [error, setError] = useState('');
 
-    const onSubmitForm = (e) => {
+    const onSubmitForm = e => {
         e.preventDefault();
-        let formData = new FormData(e.target)
+        let formData = new FormData(e.target);
 
         let data = JSON.stringify(Object.fromEntries(formData));
 
         const options = {
             'content-type': 'application/json'
-        }
+        };
 
-        axios.post("http://157.245.105.212:3000/api/signup", data, {headers: options})
-        .then( data => {
-            console.log(data);
-            history.push('/auth/login')
-        })
-        .catch(err => console.log(err))
-
-    }
+        axios
+            .post('http://157.245.105.212:3000/api/signup', data, {
+                headers: options
+            })
+            .then(data => {
+                console.log(data);
+                history.push('/auth/login');
+            })
+            .catch(err => {
+                console.log(err);
+                setError('Could not register account');
+            });
+    };
     return (
         <form className={styles.form} method="POST" onSubmit={onSubmitForm}>
             <Typography variant="h6" className={styles.margin} gutterBottom>
@@ -91,6 +97,16 @@ function Form() {
                     gutterBottom
                 >
                     Forgot Password?
+                </Typography>
+            </div>
+            <div className="py-2 text-center">
+                <Typography
+                    className="error"
+                    variant="caption"
+                    color="error"
+                    gutterBottom
+                >
+                    {error}
                 </Typography>
             </div>
         </form>

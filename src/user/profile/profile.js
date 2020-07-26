@@ -1,13 +1,14 @@
 import React, { useState, useLayoutEffect } from 'react';
 import { Button, Typography, useMediaQuery, Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 import UserProfileIcons from '../../components/user/UserProfileIcons.js';
 import Reviews from './reviews';
 import Contacts from './contacts';
 import Favourites from './favourites';
 import user1 from '../../svg/user1.jpg';
 import Contact from '../contact.js';
+import { getLocalStorage } from '../../utilities.js';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -31,13 +32,21 @@ const useStyles = makeStyles(theme => ({
 
 export default function Profile() {
     const classes = useStyles();
+    const history = useHistory();
+    const [user, setUser] = useState({});
+
     const txt = useMediaQuery('(max-width:767px)')
         ? 'textSecondary'
         : 'primary';
 
     useLayoutEffect(() => {
-        
-    }) 
+        let profile = getLocalStorage();
+
+        if (profile) setUser(profile.data.user);
+        else history.push('/auth/login');
+
+        console.log(user);
+    }, []);
 
     return (
         <>
@@ -52,8 +61,13 @@ export default function Profile() {
                         />
                     </div>
                     <div className="col-md-8 mt-3 mt-md-0 mb-n4 mb-md-n0 d-flex flex-column align-items-center align-items-md-start">
-                        <Typography variant="h4" color={txt} gutterBottom>
-                            Apoorva Sen
+                        <Typography
+                            className="text-capitalize"
+                            variant="h4"
+                            color={txt}
+                            gutterBottom
+                        >
+                            {user.name}
                         </Typography>
                         <Typography
                             className="mt-n2"
@@ -61,7 +75,7 @@ export default function Profile() {
                             color={txt}
                             gutterBottom
                         >
-                            22 years, Orissa
+                            {user.age ? `${user.age} years, ` : ''}Orissa
                         </Typography>
                         <UserProfileIcons />
                     </div>

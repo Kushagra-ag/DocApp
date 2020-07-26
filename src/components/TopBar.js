@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useLayoutEffect } from 'react';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import { AppBar, Toolbar, Typography, InputBase } from '@material-ui/core';
 import { fade, makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
 import SearchIcon from '@material-ui/icons/Search';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import SettingsIcon from '@material-ui/icons/Settings';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { getLocalStorage } from '../utilities.js';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -82,6 +85,13 @@ const useStyles = makeStyles(theme => ({
 
 export default function SearchAppBar() {
     const classes = useStyles();
+    const history = useHistory();
+    const [user, setUser] = useState('');
+
+    useLayoutEffect(() => {
+        setUser(getLocalStorage().data.user.name.split(' ')[0] || 'profile');
+    }, []);
+    //setUser(getLocalStorage());
 
     let arr = useLocation().search.substr(1).split('&');
     arr.forEach(el => {
@@ -90,6 +100,20 @@ export default function SearchAppBar() {
     });
 
     const [search, setSearch] = useState(arr['query'] || '');
+
+    const signout = () => {
+        const options = {
+            'content-type': 'application/json'
+        };
+
+        axios
+            .get(
+                'http://157.245.105.212:3000/api/signout',
+                {},
+                { headers: options }
+            )
+            .finally(() => history.push('/auth/login'));
+    };
 
     return (
         <>
@@ -155,14 +179,14 @@ export default function SearchAppBar() {
                     <ul className="navbar-nav ml-auto flex-row">
                         <li className="nav-item dropdown mr-3">
                             <a
-                                className="nav-link px-2 dropdown-toggle"
+                                className="nav-link px-2 dropdown-toggle text-capitalize"
                                 href="#"
                                 id="navbarDropdownMenuLink"
                                 data-toggle="dropdown"
                                 aria-haspopup="true"
                                 aria-expanded="false"
                             >
-                                Profile
+                                {user}
                                 <KeyboardArrowDownIcon fontSize="small" />
                             </a>
                             <div
@@ -191,6 +215,13 @@ export default function SearchAppBar() {
                                     <SettingsIcon color="secondary" />
                                     &nbsp; Settings
                                 </Link>
+                                <div
+                                    className="dropdown-item"
+                                    onClick={signout}
+                                >
+                                    <ExitToAppIcon color="secondary" />
+                                    &nbsp; Sign Out
+                                </div>
                             </div>
                             {
                                 //<KeyboardArrowDownIcon fontSize="small" />
