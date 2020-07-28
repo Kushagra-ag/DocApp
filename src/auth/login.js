@@ -66,19 +66,20 @@ function Form() {
                 console.log(data);
                 if (data.error) throw data.error;
                 // const token = data.data.token;
-
+                setLoading(false);
                 setLocalStorage(data, () => history.push('/user/home'));
 
                 // history.push('/user/home')
             })
             .catch(err => {
                 console.log(err);
+                setLoading(false)
                 setError('Invalid username or password');
             })
-            .finally(() => setLoading(false));
+            
     };
 
-    const spin = <i class="fas fa-circle-notch fa-spin my-2"></i>;
+    const spin = <i className="fas fa-circle-notch fa-spin my-2"></i>;
 
     return (
         <form className={classes.form} onSubmit={onSubmitForm}>

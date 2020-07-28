@@ -40,9 +40,9 @@ export default function Profile() {
         : 'primary';
 
     useLayoutEffect(() => {
-        let profile = getLocalStorage();
+        let profile = getLocalStorage().data;
 
-        if (profile) setUser(profile.data.user);
+        if (profile) setUser(profile.user);
         else history.push('/auth/login');
 
         console.log(user);
@@ -50,7 +50,7 @@ export default function Profile() {
 
     return (
         <>
-            <div className="col-md-8 pl-md-5">
+            <div className="col-md-10 col-xl-8 pl-md-5">
                 <div className="row pt-4 docProfile">
                     <div className="col-md-4 d-flex justify-content-center">
                         <Avatar

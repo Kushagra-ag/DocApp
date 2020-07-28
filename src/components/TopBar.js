@@ -78,7 +78,9 @@ const useStyles = makeStyles(theme => ({
             color: theme.palette.primary.dark
         },
         '& .nav-link': {
-            color: `${theme.palette.primary.dark}!important`
+            '&:not(.login)': {
+                color: `${theme.palette.primary.dark}!important`,
+            }
         }
     }
 }));
@@ -89,9 +91,12 @@ export default function SearchAppBar() {
     const [user, setUser] = useState('');
 
     useLayoutEffect(() => {
-        setUser(getLocalStorage().data.user.name.split(' ')[0] || 'profile');
+        let data = getLocalStorage().data;
+        if(data)
+            setUser(data.user.name.split(' ')[0]);
+        else
+            setUser(undefined)
     }, []);
-    //setUser(getLocalStorage());
 
     let arr = useLocation().search.substr(1).split('&');
     arr.forEach(el => {
@@ -114,6 +119,15 @@ export default function SearchAppBar() {
             )
             .finally(() => history.push('/auth/login'));
     };
+
+    const loginBtn = <a
+                                className="nav-link px-4 login"
+                                href="/auth/login"
+                                style={{backgroundColor:"#4a6bc5",color:"#fff",borderRadius:"10px"}}
+                            >
+                                Login
+                                
+                            </a>
 
     return (
         <>
@@ -178,7 +192,9 @@ export default function SearchAppBar() {
                     </ul>
                     <ul className="navbar-nav ml-auto flex-row">
                         <li className="nav-item dropdown mr-3">
-                            <a
+                            {
+                                user ?
+                                    <React.Fragment><a
                                 className="nav-link px-2 dropdown-toggle text-capitalize"
                                 href="#"
                                 id="navbarDropdownMenuLink"
@@ -222,10 +238,10 @@ export default function SearchAppBar() {
                                     <ExitToAppIcon color="secondary" />
                                     &nbsp; Sign Out
                                 </div>
-                            </div>
-                            {
-                                //<KeyboardArrowDownIcon fontSize="small" />
+                            </div></React.Fragment> : loginBtn
+                                
                             }
+                           
                         </li>
                         <li className="nav-item active">
                             <a className="nav-link px-2" href="#">
@@ -236,6 +252,17 @@ export default function SearchAppBar() {
                     </ul>
                 </nav>
                 <nav className="navbar navbar-light bg-light pt-3 px-5">
+                    <ul className="navbar-nav mr-auto flex-row">
+                        <li className="nav-item">
+                            <Link to="#">
+                            <u>
+                            <Typography>
+                                Click here to download the Docto app
+                            </Typography>
+                            </u>
+                            </Link>
+                        </li>
+                        </ul>
                     <ul className="navbar-nav ml-auto flex-row">
                         <li className="nav-item">
                             <form method="GET" action="/user/search">
