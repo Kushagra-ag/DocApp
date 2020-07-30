@@ -1,8 +1,10 @@
 import React from 'react';
 import { Button, Typography, MenuItem, Select } from '@material-ui/core';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import CustomTextField from '../../../CustomTextField.js';
 import Contact from '../../../../user/contact.js';
+import { getLocalStorage } from '../../../../utilities.js';
 
 const useStyles = makeStyles(theme => ({
     form: {
@@ -32,14 +34,35 @@ function Form() {
     const classes = useStyles();
 
     const [speciality, setSpeciality] = React.useState('');
+    const [loading, setLoading] = React.useState(false);
     const handleChange = event => {
         setSpeciality(event.target.value);
     };
 
+    const onSubmit = e => {
+        e.preventDefault();
+        setLoading(true);
+
+        let data = JSON.stringify(Object.fromEntries(new FormData(e.target)));
+        console.log(data);
+
+        const userId = getLocalStorage().data.user._id;
+
+        const options = {
+            'content-type': 'application/json'
+        };
+
+        //axios.post(`http://157.245.105.212:3000/api/doctor/create/${userId}`)
+        axios
+            .get('http://157.245.105.212:3000/api/doctors', {}, options)
+            .then(res => console.log(res));
+    };
+
     return (
-        <form className={classes.form} method="POST">
+        <form className={classes.form} method="POST" onSubmit={onSubmit}>
             <CustomTextField
                 id="name"
+                name="name"
                 label="name"
                 className={classes.margin}
                 disableUnderline
@@ -47,8 +70,8 @@ function Form() {
                 required
             />
             <Select
-                labelId="demo-customized-select-label"
-                id="demo-customized-select"
+                id="speciality"
+                name="speciality"
                 className={classes.margin}
                 disableUnderline
                 displayEmpty
@@ -63,8 +86,9 @@ function Form() {
                 <MenuItem value="cardiologist">Cardiologist</MenuItem>
             </Select>
             <CustomTextField
-                id="phone"
-                label="phone"
+                id="location"
+                name="location"
+                label="location"
                 className={classes.margin}
                 disableUnderline
                 placeholder="Location"
@@ -72,6 +96,7 @@ function Form() {
             />
             <CustomTextField
                 id="profile"
+                name="profile"
                 label="profile"
                 className={classes.margin}
                 disableUnderline

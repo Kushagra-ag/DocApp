@@ -20,12 +20,12 @@ export default function DoctorTile(props) {
     return (
         <Link to="/doctor/profile">
             <Card
-                className={`mx-2 px-2 px-sm-0 d-flex flex-column flex-sm-row justify-content-sm-between ${classes.root}`}
+                className={`mx-2 px-2 px-sm-0 d-flex flex-column flex-sm-row ${classes.root}`}
             >
                 <div className={`mx-n2 mx-sm-0 ${classes.imgContainer}`}>
                     <img src={props.img} className="w-100" alt="doctor image" />
                 </div>
-                <div className="mt-2 mr-sm-3">
+                <div className="mt-2 mx-sm-3">
                     <Typography className="font-weight-bold" variant="body1">
                         {props.name}
                     </Typography>
@@ -34,7 +34,7 @@ export default function DoctorTile(props) {
                     </Typography>
                     <div className="d-flex align-items-center mb-2">
                         <IconButton
-                            className="colorYellow"
+                            className="colorYellow pb-1"
                             aria-label="review"
                             component="div"
                             size="small"
@@ -42,7 +42,7 @@ export default function DoctorTile(props) {
                             <StarRoundedIcon />
                         </IconButton>
                         <Typography
-                            className="colorYellow mx-2 font-weight-bold"
+                            className="colorYellow mr-2 font-weight-bold"
                             variant="caption"
                         >
                             {props.rating}
