@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Button, Typography, useMediaQuery } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link, useHistory, Redirect } from 'react-router-dom';
 import CustomTextField from '../components/CustomTextField.js';
@@ -73,10 +75,9 @@ function Form() {
             })
             .catch(err => {
                 console.log(err);
-                setLoading(false)
+                setLoading(false);
                 setError('Invalid username or password');
-            })
-            
+            });
     };
 
     const spin = <i className="fas fa-circle-notch fa-spin my-2"></i>;

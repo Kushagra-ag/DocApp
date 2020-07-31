@@ -1,6 +1,10 @@
 import React, { useState, useLayoutEffect } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, InputBase } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import InputBase from '@material-ui/core/InputBase';
+import IconButton from '@material-ui/core/IconButton';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import SearchIcon from '@material-ui/icons/Search';
@@ -8,6 +12,7 @@ import LocationOnIcon from '@material-ui/icons/LocationOn';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
+import CancelIcon from '@material-ui/icons/Cancel';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { getLocalStorage } from '../utilities.js';
@@ -79,7 +84,7 @@ const useStyles = makeStyles(theme => ({
         },
         '& .nav-link': {
             '&:not(.login)': {
-                color: `${theme.palette.primary.dark}!important`,
+                color: `${theme.palette.primary.dark}!important`
             }
         }
     }
@@ -89,13 +94,12 @@ export default function SearchAppBar() {
     const classes = useStyles();
     const history = useHistory();
     const [user, setUser] = useState('');
+    const [display, setDisplay] = useState('flex');
 
     useLayoutEffect(() => {
         let data = getLocalStorage().data;
-        if(data)
-            setUser(data.user.name.split(' ')[0]);
-        else
-            setUser(undefined)
+        if (data) setUser(data.user.name.split(' ')[0]);
+        else setUser(undefined);
     }, []);
 
     let arr = useLocation().search.substr(1).split('&');
@@ -120,14 +124,23 @@ export default function SearchAppBar() {
             .finally(() => history.push('/auth/login'));
     };
 
-    const loginBtn = <a
-                                className="nav-link px-4 login"
-                                href="/auth/login"
-                                style={{backgroundColor:"#4a6bc5",color:"#fff",borderRadius:"10px"}}
-                            >
-                                Login
-                                
-                            </a>
+    const close = () => {
+        setDisplay('none');
+    };
+
+    const loginBtn = (
+        <a
+            className="nav-link px-4 login"
+            href="/auth/login"
+            style={{
+                backgroundColor: '#4a6bc5',
+                color: '#fff',
+                borderRadius: '10px'
+            }}
+        >
+            Login
+        </a>
+    );
 
     return (
         <>
@@ -161,6 +174,25 @@ export default function SearchAppBar() {
                         </div>
                     </Toolbar>
                 </AppBar>
+                <nav
+                    className="navbar px-2 w-100"
+                    style={{ backgroundColor: '#fff', display: display }}
+                >
+                    <Typography>
+                        Download the &nbsp;
+                        <Link to="#">
+                            <u>Docto app </u>
+                        </Link>
+                    </Typography>
+
+                    <IconButton
+                        disableRipple
+                        disableFocusRipple
+                        onClick={close}
+                    >
+                        <CancelIcon />
+                    </IconButton>
+                </nav>
             </div>
             <div className={`row d-none d-md-block ${classes.navBar}`}>
                 <nav
@@ -192,56 +224,57 @@ export default function SearchAppBar() {
                     </ul>
                     <ul className="navbar-nav ml-auto flex-row">
                         <li className="nav-item dropdown mr-3">
-                            {
-                                user ?
-                                    <React.Fragment><a
-                                className="nav-link px-2 dropdown-toggle text-capitalize"
-                                href="#"
-                                id="navbarDropdownMenuLink"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                            >
-                                {user}
-                                <KeyboardArrowDownIcon fontSize="small" />
-                            </a>
-                            <div
-                                className="dropdown-menu position-absolute"
-                                style={{ left: 'auto', right: 0 }}
-                                aria-labelledby="navbarDropdownMenuLink"
-                            >
-                                <Link
-                                    className="dropdown-item"
-                                    to="/user/profile"
-                                >
-                                    <PersonRoundedIcon color="secondary" />
-                                    &nbsp; Account
-                                </Link>
-                                <Link
-                                    className="dropdown-item"
-                                    to="/user/profile/favourites"
-                                >
-                                    <FavoriteRoundedIcon color="secondary" />
-                                    &nbsp; Favourites
-                                </Link>
-                                <Link
-                                    className="dropdown-item"
-                                    to="/user/settings"
-                                >
-                                    <SettingsIcon color="secondary" />
-                                    &nbsp; Settings
-                                </Link>
-                                <div
-                                    className="dropdown-item"
-                                    onClick={signout}
-                                >
-                                    <ExitToAppIcon color="secondary" />
-                                    &nbsp; Sign Out
-                                </div>
-                            </div></React.Fragment> : loginBtn
-                                
-                            }
-                           
+                            {user ? (
+                                <React.Fragment>
+                                    <a
+                                        className="nav-link px-2 dropdown-toggle text-capitalize"
+                                        href="#"
+                                        id="navbarDropdownMenuLink"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                    >
+                                        {user}
+                                        <KeyboardArrowDownIcon fontSize="small" />
+                                    </a>
+                                    <div
+                                        className="dropdown-menu position-absolute"
+                                        style={{ left: 'auto', right: 0 }}
+                                        aria-labelledby="navbarDropdownMenuLink"
+                                    >
+                                        <Link
+                                            className="dropdown-item"
+                                            to="/user/profile"
+                                        >
+                                            <PersonRoundedIcon color="secondary" />
+                                            &nbsp; Account
+                                        </Link>
+                                        <Link
+                                            className="dropdown-item"
+                                            to="/user/profile/favourites"
+                                        >
+                                            <FavoriteRoundedIcon color="secondary" />
+                                            &nbsp; Favourites
+                                        </Link>
+                                        <Link
+                                            className="dropdown-item"
+                                            to="/user/settings"
+                                        >
+                                            <SettingsIcon color="secondary" />
+                                            &nbsp; Settings
+                                        </Link>
+                                        <div
+                                            className="dropdown-item"
+                                            onClick={signout}
+                                        >
+                                            <ExitToAppIcon color="secondary" />
+                                            &nbsp; Sign Out
+                                        </div>
+                                    </div>
+                                </React.Fragment>
+                            ) : (
+                                loginBtn
+                            )}
                         </li>
                         <li className="nav-item active">
                             <a className="nav-link px-2" href="#">
@@ -255,14 +288,14 @@ export default function SearchAppBar() {
                     <ul className="navbar-nav mr-auto flex-row">
                         <li className="nav-item">
                             <Link to="#">
-                            <u>
-                            <Typography>
-                                Click here to download the Docto app
-                            </Typography>
-                            </u>
+                                <u>
+                                    <Typography>
+                                        Click here to download the Docto app
+                                    </Typography>
+                                </u>
                             </Link>
                         </li>
-                        </ul>
+                    </ul>
                     <ul className="navbar-nav ml-auto flex-row">
                         <li className="nav-item">
                             <form method="GET" action="/user/search">

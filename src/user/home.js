@@ -1,13 +1,12 @@
-import React from 'react';
-import {
-    useMediaQuery,
-    GridList,
-    GridListTile,
-    FilledInput,
-    Typography,
-    InputAdornment,
-    IconButton
-} from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import FilledInput from '@material-ui/core/FilledInput';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridList from '@material-ui/core/GridList';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import axios from 'axios';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -60,6 +59,7 @@ const CustomFilledInput = withStyles({
 
 export default function Home() {
     const classes = useStyles();
+    const [doctorList, setDoctorList] = useState([]);
     const w = useMediaQuery('(max-width:575px)') ? 'w-100' : 'w-50';
     const width = useMediaQuery('(max-width:575px)') ? '200px' : '380px';
 
@@ -75,6 +75,24 @@ export default function Home() {
             behavior: 'smooth'
         });
     };
+
+    useEffect(() => {
+        const options = {
+            'content-type': 'application/json'
+        };
+
+        axios
+            .get('http://157.245.105.212:3000/api/doctors', {})
+            .then(res => {
+                setDoctorList(res.data);
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+        console.log(doctorList);
+    }, []);
 
     return (
         <>
@@ -130,20 +148,20 @@ export default function Home() {
                                 className={`m-0 ${classes.gridList}`}
                                 cols={4.5}
                             >
-                                {DoctorList.map(tile => (
+                                {doctorList.map(tile => (
                                     <GridListTile
                                         style={{
                                             height: 'unset',
                                             width: width
                                         }}
-                                        key={tile.key}
+                                        key={tile._id}
                                     >
                                         <DoctorTile
                                             img={doc1}
                                             name={tile.name}
                                             speciality={tile.speciality}
-                                            rating={tile.rating}
-                                            number={tile.numberOfReviews}
+                                            rating={tile.rating || 4}
+                                            number={tile.numberOfReviews || 5}
                                         />
                                     </GridListTile>
                                 ))}
@@ -195,20 +213,20 @@ export default function Home() {
                                 className={`m-0 ${classes.gridList}`}
                                 cols={4.5}
                             >
-                                {DoctorList.map(tile => (
+                                {doctorList.map(tile => (
                                     <GridListTile
                                         style={{
                                             height: 'unset',
                                             width: width
                                         }}
-                                        key={tile.key}
+                                        key={tile._id}
                                     >
                                         <DoctorTile
                                             img={doc1}
                                             name={tile.name}
                                             speciality={tile.speciality}
-                                            rating={tile.rating}
-                                            number={tile.numberOfReviews}
+                                            rating={tile.rating || 4}
+                                            number={tile.numberOfReviews || 200}
                                         />
                                     </GridListTile>
                                 ))}
