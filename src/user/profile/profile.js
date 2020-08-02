@@ -8,7 +8,7 @@ import Contacts from './contacts';
 import Favourites from './favourites';
 import user1 from '../../svg/user1.jpg';
 import Contact from '../contact.js';
-import { getLocalStorage } from '../../utilities.js';
+import { isAuthenticated } from '../../utilities.js';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -40,7 +40,7 @@ export default function Profile() {
         : 'primary';
 
     useLayoutEffect(() => {
-        let profile = getLocalStorage().data;
+        let profile = isAuthenticated().data;
 
         if (profile) setUser(profile.user);
         else history.push('/auth/login');

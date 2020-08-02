@@ -1,18 +1,12 @@
 import React from 'react';
-import {
-    useMediaQuery,
-    Button,
-    Typography,
-    TextareaAutosize
-} from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Button from '@material-ui/core/Button';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import CustomTextField from '../components/CustomTextField.js';
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        width: '100%',
-        maxWidth: 500
-    },
     form: {
         display: 'flex',
         flexDirection: 'column',
@@ -42,7 +36,7 @@ export default function Contact() {
     const spin = <i class="fas fa-circle-notch fa-spin my-2"></i>;
     return (
         <>
-            <div className="d-none d-xl-block col-md-4 px-4">
+            <div className="d-none d-xl-block col-xl-4 px-4 ml-auto">
                 <form className={`mt-4 mx-5 bg-light ${classes.form}`}>
                     <Typography variant="h5" gutterBottom>
                         Contact Us

@@ -4,7 +4,7 @@ import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import CustomTextField from '../../../CustomTextField.js';
 import Contact from '../../../../user/contact.js';
-import { getLocalStorage } from '../../../../utilities.js';
+import { isAuthenticated } from '../../../../utilities.js';
 
 const useStyles = makeStyles(theme => ({
     form: {
@@ -46,7 +46,7 @@ function Form() {
         let data = JSON.stringify(Object.fromEntries(new FormData(e.target)));
         console.log(data);
 
-        const userId = getLocalStorage().data.user._id;
+        const userId = isAuthenticated().data.user._id;
 
         const options = {
             'content-type': 'application/json'

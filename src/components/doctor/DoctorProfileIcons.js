@@ -1,10 +1,8 @@
 import React from 'react';
-import {
-    Typography,
-    IconButton,
-    Paper,
-    useMediaQuery
-} from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
 import CallIcon from '@material-ui/icons/Call';
 import LocationOnIcon from '@material-ui/icons/LocationOn';

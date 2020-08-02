@@ -15,7 +15,7 @@ import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import CancelIcon from '@material-ui/icons/Cancel';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { getLocalStorage } from '../utilities.js';
+import { isAuthenticated } from '../utilities.js';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -97,7 +97,7 @@ export default function SearchAppBar() {
     const [display, setDisplay] = useState('flex');
 
     useLayoutEffect(() => {
-        let data = getLocalStorage().data;
+        let data = isAuthenticated().data;
         if (data) setUser(data.user.name.split(' ')[0]);
         else setUser(undefined);
     }, []);

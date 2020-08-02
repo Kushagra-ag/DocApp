@@ -1,12 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-    Typography,
-    IconButton,
-    Card,
-    CardContent,
-    CardActions
-} from '@material-ui/core';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import CardActions from '@material-ui/core/CardActions';
 import ChevronRightRoundedIcon from '@material-ui/icons/ChevronRightRounded';
 import LiveHelpRoundedIcon from '@material-ui/icons/LiveHelpRounded';
 

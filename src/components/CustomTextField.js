@@ -1,4 +1,4 @@
-import { FilledInput } from '@material-ui/core';
+import FilledInput from '@material-ui/core/FilledInput';
 import { withStyles } from '@material-ui/core/styles';
 
 const CustomTextField = withStyles({

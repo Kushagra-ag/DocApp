@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import {
-    useMediaQuery,
-    Typography,
-    IconButton,
-    Card,
-    CardContent,
-    Avatar
-} from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/core/styles';

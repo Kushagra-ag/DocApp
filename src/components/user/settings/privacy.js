@@ -7,26 +7,13 @@ import {
     CardActions,
     Collapse
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import ChevronRightRoundedIcon from '@material-ui/icons/ChevronRightRounded';
 import AntSwitch from '../../AntSwitch.js';
-
-const useStyles = makeStyles(theme => ({
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest
-        })
-    },
-    expandOpen: {
-        transform: 'rotate(90deg)'
-    }
-}));
+import importedStyles from '../../../styles/styles.js';
 
 export default function Privacy() {
-    const classes = useStyles();
+    const classes = importedStyles();
     const [state, setState] = useState({
         checkedA: false,
         checkedB: true,

@@ -1,11 +1,11 @@
-export function setLocalStorage(data, next) {
+export function authenticated(data, next) {
     if (typeof window !== 'undefined') {
         localStorage.setItem('jwt', JSON.stringify(data));
         next();
     }
 }
 
-export const getLocalStorage = () => {
+export const isAuthenticated = () => {
     if (typeof window !== 'undefined') {
         if (localStorage.getItem('jwt')) {
             return JSON.parse(localStorage.getItem('jwt'));

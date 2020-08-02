@@ -1,35 +1,22 @@
 import React, { useState } from 'react';
-import {
-    Button,
-    Typography,
-    Card,
-    CardContent,
-    IconButton,
-    TextField,
-    RadioGroup,
-    Radio,
-    FormControlLabel
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import CustomTextField from '../components/CustomTextField.js';
 import AntSwitch from '../components/AntSwitch.js';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import Contact from './contact.js';
-
-const useStyles = makeStyles(theme => ({
-    margin: {
-        margin: theme.spacing(1),
-        textTransform: 'capitalize'
-    },
-    blueBtn: {
-        color: '#fff',
-        backgroundImage: 'linear-gradient(to bottom, #5F7EBE, #3B5998)'
-    }
-}));
+import importedStyles from '../styles/styles.js';
 
 export default function Review() {
-    const classes = useStyles();
+    const classes = importedStyles();
     const [rating, setRating] = useState(0);
     const [value, setValue] = useState('Yes');
     const [comment, setComment] = useState('');

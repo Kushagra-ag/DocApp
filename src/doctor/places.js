@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 import DoctorPlacesData from '../data/DoctorPlaces.js';
 import DoctorPlaces from '../components/doctor/DoctorPlaces.js';
 import Contact from '../user/contact.js';

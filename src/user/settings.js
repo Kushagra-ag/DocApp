@@ -1,26 +1,16 @@
 import React from 'react';
-import { Button, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import Privacy from '../components/user/settings/privacy.js';
 import Refer from '../components/user/settings/refer/refer.js';
 import Faq from '../components/user/settings/faq/faq.js';
 import About from '../components/user/settings/about.js';
 import Contact from './contact.js';
-
-const useStyles = makeStyles(theme => ({
-    margin: {
-        margin: theme.spacing(1),
-        textTransform: 'capitalize'
-    },
-    blueBtn: {
-        color: '#fff',
-        backgroundImage: 'linear-gradient(to bottom, #5F7EBE, #3B5998)'
-    }
-}));
+import importedStyles from '../styles/styles.js';
 
 export default function Settings() {
-    const classes = useStyles();
+    const classes = importedStyles();
 
     return (
         <>

@@ -1,33 +1,13 @@
 import React, { useState } from 'react';
-import { Button, Typography, useMediaQuery } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import CustomTextField from '../components/CustomTextField.js';
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        width: '100%',
-        maxWidth: 500
-    },
-    form: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'spaceAround',
-        backgroundColor: '#fff',
-        paddingTop: theme.spacing(2),
-        paddingBottom: theme.spacing(2),
-        paddingLeft: theme.spacing(1),
-        paddingRight: theme.spacing(1),
-        borderRadius: '10px'
-    },
-    margin: {
-        margin: theme.spacing(1),
-        textTransform: 'capitalize'
-    }
-}));
+import importedStyles from '../styles/styles.js';
 
 function Form() {
-    const classes = useStyles();
+    const classes = importedStyles();
     const [display, setDisplay] = useState('none');
     const [type, setType] = useState('button');
 
@@ -74,7 +54,7 @@ function Form() {
 }
 
 export default function Forgot() {
-    const classes = useStyles();
+    const classes = importedStyles();
     const match = useMediaQuery('(max-width:767px)') ? true : false;
     const color = match
         ? 'linear-gradient(225deg, rgba(74, 107, 197,0), rgba(95, 130, 226,0))'
