@@ -29,7 +29,7 @@ const CustomFilledInput = withStyles({
 
 //const tileData = [1, 2, 3, 4, 5, 6, 7, 8];
 
-export default function Home() {
+export default function Dashboard() {
     const classes = importedStyles();
     console.log(classes.blueBtn);
     const [doctorList, setDoctorList] = useState([]);

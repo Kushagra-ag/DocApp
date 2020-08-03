@@ -41,7 +41,7 @@ function Form() {
             />
             <Button
                 variant="contained"
-                className={`${classes.margin} ${classes.facebook}`}
+                className={`${classes.margin} ${classes.blueBtn}`}
                 type={type}
                 onClick={stateChange}
             >

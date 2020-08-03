@@ -8,6 +8,7 @@ import CustomTextField from '../components/CustomTextField.js';
 import DoctoIcon from '../components/DoctoIcon.js';
 import { authenticated } from '../utilities.js';
 import importedStyles from '../styles/styles.js';
+import FacebookIcon from '@material-ui/icons/Facebook';
 
 function Form() {
     const classes = importedStyles();
@@ -65,6 +66,7 @@ function Form() {
                 disableUnderline
                 placeholder="Phone number"
                 required
+                autoFocus
             />
             <CustomTextField
                 id="pass"
@@ -143,37 +145,30 @@ export default function Login() {
                         className="d-flex flex-column"
                         style={{ width: '275px' }}
                     >
-                        <Form />
-                        <div className="pt-4 pb-2 text-center">
-                            <Typography
-                                variant="caption"
-                                color="primary"
-                                gutterBottom
-                            >
-                                <Link
-                                    to="/auth/signup"
-                                    variant="inherit"
-                                    style={{ color: 'inherit' }}
-                                >
-                                    Don't have an account?
-                                </Link>
-                            </Typography>
-                        </div>
-
                         <Button
-                            variant="outlined"
-                            className={`${classes.margin}`}
-                            style={{ backgroundColor: '#fff' }}
+                            variant="contained"
+                            className={`${classes.margin} ${classes.blueBtn}`}
+                            startIcon={<FacebookIcon />}
                             component={Link}
-                            to="/auth/signup"
+                            to="#"
                         >
                             <Typography
                                 variant="caption"
                                 className={classes.margin}
                             >
-                                Sign Up now
+                                Continue with Facebook
                             </Typography>
                         </Button>
+                        <div className="pt-2 pb-4 text-center">
+                            <Typography
+                                variant="caption"
+                                color="primary"
+                                gutterBottom
+                            >
+                                OR
+                            </Typography>
+                        </div>
+                        <Form />
                     </div>
                 </div>
             </div>

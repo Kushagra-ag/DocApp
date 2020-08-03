@@ -199,7 +199,7 @@ export default function SearchAppBar() {
                     className="navbar navbar-light bg-light px-5"
                     style={{ borderBottom: '1px solid #e9ecef' }}
                 >
-                    <Link className={`navbar-brand`} to="/user/home">
+                    <Link className={`navbar-brand`} to="/user/dashboard">
                         Docto.
                     </Link>
                     <ul className="navbar-nav mr-auto ml-4 flex-row">

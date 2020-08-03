@@ -38,7 +38,7 @@ export default function BottomNav() {
                     value="home"
                     icon={<HomeRoundedIcon />}
                     component={Link}
-                    to="/user/home"
+                    to="/user/dashboard"
                 />
                 {
                     //<StyledNav label="Search" value="search" icon={<SearchRoundedIcon />} />
