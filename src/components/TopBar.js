@@ -169,7 +169,6 @@ export default function SearchAppBar() {
                                 />
                             </form>
                         </div>
-                        {user ? '' : loginBtn}
                     </Toolbar>
                 </AppBar>
                 <nav

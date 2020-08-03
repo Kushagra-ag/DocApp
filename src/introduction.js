@@ -92,34 +92,36 @@ export default function Home() {
                             Sign in with Phone Number
                         </Typography>
                     </Button>
-                    <div className="pt-4 pb-2 text-center">
-                        <Typography
-                            variant="caption"
-                            color="primary"
-                            gutterBottom
-                        >
-                            <Link
-                                to="/auth/signup"
-                                variant="inherit"
-                                style={{ color: 'inherit' }}
-                            >
-                                Don't have an account?
-                            </Link>
-                        </Typography>
-                    </div>
-                    <Button
-                        variant="contained"
-                        className={`${classes.margin} ${classes.blueBtn}`}
-                        component={Link}
-                        to="/auth/signup"
-                    >
-                        <Typography
-                            variant="caption"
-                            className={classes.margin}
-                        >
-                            Sign Up now
-                        </Typography>
-                    </Button>
+                    {
+                        // <div className="pt-4 pb-2 text-center">
+                        //                     <Typography
+                        //                         variant="caption"
+                        //                         color="primary"
+                        //                         gutterBottom
+                        //                     >
+                        //                         <Link
+                        //                             to="/auth/signup"
+                        //                             variant="inherit"
+                        //                             style={{ color: 'inherit' }}
+                        //                         >
+                        //                             Don't have an account?
+                        //                         </Link>
+                        //                     </Typography>
+                        //                 </div>
+                        //                 <Button
+                        //                     variant="contained"
+                        //                     className={`${classes.margin} ${classes.blueBtn}`}
+                        //                     component={Link}
+                        //                     to="/auth/signup"
+                        //                 >
+                        //                     <Typography
+                        //                         variant="caption"
+                        //                         className={classes.margin}
+                        //                     >
+                        //                         Sign Up now
+                        //                     </Typography>
+                        //                 </Button>
+                                    }
                 </div>
             </div>
         </div>

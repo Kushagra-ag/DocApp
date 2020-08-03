@@ -1,11 +1,4 @@
 import React from 'react';
-import {
-    Typography,
-    IconButton,
-    Card,
-    CardContent,
-    CardActions
-} from '@material-ui/core';
 import Q1 from './q1.js';
 import Q2 from './q2.js';
 import Q3 from './q3.js';
