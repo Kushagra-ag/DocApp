@@ -39,7 +39,7 @@ function Form() {
                 if (data.error) throw data.error;
                 // const token = data.data.token;
                 setLoading(false);
-                authenticated(data, () => history.push('/user/home'));
+                authenticated(data, () => history.push('/user/dashboard'));
 
                 // history.push('/user/home')
             })

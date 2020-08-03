@@ -13,3 +13,9 @@ export const isAuthenticated = () => {
     }
     return false;
 };
+
+export const deauthenticate = () => {
+    if(typeof window !== 'undefined') {
+        localStorage.removeItem('jwt');
+    }
+}

@@ -15,7 +15,7 @@ import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import CancelIcon from '@material-ui/icons/Cancel';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { isAuthenticated } from '../utilities.js';
+import { isAuthenticated, deauthenticate } from '../utilities.js';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -87,6 +87,15 @@ const useStyles = makeStyles(theme => ({
                 color: `${theme.palette.primary.dark}!important`
             }
         }
+    },
+    login: {
+        backgroundColor: '#fff',
+        color: theme.palette.primary.main,
+        [theme.breakpoints.up('md')]: {
+            backgroundColor: '#4a6bc5',
+            color: `${theme.palette.common.white}!important`,
+            borderRadius: '10px'
+        }
     }
 }));
 
@@ -110,18 +119,11 @@ export default function SearchAppBar() {
 
     const [search, setSearch] = useState(arr['query'] || '');
 
-    const signout = () => {
-        const options = {
-            'content-type': 'application/json'
-        };
+    async function signout() {
 
-        axios
-            .get(
-                'http://157.245.105.212:3000/api/signout',
-                {},
-                { headers: options }
-            )
-            .finally(() => history.push('/auth/login'));
+        await deauthenticate();
+        history.push('/auth/login');
+        
     };
 
     const close = () => {
@@ -130,13 +132,8 @@ export default function SearchAppBar() {
 
     const loginBtn = (
         <a
-            className="nav-link px-4 login"
+            className={`nav-link px-4 py-1 login ${classes.login}`}
             href="/auth/login"
-            style={{
-                backgroundColor: '#4a6bc5',
-                color: '#fff',
-                borderRadius: '10px'
-            }}
         >
             Login
         </a>
@@ -155,7 +152,7 @@ export default function SearchAppBar() {
                             Docto.
                         </Typography>
 
-                        <div className={classes.search}>
+                        <div className={`mr-2 ${classes.search}`}>
                             <form method="GET" action="/user/search">
                                 <div className={classes.searchIcon}>
                                     <SearchIcon />
@@ -172,6 +169,7 @@ export default function SearchAppBar() {
                                 />
                             </form>
                         </div>
+                        {user ? '' : loginBtn}
                     </Toolbar>
                 </AppBar>
                 <nav
@@ -222,7 +220,7 @@ export default function SearchAppBar() {
                             </div>
                         </li>
                     </ul>
-                    <ul className="navbar-nav ml-auto flex-row">
+                    <ul className="navbar-nav ml-auto flex-row align-items-center">
                         <li className="nav-item dropdown mr-3">
                             {user ? (
                                 <React.Fragment>

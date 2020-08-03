@@ -31,7 +31,6 @@ const CustomFilledInput = withStyles({
 
 export default function Dashboard() {
     const classes = importedStyles();
-    console.log(classes.blueBtn);
     const [doctorList, setDoctorList] = useState([]);
     const [loading, setLoading] = useState(true);
     const w = useMediaQuery('(max-width:575px)') ? 'w-100' : 'w-50';
@@ -65,7 +64,6 @@ export default function Dashboard() {
                 console.log(err);
             });
 
-        console.log(doctorList);
     }, []);
 
     const spinner = (
