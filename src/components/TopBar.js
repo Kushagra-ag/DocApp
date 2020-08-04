@@ -261,7 +261,7 @@ export default function SearchAppBar() {
                                             &nbsp; Settings
                                         </Link>
                                         <div
-                                            className="dropdown-item"
+                                            className="dropdown-item" style={{cursor:'pointer'}}
                                             onClick={signout}
                                         >
                                             <ExitToAppIcon color="secondary" />

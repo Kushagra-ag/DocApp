@@ -23,7 +23,7 @@ function Form() {
         };
 
         axios
-            .post('http://157.245.105.212:3000/api/signup', data, {
+            .post(`${process.env.API}/signup`, data, {
                 headers: options
             })
             .then(data => {

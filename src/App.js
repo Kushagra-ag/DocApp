@@ -6,6 +6,7 @@ import Introduction from './introduction.js';
 import Auth from './auth/index.js';
 import Doctor from './doctor/index.js';
 import User from './user/index.js';
+require('dotenv').config();
 
 import './App.css';
 
