@@ -12,7 +12,7 @@ export default function Doctor() {
             <TopBar />
             <div className="row">
                 <Switch>
-                    <Route path="/doctor/profile" component={Profile} />
+                    <Route path="/doctor/profile/:id" component={Profile} />
                     <Route path="/doctor/places" component={Places} />
                     <Route path="/doctor/reviews" component={Reviews} />
                 </Switch>

@@ -23,7 +23,7 @@ function Form() {
         };
 
         axios
-            .post(`${process.env.API}/signup`, data, {
+            .post(`${process.env.REACT_APP_API}/signup`, data, {
                 headers: options
             })
             .then(data => {

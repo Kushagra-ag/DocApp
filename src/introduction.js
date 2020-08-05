@@ -93,34 +93,34 @@ export default function Home() {
                         </Typography>
                     </Button>
                     {
-                        // <div className="pt-4 pb-2 text-center">
-                        //                     <Typography
-                        //                         variant="caption"
-                        //                         color="primary"
-                        //                         gutterBottom
-                        //                     >
-                        //                         <Link
-                        //                             to="/auth/signup"
-                        //                             variant="inherit"
-                        //                             style={{ color: 'inherit' }}
-                        //                         >
-                        //                             Don't have an account?
-                        //                         </Link>
-                        //                     </Typography>
-                        //                 </div>
-                        //                 <Button
-                        //                     variant="contained"
-                        //                     className={`${classes.margin} ${classes.blueBtn}`}
-                        //                     component={Link}
-                        //                     to="/auth/signup"
-                        //                 >
-                        //                     <Typography
-                        //                         variant="caption"
-                        //                         className={classes.margin}
-                        //                     >
-                        //                         Sign Up now
-                        //                     </Typography>
-                        //                 </Button>
+                        <React.Fragment><div className="pt-4 pb-2 text-center">
+                                            <Typography
+                                                variant="caption"
+                                                color="primary"
+                                                gutterBottom
+                                            >
+                                                <Link
+                                                    to="/auth/signup"
+                                                    variant="inherit"
+                                                    style={{ color: 'inherit' }}
+                                                >
+                                                    Don't have an account?
+                                                </Link>
+                                            </Typography>
+                                        </div>
+                                        <Button
+                                            variant="contained"
+                                            className={`${classes.margin} ${classes.blueBtn}`}
+                                            component={Link}
+                                            to="/auth/signup"
+                                        >
+                                            <Typography
+                                                variant="caption"
+                                                className={classes.margin}
+                                            >
+                                                Sign Up now
+                                            </Typography>
+                                        </Button></React.Fragment>
                                     }
                 </div>
             </div>

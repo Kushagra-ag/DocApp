@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -34,9 +34,30 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function Profile() {
+export default function Profile({match}) {
     const classes = useStyles();
     const [favourite, setFavourite] = useState(false);
+    const [profile, setProfile] = useState({});
+
+    useEffect(() => {
+
+        const id = match.params.id;
+        // const options = {
+        //     'content-type': 'application/json'
+        // };
+
+        // axios
+        //     .get(`${process.env.REACT_APP_API}/getDoctor`, {id})
+        //     .then(res => {
+        //         setProfile(res.data);
+        //         console.log(res.data)
+        //         //setLoading(false);
+                
+        //     })
+        //     .catch(err => {
+        //         console.log(err);
+        //     });
+    })
 
     const handleFav = () => {
         setFavourite(!favourite);

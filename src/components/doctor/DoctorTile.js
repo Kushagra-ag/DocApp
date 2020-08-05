@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from '@material-ui/core/Card';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        wordBreak: 'break-all'
+        wordBreak: 'break-all',
+        cursor: 'pointer'
     },
     imgContainer: {
         borderRadius: 10,
@@ -19,13 +20,23 @@ const useStyles = makeStyles(theme => ({
 
 export default function DoctorTile(props) {
     const classes = useStyles();
+    const history = useHistory();
+    const [profile, setProfile] = useState({});
+
+    const onClick = e => {
+        const id = e.currentTarget.dataset.key;
+        history.push(`/doctor/profile/${id}`)
+    }
+
     return (
-        <Link to="/doctor/profile">
+        
             <Card
                 className={`mx-2 px-2 px-sm-0 d-flex flex-column flex-sm-row ${classes.root}`}
+                data-key={props.id}
+                onClick={onClick}
             >
                 <div className={`mx-n2 mx-sm-0 ${classes.imgContainer}`}>
-                    <img src={props.img} className="w-100" alt="doctor image" />
+                    <img src={props.img} style={{height:'170px'}} alt="doctor image" />
                 </div>
                 <div className="mt-2 mx-sm-3">
                     <Typography className="font-weight-bold" variant="body1">
@@ -58,6 +69,6 @@ export default function DoctorTile(props) {
                     </div>
                 </div>
             </Card>
-        </Link>
+        
     );
 }

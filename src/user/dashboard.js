@@ -55,9 +55,10 @@ export default function Dashboard() {
         };
 
         axios
-            .get('http://157.245.105.212:3000/api/doctors', {})
+            .get(`${process.env.REACT_APP_API}/doctors?limit=2`, {})
             .then(res => {
                 setDoctorList(res.data);
+                console.log(res.data)
                 setLoading(false);
             })
             .catch(err => {
@@ -139,10 +140,11 @@ export default function Dashboard() {
                                                 width: width
                                             }}
                                             key={tile._id}
-                                        >
+                                        >{console.log(tile.photo)}
                                             <DoctorTile
-                                                img={doc1}
+                                                img={`data:${tile.photo.data.contentType};base64,${btoa(new Uint8Array (tile.photo.data.data).reduce((data, byte) => {return data+String.fromCharCode(byte)}, ''))}`}
                                                 name={tile.name}
+                                                id={tile._id}
                                                 speciality={tile.speciality}
                                                 rating={tile.rating || 4}
                                                 number={
