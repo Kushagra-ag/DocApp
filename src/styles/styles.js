@@ -37,7 +37,7 @@ const styles = makeStyles(theme => ({
         transform: 'rotate(90deg)'
     },
     gridList: {
-        flexWrap: 'nowrap',
+        flexWrap: 'nowrap!important',
         transform: 'translateZ(0)',
         scrollbarWidth: 'none',
         '&::-webkit-scrollbar': {
