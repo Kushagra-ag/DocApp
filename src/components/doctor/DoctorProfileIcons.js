@@ -8,7 +8,7 @@ import CallIcon from '@material-ui/icons/Call';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import StarsRoundedIcon from '@material-ui/icons/StarsRounded';
 
-export default function DoctorProfileIcons() {
+export default function DoctorProfileIcons(props) {
     const smallWidth = {
         backgroundColor: '#fff',
         elevation: 2
@@ -28,7 +28,7 @@ export default function DoctorProfileIcons() {
                 borderRadius: 16
             }}
         >
-            <a href="tel:+919999999999" className="m-2 ml-md-0">
+            <a href={`tel:${props.contact}`} className="m-2 ml-md-0">
                 <IconButton
                     className="docProfile--icons"
                     color="primary"

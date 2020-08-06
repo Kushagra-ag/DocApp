@@ -1,5 +1,7 @@
 import React from 'react';
-import { Typography, Button, useMediaQuery } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Button from '@material-ui/core/Button';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
@@ -93,35 +95,37 @@ export default function Home() {
                         </Typography>
                     </Button>
                     {
-                        <React.Fragment><div className="pt-4 pb-2 text-center">
-                                            <Typography
-                                                variant="caption"
-                                                color="primary"
-                                                gutterBottom
-                                            >
-                                                <Link
-                                                    to="/auth/signup"
-                                                    variant="inherit"
-                                                    style={{ color: 'inherit' }}
-                                                >
-                                                    Don't have an account?
-                                                </Link>
-                                            </Typography>
-                                        </div>
-                                        <Button
-                                            variant="contained"
-                                            className={`${classes.margin} ${classes.blueBtn}`}
-                                            component={Link}
-                                            to="/auth/signup"
-                                        >
-                                            <Typography
-                                                variant="caption"
-                                                className={classes.margin}
-                                            >
-                                                Sign Up now
-                                            </Typography>
-                                        </Button></React.Fragment>
-                                    }
+                        <React.Fragment>
+                            <div className="pt-4 pb-2 text-center">
+                                <Typography
+                                    variant="caption"
+                                    color="primary"
+                                    gutterBottom
+                                >
+                                    <Link
+                                        to="/auth/signup"
+                                        variant="inherit"
+                                        style={{ color: 'inherit' }}
+                                    >
+                                        Don't have an account?
+                                    </Link>
+                                </Typography>
+                            </div>
+                            <Button
+                                variant="contained"
+                                className={`${classes.margin} ${classes.blueBtn}`}
+                                component={Link}
+                                to="/auth/signup"
+                            >
+                                <Typography
+                                    variant="caption"
+                                    className={classes.margin}
+                                >
+                                    Sign Up now
+                                </Typography>
+                            </Button>
+                        </React.Fragment>
+                    }
                 </div>
             </div>
         </div>

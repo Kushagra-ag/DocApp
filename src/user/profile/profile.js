@@ -6,7 +6,7 @@ import UserProfileIcons from '../../components/user/UserProfileIcons.js';
 import Reviews from './reviews';
 import Contacts from './contacts';
 import Favourites from './favourites';
-import user1 from '../../svg/user1.jpg';
+import photo from '../../svg/default.png';
 import Contact from '../contact.js';
 import { isAuthenticated } from '../../utilities.js';
 
@@ -54,8 +54,9 @@ export default function Profile() {
                 <div className="row pt-4 docProfile">
                     <div className="col-md-4 d-flex justify-content-center">
                         <Avatar
-                            src={user1}
+                            src={photo}
                             className={classes.avatar}
+                            style={{ objectFit: 'contain' }}
                             alt="doctor"
                             variant="rounded"
                         />

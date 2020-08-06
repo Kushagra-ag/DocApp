@@ -120,11 +120,9 @@ export default function SearchAppBar() {
     const [search, setSearch] = useState(arr['query'] || '');
 
     async function signout() {
-
         await deauthenticate();
         history.push('/auth/login');
-        
-    };
+    }
 
     const close = () => {
         setDisplay('none');
@@ -244,7 +242,7 @@ export default function SearchAppBar() {
                                             to="/user/profile"
                                         >
                                             <PersonRoundedIcon color="secondary" />
-                                            &nbsp; Account
+                                            &nbsp; Profile
                                         </Link>
                                         <Link
                                             className="dropdown-item"
@@ -261,7 +259,8 @@ export default function SearchAppBar() {
                                             &nbsp; Settings
                                         </Link>
                                         <div
-                                            className="dropdown-item" style={{cursor:'pointer'}}
+                                            className="dropdown-item"
+                                            style={{ cursor: 'pointer' }}
                                             onClick={signout}
                                         >
                                             <ExitToAppIcon color="secondary" />

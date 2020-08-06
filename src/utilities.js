@@ -15,7 +15,7 @@ export const isAuthenticated = () => {
 };
 
 export const deauthenticate = () => {
-    if(typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
         localStorage.removeItem('jwt');
     }
-}
+};

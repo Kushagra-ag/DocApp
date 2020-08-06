@@ -13,7 +13,6 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import DoctorTile from '../components/doctor/DoctorTile.js';
 import Contact from './contact.js';
-import doc1 from '../svg/doc1.jpg';
 import DoctorList from '../data/DoctorList.js';
 import importedStyles from '../styles/styles.js';
 
@@ -50,21 +49,15 @@ export default function Dashboard() {
     };
 
     useEffect(() => {
-        const options = {
-            'content-type': 'application/json'
-        };
-
         axios
-            .get(`${process.env.REACT_APP_API}/doctors?limit=2`, {})
+            .get(`${process.env.REACT_APP_API}/doctors?limit=2`)
             .then(res => {
                 setDoctorList(res.data);
-                console.log(res.data)
                 setLoading(false);
             })
             .catch(err => {
                 console.log(err);
             });
-
     }, []);
 
     const spinner = (
@@ -133,20 +126,19 @@ export default function Dashboard() {
                                     className={`m-0 ${classes.gridList}`}
                                     cols={4.5}
                                 >
-                                    {doctorList.map(tile => (
+                                    {doctorList.map((tile, idx) => (
                                         <GridListTile
                                             style={{
                                                 height: 'unset',
                                                 width: width
                                             }}
                                             key={tile._id}
-                                        >{console.log(tile.photo)}
+                                        >
                                             <DoctorTile
-                                                img={`data:${tile.photo.data.contentType};base64,${btoa(new Uint8Array (tile.photo.data.data).reduce((data, byte) => {return data+String.fromCharCode(byte)}, ''))}`}
                                                 name={tile.name}
                                                 id={tile._id}
                                                 speciality={tile.speciality}
-                                                rating={tile.rating || 4}
+                                                rating={tile.rating}
                                                 number={
                                                     tile.numberOfReviews || 5
                                                 }
@@ -210,7 +202,7 @@ export default function Dashboard() {
                                             key={tile._id}
                                         >
                                             <DoctorTile
-                                                img={doc1}
+                                                id={tile._id}
                                                 name={tile.name}
                                                 speciality={tile.speciality}
                                                 rating={tile.rating || 4}

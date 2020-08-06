@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -34,30 +35,26 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function Profile({match}) {
+export default function Profile({ match }) {
     const classes = useStyles();
     const [favourite, setFavourite] = useState(false);
     const [profile, setProfile] = useState({});
+    const [photo, setPhoto] = useState();
 
     useEffect(() => {
-
         const id = match.params.id;
-        // const options = {
-        //     'content-type': 'application/json'
-        // };
+        setPhoto(`${process.env.REACT_APP_API}/doctor/photo/${id}`);
 
-        // axios
-        //     .get(`${process.env.REACT_APP_API}/getDoctor`, {id})
-        //     .then(res => {
-        //         setProfile(res.data);
-        //         console.log(res.data)
-        //         //setLoading(false);
-                
-        //     })
-        //     .catch(err => {
-        //         console.log(err);
-        //     });
-    })
+        axios
+            .get(`${process.env.REACT_APP_API}/doctor/${id}`)
+            .then(res => {
+                setProfile(res.data);
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }, []);
 
     const handleFav = () => {
         setFavourite(!favourite);
@@ -73,7 +70,7 @@ export default function Profile({match}) {
                 <div className="row pt-4 docProfile">
                     <div className="col-md-4 d-flex justify-content-center">
                         <Avatar
-                            src={doc1}
+                            src={photo}
                             className={classes.avatar}
                             variant="rounded"
                             alt="doctor"
@@ -81,16 +78,16 @@ export default function Profile({match}) {
                     </div>
                     <div className="col-md-8 mt-3 mt-md-0 mb-n4 mb-md-n0 d-flex flex-column align-items-center align-items-md-start">
                         <Typography variant="h4" color={txt} gutterBottom>
-                            Dr. Nirmala Reddy
+                            {profile.name}
                         </Typography>
                         <Typography
                             variant="subtitle1"
                             color={txt}
                             gutterBottom
                         >
-                            Gastroenterologists, MBBS
+                            {profile.speciality}
                         </Typography>
-                        <DoctorProfileIcons />
+                        <DoctorProfileIcons contact={profile.contact} />
                     </div>
                 </div>
                 <div className="row my-5 my-md-4">
@@ -175,7 +172,9 @@ export default function Profile({match}) {
                                     className="d-flex justify-content-around align-items-left flex-column"
                                     style={{ color: '#fff' }}
                                 >
-                                    <Typography variant="h6">4.5</Typography>
+                                    <Typography variant="h6">
+                                        {profile.rating}
+                                    </Typography>
                                     <Typography variant="subtitle2">
                                         1800 reviews
                                     </Typography>
@@ -199,7 +198,7 @@ export default function Profile({match}) {
                                     display="block"
                                     gutterBottom
                                 >
-                                    About Dr. Nirmala Reddy
+                                    About Dr. {profile.name}
                                 </Typography>
                                 <Typography
                                     display="block"
