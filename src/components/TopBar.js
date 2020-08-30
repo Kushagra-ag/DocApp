@@ -15,7 +15,7 @@ import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import CancelIcon from '@material-ui/icons/Cancel';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { isAuthenticated, deauthenticate } from '../utilities.js';
+import { isAuthenticated, deauthenticate } from '../core/helperMethods.js';
 
 const useStyles = makeStyles(theme => ({
     root: {

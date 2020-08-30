@@ -39,7 +39,9 @@ export default function DoctorTile(props) {
             data-key={props.id}
             onClick={onClick}
         >
-            <div className={`mx-n2 mx-sm-0 ${classes.imgContainer}`}>
+            <div
+                className={`mx-n2 mx-sm-0 text-center text-md-left ${classes.imgContainer}`}
+            >
                 <img
                     src={photo || img}
                     style={{ height: '170px' }}

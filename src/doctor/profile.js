@@ -87,7 +87,10 @@ export default function Profile({ match }) {
                         >
                             {profile.speciality}
                         </Typography>
-                        <DoctorProfileIcons contact={profile.contact} />
+                        <DoctorProfileIcons
+                            contact={profile.contact}
+                            id={profile._id}
+                        />
                     </div>
                 </div>
                 <div className="row my-5 my-md-4">
@@ -206,10 +209,7 @@ export default function Profile({ match }) {
                                     style={{ opacity: '0.5' }}
                                     gutterBottom
                                 >
-                                    Quis autem vel eum iure reprehenderit qui in
-                                    ea voluptate velit esse quam nihil molestiae
-                                    consequatur, vel illum qui dolorem eum
-                                    fugiat quo voluptas nulla pariatur
+                                    {profile.description}
                                 </Typography>
                                 <div className="d-flex mt-3">
                                     <ExperienceIcon

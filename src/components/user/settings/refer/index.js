@@ -4,7 +4,7 @@ import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import CustomTextField from '../../../CustomTextField.js';
 import Contact from '../../../../user/contact.js';
-import { isAuthenticated } from '../../../../utilities.js';
+import { isAuthenticated } from '../../../../core/helperMethods.js';
 
 const useStyles = makeStyles(theme => ({
     form: {

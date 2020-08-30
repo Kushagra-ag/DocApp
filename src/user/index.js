@@ -20,7 +20,7 @@ export default function App() {
                     <Route path="/user/settings" component={Settings} />
                     <Route path="/user/refer" component={Refer} />
                     <Route path="/user/profile" component={Profile} />
-                    <Route path="/user/review" component={Review} />
+                    <Route path="/user/review/:doctorId" component={Review} />
                     <Route path="/user/faq" component={Faq} />
                     <Route path="/user/search" component={Search} />
                 </Switch>

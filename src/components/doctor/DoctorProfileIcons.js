@@ -48,7 +48,7 @@ export default function DoctorProfileIcons(props) {
                     <LocationOnIcon />
                 </IconButton>
             </Link>
-            <Link to="/user/review" className="m-2">
+            <Link to={`/user/review/${props.id}`} className="m-2">
                 <IconButton
                     className="docProfile--icons"
                     color="primary"

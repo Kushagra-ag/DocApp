@@ -6,7 +6,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Link, useHistory, Redirect } from 'react-router-dom';
 import CustomTextField from '../components/CustomTextField.js';
 import DoctoIcon from '../components/DoctoIcon.js';
-import { authenticated } from '../utilities.js';
+import { authenticate, authenticateAdmin } from '../core/helperMethods.js';
 import importedStyles from '../styles/styles.js';
 import FacebookIcon from '@material-ui/icons/Facebook';
 
@@ -39,12 +39,15 @@ function Form() {
                 if (data.error) throw data.error;
                 // const token = data.data.token;
                 setLoading(false);
-                authenticated(data, () => history.push('/user/dashboard'));
 
-                // history.push('/user/home')
+                if (data.data.user.role)
+                    authenticateAdmin(data, () =>
+                        history.push('/admin/dashboard')
+                    );
+                else authenticate(data, () => history.push('/user/dashboard'));
             })
             .catch(err => {
-                console.log(err);
+                console.log(err.error);
                 setLoading(false);
                 setError('Invalid username or password');
             });

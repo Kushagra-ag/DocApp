@@ -3,9 +3,10 @@ import { Route, Switch } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Introduction from './introduction.js';
-import Auth from './auth/index.js';
-import Doctor from './doctor/index.js';
-import User from './user/index.js';
+import Auth from './auth';
+import Doctor from './doctor';
+import User from './user';
+import Admin from './admin';
 import './App.css';
 
 // 5F82E2
@@ -53,6 +54,7 @@ export default function App() {
                 <Route exact path="/" component={Introduction} />
                 <Route path="/auth" component={Auth} />
                 <Route path="/user" component={User} />
+                <Route path="/admin" component={Admin} />
                 <Route path="/doctor" component={Doctor} />
             </Switch>
         </ThemeProvider>

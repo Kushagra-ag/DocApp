@@ -8,7 +8,7 @@ import Contacts from './contacts';
 import Favourites from './favourites';
 import photo from '../../svg/default.png';
 import Contact from '../contact.js';
-import { isAuthenticated } from '../../utilities.js';
+import { isAuthenticated } from '../../core/helperMethods.js';
 
 const useStyles = makeStyles(theme => ({
     root: {

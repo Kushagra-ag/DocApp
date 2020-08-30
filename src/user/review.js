@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
@@ -14,13 +15,15 @@ import AntSwitch from '../components/AntSwitch.js';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import Contact from './contact.js';
 import importedStyles from '../styles/styles.js';
+import { isAuthenticated } from '../core/helperMethods.js';
 
-export default function Review() {
+export default function Review({ match }) {
     const classes = importedStyles();
     const [rating, setRating] = useState(0);
     const [value, setValue] = useState('Yes');
     const [comment, setComment] = useState('');
     const [state, setState] = useState(true);
+    const [statusMsg, setStatusMsg] = useState();
 
     const ratingChange = number => {
         setRating(number);
@@ -38,8 +41,66 @@ export default function Review() {
         setState(event.target.checked);
     };
 
+    async function onSubmit(e) {
+        e.preventDefault();
+
+        const user = await isAuthenticated();
+        const userId = user.data.user._id;
+        const token = user.data.token;
+
+        const doctorId = match.params.doctorId;
+
+        const data = {
+            rating,
+            comment,
+            userid: userId,
+            doctorid: doctorId,
+            recommend: value,
+            public: state
+        };
+
+        axios
+            .post(
+                `${process.env.REACT_APP_API}/review/create/${doctorId}/${userId}`,
+                data,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            )
+            .then(res => {
+                console.log(res);
+                setStatusMsg('success');
+
+                window.scrollTo(0, 0);
+                setComment('');
+                setRating(0);
+                setState(true);
+                setValue('Yes');
+            })
+            .catch(err => {
+                console.log(err);
+                setStatusMsg('error');
+            });
+    }
+
     return (
         <>
+            <div
+                className="w-100 pl-5 pt-2"
+                style={{ display: statusMsg ? 'block' : 'none' }}
+            >
+                <b
+                    className={
+                        statusMsg === 'success' ? 'text-success' : 'text-danger'
+                    }
+                >
+                    {statusMsg === 'success'
+                        ? 'Review Submitted!'
+                        : 'Could not submit review'}
+                </b>
+            </div>
             <div className="col-sm-8 col-lg-5 pt-4 pl-md-5 text-center text-md-left mr-auto">
                 <Card className="mb-3 p-3 text-left">
                     <CardContent>
@@ -172,7 +233,11 @@ export default function Review() {
                     component={Link}
                     to="#"
                 >
-                    <Typography variant="caption" className={classes.margin}>
+                    <Typography
+                        variant="caption"
+                        className={classes.margin}
+                        onClick={onSubmit}
+                    >
                         Submit
                     </Typography>
                 </Button>

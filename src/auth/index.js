@@ -5,7 +5,7 @@ import Login from './login.js';
 import Forgot from './forgot.js';
 import Reset from './reset.js';
 
-export default function App() {
+export default function Auth() {
     return (
         <Switch>
             <Route path="/auth/login" component={Login} />
