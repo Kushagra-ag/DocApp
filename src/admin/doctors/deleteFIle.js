@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
+import { v4 as uuid } from 'uuid';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
-import Chip from '@material-ui/core/Chip';
-import Box from '@material-ui/core/Box';
 import {
+
+  withStyles,
+} from '@material-ui/core/styles';
+import {
+    Box,
+    Button,
+    Card,
+    CardHeader,
+    CardContent,
+    Chip,
     Divider,
     Table,
     TableBody,
@@ -18,17 +23,28 @@ import {
     TableRow,
     TableSortLabel,
     Tooltip,
+    makeStyles,
     Container,
     Grid,
-    
+    Avatar,
+    TextField,
     CardActions,
+    Typography
 } from '@material-ui/core';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import img from '../../svg/default.png'
-import AdminTextField from '../components/AdminTextField.js';
-import { createDoctor, getDoctor, deleteDoctor, isAuthenticatedAdmin } from '../../core/helperMethods.js';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import { getDoctor, deleteDoctor, isAuthenticatedAdmin } from '../../core/helperMethods.js';
+import NavBar from '../components/NavBar';
+import TopBar from '../components/TopBar';
 
 const useStyles = makeStyles(theme => ({
+    root: {
+        backgroundColor: theme.palette.background.dark,
+        display: 'flex',
+        height: '100%',
+        overflow: 'hidden',
+        width: '100%'
+    },
     wrapper: {
         display: 'flex',
         flex: '1 1 auto',
@@ -51,51 +67,59 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+const AdminTextField = withStyles({
+
+    root: {
+        '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#4a6bc5',
+      },
+    },
+    "& label": {
+    color: "#4a6bc5"
+}
+},
+
+})(TextField)
+
 
 const DoctorProfile = ({ match }) => {
     const classes = useStyles();
     const history = useHistory();
+    const [isMobileNavOpen, setMobileNavOpen] = useState(false);
+    const [orders] = useState(null);
+    const [doctor, setDoctor] = useState({
+        name:'Loading',
+        _id: 'Loading',
+        speciality: 'Loading',
+        contact: 'Loading',
+        rating: 'Loading'
+    });
+    const [photo, setPhoto] = useState();
     const { user, token } = isAuthenticatedAdmin().data;
     console.log(user);
 
-    console.log(match);
     const doctorId = match.params.id;
-    const [doctor, setDoctor] = useState({
-        name: 'q',
-        _id: 'q',
-        speciality: 'q',
-        contact: '1212',
-        rating: 'q',
-        description: 'q',
-        
-    });
-    const [photo, setPhoto] = useState(null);
-    
+
+    console.log(match);
 
     const handleChange = event => {
-        
-        const value = event.target.name === "photo" ? event.target.files[0] : event.target.value
-        if(event.target.name === "photo") {
-            readURL(event.target)
-        }
-
         setDoctor({
             ...doctor,
-            [event.target.name]: value
+            [event.target.name]: event.target.value
         });
     };
 
     const deleteDoc = e => {
 
         deleteDoctor(doctorId, user._id, token, () => {
-            console.log("Doctor deleted");
-            history.push(`/admin/doctor/all`)
+            history.push(`/admin/doctors`)
         })
     }
 
     useEffect(() => {
 
-        if(doctorId) {
+        if(request) {
             getDoctor(doctorId, data => {
                 if (data.error) {
                     console.log(data.error);
@@ -104,53 +128,19 @@ const DoctorProfile = ({ match }) => {
                     setDoctor(data);
                 }
             });
-
-            setPhoto(`${process.env.REACT_APP_API}/doctor/photo/${doctorId}`)
         }
 
-    }, [])
-
-    const onSubmit = e => {
-    	e.preventDefault();
-    	console.log("in submit");
-        
-        if(!doctorId) {
-            let formData = new FormData(e.target);
-            let data = JSON.stringify(Object.fromEntries(formData));
-            console.log(data);
-
-            // formData.delete('_id');
-            // formData.delete('rating');
-        	
-        	console.log(Object.fromEntries(formData))
-
-
-        	createDoctor(user._id, token, formData, data => {
-                if (data.error) {
-                    console.log(data.error);
-                } else {
-                    console.log(data);
-                    console.log("doc created");
-                    history.push(`/admin/doctor/${data.data._id}`)
-                }
-            });
-        }
-    }
-
-    const readURL = (input) => {
-        if (input.files && input.files[0]) {
-            let reader = new FileReader();
-
-            reader.onload = function(e) {
-                setPhoto(e.target.result)
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
+        setPhoto(`${process.env.REACT_APP_API}/doctor/photo/${doctorId}`)
+    }, []);
 
     return (
+        <div className={classes.root}>
+            <TopBar onMobileNavOpen={() => setMobileNavOpen(true)} />
+
+            <NavBar
+                onMobileClose={() => setMobileNavOpen(false)}
+                openMobile={isMobileNavOpen}
+            />
 
             <div className={classes.wrapper}>
                 <div className={classes.contentContainer}>
@@ -161,10 +151,8 @@ const DoctorProfile = ({ match }) => {
                             )} col-lg-10 mt-5 mx-3`}
                             maxWidth="lg"
                         >
-                        <form onSubmit={onSubmit} encType="multipart/form-data">
                             <Grid container spacing={3}>
                                 <Grid item lg={4} md={6} xs={12}>
-
                                     <Card>
                                         <CardContent>
                                             <Box
@@ -173,11 +161,10 @@ const DoctorProfile = ({ match }) => {
                                                 flexDirection="column"
                                             >
                                                 <img
-                                                    className='mb-3' style={{maxHeight:'300px'}}
+                                                    className='w-100 mb-3'
                                                     src={photo || img}
                                                     alt="Doctor photo"
                                                 />
-
                                                 
                                                 
                                                 <Typography
@@ -193,14 +180,18 @@ const DoctorProfile = ({ match }) => {
                                         </CardContent>
                                         <Divider />
                                         <CardActions>
-                                            
-                                                <input type="file" accept="image/*" name="photo" className="userImg mx-auto" style={{width:'100px'}} onChange={(e)=>handleChange(e)} />
-                                            
+                                            <Button
+                                                color="primary"
+                                                fullWidth
+                                                variant="text"
+                                            >
+                                                Change picture
+                                            </Button>
                                         </CardActions>
                                     </Card>
                                 </Grid>
                                 <Grid item lg={8} md={6} xs={12}>
-                                    
+                                    <form autoComplete="off" noValidate>
                                         <Card>
                                             <CardHeader
                                                 subheader="The information can be edited"
@@ -215,34 +206,41 @@ const DoctorProfile = ({ match }) => {
                                                             fullWidth
                                                             label="Name"
                                                             name="name"
+                                                            onChange={
+                                                                handleChange
+                                                            }
                                                             required
-                                                            value={doctor.name}
-                                                            onChange={(e)=>handleChange(e)}
+                                                            value={
+                                                                doctor.name
+                                                            }
                                                             variant="outlined"
                                                         />
                                                     </Grid>
-                                                    { doctorId && 
-                                                        <Grid item xs={12}>
-                                                            <AdminTextField
-                                                                fullWidth
-                                                                label="Id"
-                                                                name="_id"
-                                                                required
-                                                                value={doctor._id}
-                                                                onChange={(e)=>handleChange(e)}
-                                                                variant="outlined"
-                                                                disabled
-                                                            />
-                                                        </Grid>
-                                                    }
+                                                    <Grid item xs={12}>
+                                                        <AdminTextField
+                                                            fullWidth
+                                                            label="Id"
+                                                            name="id"
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            required
+                                                            value={
+                                                                doctor._id
+                                                            }
+                                                            variant="outlined"
+                                                        />
+                                                    </Grid>
                                                     <Grid item md={6} xs={12}>
                                                         <AdminTextField
                                                             fullWidth
                                                             label="Speciality"
                                                             name="speciality"
+                                                            onChange={
+                                                                handleChange
+                                                            }
                                                             required
                                                             value={doctor.speciality}
-                                                            onChange={(e)=>handleChange(e)}
                                                             variant="outlined"
                                                         />
                                                     </Grid>
@@ -251,32 +249,29 @@ const DoctorProfile = ({ match }) => {
                                                             fullWidth
                                                             label="Contact"
                                                             name="contact"
+                                                            onChange={
+                                                                handleChange
+                                                            }
                                                             required
                                                             value={doctor.contact}
-                                                            onChange={(e)=>handleChange(e)}
                                                             variant="outlined"
                                                         />
                                                     </Grid>
-                                                    {doctorId &&
-                                                        <Grid item md={6} xs={12}>
-                                                            <AdminTextField
-                                                                fullWidth
-                                                                label="Rating"
-                                                                name="rating"
-                                                                required
-                                                                value={doctor.rating}
-                                                                onChange={(e)=>handleChange(e)}
-                                                                variant="outlined"
-                                                                disabled
-                                                            />
-                                                        </Grid>
-                                                    }
-                                                    <input
-								                        type="hidden"
-								                        name="approvedBy"
-								                        className="form-control my-3"
-								                        value={user._id}
-								                    />
+                                                    <Grid item md={6} xs={12}>
+                                                        <AdminTextField
+                                                            fullWidth
+                                                            label="Rating"
+                                                            name="rating"
+                                                            onChange={
+                                                                handleChange
+                                                            }
+                                                            required
+                                                            value={
+                                                                doctor.rating
+                                                            }
+                                                            variant="outlined"
+                                                        />
+                                                    </Grid>
                                                     <Grid item md={6} xs={12}>
                                                         {
                                                             // <AdminTextField
@@ -298,17 +293,6 @@ const DoctorProfile = ({ match }) => {
                                                             //                                                     </AdminTextField>
                                                                                                             }
                                                     </Grid>
-                                                    <Grid item xs={12}>
-                                                        <AdminTextField
-                                                            fullWidth
-                                                            label="Description"
-                                                            name="description"
-                                                            required
-                                                            value={doctor.description}
-                                                            onChange={(e)=>handleChange(e)}
-                                                            variant="outlined"
-                                                        />
-                                                    </Grid>
                                                 </Grid>
                                             </CardContent>
                                             <Divider />
@@ -320,29 +304,26 @@ const DoctorProfile = ({ match }) => {
                                                 <Button
                                                     color="primary"
                                                     variant="contained"
-                                                    onClick={doctorId ? deleteDoc : () => history.push('/admin/doctor/all')}
-                                                    
+                                                    onClick={deleteDoc}
                                                 >
-                                                    {doctorId ? 'Delete' : 'Cancel'}
+                                                    Delete
                                                 </Button>
                                                 <Button
                                                     color="primary"
                                                     variant="contained"
-                                                    type="submit"
                                                 >
-                                                    Save
+                                                    Save details
                                                 </Button>
                                             </Box>
                                         </Card>
-                                    
+                                    </form>
                                 </Grid>
                             </Grid>
-                            </form>
                         </Container>
                     </div>
                 </div>
             </div>
-        
+        </div>
     );
 };
 

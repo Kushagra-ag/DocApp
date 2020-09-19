@@ -86,9 +86,49 @@ export const deleteDoctor = (doctorId, adminId, token, next) => {
             }
         })
         .then(res => {
-            next();
+            next(res);
         })
         .catch(err => {
-            console.log(err)
+            console.log(err.response)
         })
 }
+
+//create doctor
+export const createDoctor = (adminId, token, data, next) => {
+    axios
+        .post(`${API}/doctor/create/${adminId}`, data, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${token}`,
+            }
+        })
+        .then(res => {
+            next(res);
+        })
+        .catch(err => {
+            console.log(err);
+            next(err.response);
+        });        
+};
+
+// Get all users
+export const getUsers = next => {
+    axios
+        .get(`${API}/users`, {})
+        .then(res => {
+            console.log(res);
+            next(res.data);
+        })
+        .catch(err => {
+            console.log('err- ', err.response);
+            next(err.response);
+        });
+};
+
+//get a particular user
+
+//create user
+
+
+// delete user
+

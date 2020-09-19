@@ -15,7 +15,7 @@ import {
     Typography,
     makeStyles
 } from '@material-ui/core';
-import { isAuthenticatedAdmin } from '../../core/helperMethods.js';
+import { isAuthenticatedAdmin, deauthenticateAdmin } from '../../core/helperMethods.js';
 
 // import NavItem from './NavItem';
 
@@ -30,20 +30,24 @@ const items = [
         title: 'Dashboard'
     },
     {
-        href: '/admin/doctors',
+        href: '/admin/doctor/all',
         title: 'Doctor List'
     },
     {
-        href: '/admin/doctors/create',
+        href: '/admin/doctor',
         title: 'Create Doctor'
     },
     {
-        href: '/admin/account',
-        title: 'Account'
+        href: '/admin/user/all',
+        title: 'Users List'
     },
     {
-        href: '/admin/settings',
-        title: 'Settings'
+        href: '/admin/account',
+        title: 'Account settings'
+    },
+    {
+        href: '',
+        title: 'Logout'
     },
 ];
 
@@ -78,7 +82,6 @@ const NavBar = ({ onMobileClose, openMobile }) => {
         setProfile(data.user);
     }, [location.pathname]);
 
-    console.log(profile);
 
     const content = (
         <Box height="100%" display="flex" flexDirection="column">
@@ -112,7 +115,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
                         <RouterLink to={item.href} key={idx}>
                             <ListItem button>
                                 <ListItemIcon></ListItemIcon>
-                                <ListItemText primary={item.title} />
+                                <ListItemText primary={item.title} onClick={item.title==='Logout'?deauthenticateAdmin:null} />
                             </ListItem>
                         </RouterLink>
                     ))}

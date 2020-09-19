@@ -26,7 +26,7 @@ import {
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import img from '../../svg/default.png'
 import AdminTextField from '../components/AdminTextField.js';
-import { createDoctor, getDoctor, deleteDoctor, isAuthenticatedAdmin } from '../../core/helperMethods.js';
+import { createUser, getUser, deleteUser, isAuthenticatedAdmin } from '../../core/helperMethods.js';
 
 const useStyles = makeStyles(theme => ({
     wrapper: {
@@ -52,19 +52,19 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const DoctorProfile = ({ match }) => {
+const UserProfile = ({ match }) => {
     const classes = useStyles();
     const history = useHistory();
     const { user, token } = isAuthenticatedAdmin().data;
     console.log(user);
 
     console.log(match);
-    const doctorId = match.params.id;
-    const [doctor, setDoctor] = useState({
+    const userId = match.params.id;
+    const [user, setUser] = useState({
         name: 'q',
         _id: 'q',
         speciality: 'q',
-        contact: '1212',
+        contact: 'q',
         rating: 'q',
         description: 'q',
         
@@ -79,59 +79,58 @@ const DoctorProfile = ({ match }) => {
             readURL(event.target)
         }
 
-        setDoctor({
-            ...doctor,
+        setUser({
+            ...user,
             [event.target.name]: value
         });
     };
 
     const deleteDoc = e => {
 
-        deleteDoctor(doctorId, user._id, token, () => {
-            console.log("Doctor deleted");
-            history.push(`/admin/doctor/all`)
+        deleteUser(userId, user._id, token, () => {
+            history.push(`/admin/users`)
         })
     }
 
     useEffect(() => {
 
-        if(doctorId) {
-            getDoctor(doctorId, data => {
+        if(userId) {
+            getUser(userId, data => {
                 if (data.error) {
                     console.log(data.error);
                 } else {
                     console.log(data);
-                    setDoctor(data);
+                    setUser(data);
                 }
             });
 
-            setPhoto(`${process.env.REACT_APP_API}/doctor/photo/${doctorId}`)
+            setPhoto(`${process.env.REACT_APP_API}/user/photo/${userId}`)
         }
 
     }, [])
 
     const onSubmit = e => {
-    	e.preventDefault();
-    	console.log("in submit");
+        e.preventDefault();
+        console.log("in submit");
         
-        if(!doctorId) {
+        if(!userId) {
             let formData = new FormData(e.target);
             let data = JSON.stringify(Object.fromEntries(formData));
             console.log(data);
 
-            // formData.delete('_id');
-            // formData.delete('rating');
-        	
-        	console.log(Object.fromEntries(formData))
+            formData.delete('_id');
+            formData.delete('rating');
+            
+            console.log(Object.fromEntries(formData))
 
 
-        	createDoctor(user._id, token, formData, data => {
+            createUser(user._id, token, formData, data => {
                 if (data.error) {
                     console.log(data.error);
                 } else {
                     console.log(data);
-                    console.log("doc created");
-                    history.push(`/admin/doctor/${data.data._id}`)
+                   // history.replace('/admin/user/update/')
+                    setUser(data);
                 }
             });
         }
@@ -175,7 +174,7 @@ const DoctorProfile = ({ match }) => {
                                                 <img
                                                     className='mb-3' style={{maxHeight:'300px'}}
                                                     src={photo || img}
-                                                    alt="Doctor photo"
+                                                    alt="User photo"
                                                 />
 
                                                 
@@ -216,32 +215,30 @@ const DoctorProfile = ({ match }) => {
                                                             label="Name"
                                                             name="name"
                                                             required
-                                                            value={doctor.name}
+                                                            value={user.name}
                                                             onChange={(e)=>handleChange(e)}
                                                             variant="outlined"
                                                         />
                                                     </Grid>
-                                                    { doctorId && 
-                                                        <Grid item xs={12}>
-                                                            <AdminTextField
-                                                                fullWidth
-                                                                label="Id"
-                                                                name="_id"
-                                                                required
-                                                                value={doctor._id}
-                                                                onChange={(e)=>handleChange(e)}
-                                                                variant="outlined"
-                                                                disabled
-                                                            />
-                                                        </Grid>
-                                                    }
+                                                    <Grid item xs={12} style={{display:userId?'block':'none'}}>
+                                                        <AdminTextField
+                                                            fullWidth
+                                                            label="Id"
+                                                            name="_id"
+                                                            required
+                                                            value={user._id}
+                                                            onChange={(e)=>handleChange(e)}
+                                                            variant="outlined"
+                                                            disabled
+                                                        />
+                                                    </Grid>
                                                     <Grid item md={6} xs={12}>
                                                         <AdminTextField
                                                             fullWidth
                                                             label="Speciality"
                                                             name="speciality"
                                                             required
-                                                            value={doctor.speciality}
+                                                            value={user.speciality}
                                                             onChange={(e)=>handleChange(e)}
                                                             variant="outlined"
                                                         />
@@ -252,31 +249,28 @@ const DoctorProfile = ({ match }) => {
                                                             label="Contact"
                                                             name="contact"
                                                             required
-                                                            value={doctor.contact}
+                                                            value={user.contact}
                                                             onChange={(e)=>handleChange(e)}
                                                             variant="outlined"
                                                         />
                                                     </Grid>
-                                                    {doctorId &&
-                                                        <Grid item md={6} xs={12}>
-                                                            <AdminTextField
-                                                                fullWidth
-                                                                label="Rating"
-                                                                name="rating"
-                                                                required
-                                                                value={doctor.rating}
-                                                                onChange={(e)=>handleChange(e)}
-                                                                variant="outlined"
-                                                                disabled
-                                                            />
-                                                        </Grid>
-                                                    }
+                                                    <Grid item md={6} xs={12} style={{display:userId?'block':'none'}}>
+                                                        <AdminTextField
+                                                            fullWidth
+                                                            label="Rating"
+                                                            name="rating"
+                                                            required
+                                                            value={user.rating}
+                                                            onChange={(e)=>handleChange(e)}
+                                                            variant="outlined"
+                                                        />
+                                                    </Grid>
                                                     <input
-								                        type="hidden"
-								                        name="approvedBy"
-								                        className="form-control my-3"
-								                        value={user._id}
-								                    />
+                                                        type="hidden"
+                                                        name="approvedBy"
+                                                        className="form-control my-3"
+                                                        value={user._id}
+                                                    />
                                                     <Grid item md={6} xs={12}>
                                                         {
                                                             // <AdminTextField
@@ -304,7 +298,7 @@ const DoctorProfile = ({ match }) => {
                                                             label="Description"
                                                             name="description"
                                                             required
-                                                            value={doctor.description}
+                                                            value={user.description}
                                                             onChange={(e)=>handleChange(e)}
                                                             variant="outlined"
                                                         />
@@ -320,10 +314,10 @@ const DoctorProfile = ({ match }) => {
                                                 <Button
                                                     color="primary"
                                                     variant="contained"
-                                                    onClick={doctorId ? deleteDoc : () => history.push('/admin/doctor/all')}
+                                                    onClick={userId ? deleteDoc : () => history.push('/admin/user/all')}
                                                     
                                                 >
-                                                    {doctorId ? 'Delete' : 'Cancel'}
+                                                    {userId ? 'Delete' : 'Cancel'}
                                                 </Button>
                                                 <Button
                                                     color="primary"
@@ -346,4 +340,4 @@ const DoctorProfile = ({ match }) => {
     );
 };
 
-export default DoctorProfile;
+export default UserProfile;

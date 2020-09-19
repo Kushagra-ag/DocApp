@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
+import { v4 as uuid } from 'uuid';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -24,11 +27,20 @@ import {
     CardActions,
 } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-import img from '../../svg/default.png'
-import AdminTextField from '../components/AdminTextField.js';
-import { createDoctor, getDoctor, deleteDoctor, isAuthenticatedAdmin } from '../../core/helperMethods.js';
+import { createDoctor, isAuthenticatedAdmin } from '../core/helperMethods.js';
+import NavBar from './components/NavBar';
+import TopBar from './components/TopBar';
+import img from '../svg/default.png'
+import AdminTextField from './components/AdminTextField.js';
 
 const useStyles = makeStyles(theme => ({
+    root: {
+        backgroundColor: theme.palette.background.dark,
+        display: 'flex',
+        height: '100%',
+        overflow: 'hidden',
+        width: '100%'
+    },
     wrapper: {
         display: 'flex',
         flex: '1 1 auto',
@@ -52,25 +64,21 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const DoctorProfile = ({ match }) => {
+const DoctorProfile = (request) => {
     const classes = useStyles();
     const history = useHistory();
-    const { user, token } = isAuthenticatedAdmin().data;
-    console.log(user);
-
-    console.log(match);
-    const doctorId = match.params.id;
-    const [doctor, setDoctor] = useState({
-        name: 'q',
-        _id: 'q',
-        speciality: 'q',
-        contact: '1212',
-        rating: 'q',
-        description: 'q',
-        
+    const [isMobileNavOpen, setMobileNavOpen] = useState(false);
+    const [admin, setAdmin] = useState({
+        name: '',
+        _id: '',
+        mobile: '',
+        email: '',
+        role: '',        
     });
     const [photo, setPhoto] = useState(null);
-    
+    const formData = new FormData();
+    const { user, token } = isAuthenticatedAdmin().data;
+    console.log(user);
 
     const handleChange = event => {
         
@@ -79,67 +87,41 @@ const DoctorProfile = ({ match }) => {
             readURL(event.target)
         }
 
-        setDoctor({
-            ...doctor,
+        setAdmin({
+            ...admin,
             [event.target.name]: value
         });
     };
 
-    const deleteDoc = e => {
-
-        deleteDoctor(doctorId, user._id, token, () => {
-            console.log("Doctor deleted");
-            history.push(`/admin/doctor/all`)
-        })
-    }
-
     useEffect(() => {
 
-        if(doctorId) {
-            getDoctor(doctorId, data => {
-                if (data.error) {
-                    console.log(data.error);
-                } else {
-                    console.log(data);
-                    setDoctor(data);
-                }
-            });
-
-            setPhoto(`${process.env.REACT_APP_API}/doctor/photo/${doctorId}`)
-        }
+    	setAdmin(user)
 
     }, [])
 
     const onSubmit = e => {
     	e.preventDefault();
     	console.log("in submit");
-        
-        if(!doctorId) {
-            let formData = new FormData(e.target);
-            let data = JSON.stringify(Object.fromEntries(formData));
-            console.log(data);
+        let formData = new FormData(e.target);
+        let data = JSON.stringify(Object.fromEntries(formData));
 
-            // formData.delete('_id');
-            // formData.delete('rating');
-        	
-        	console.log(Object.fromEntries(formData))
+    	
+    	console.log(Object.fromEntries(formData))
 
-
-        	createDoctor(user._id, token, formData, data => {
-                if (data.error) {
-                    console.log(data.error);
-                } else {
-                    console.log(data);
-                    console.log("doc created");
-                    history.push(`/admin/doctor/${data.data._id}`)
-                }
-            });
-        }
+    	// createDoctor(user._id, token, formData, data => {
+     //        if (data.error) {
+     //            console.log(data.error);
+     //        } else {
+     //            console.log(data);
+     //           // history.replace('/admin/doctor/update/')
+     //            setDoctor(data);
+     //        }
+     //    });
     }
 
     const readURL = (input) => {
         if (input.files && input.files[0]) {
-            let reader = new FileReader();
+            var reader = new FileReader();
 
             reader.onload = function(e) {
                 setPhoto(e.target.result)
@@ -151,6 +133,13 @@ const DoctorProfile = ({ match }) => {
 
 
     return (
+        <div className={classes.root}>
+            <TopBar onMobileNavOpen={() => setMobileNavOpen(true)} />
+
+            <NavBar
+                onMobileClose={() => setMobileNavOpen(false)}
+                openMobile={isMobileNavOpen}
+            />
 
             <div className={classes.wrapper}>
                 <div className={classes.contentContainer}>
@@ -216,32 +205,30 @@ const DoctorProfile = ({ match }) => {
                                                             label="Name"
                                                             name="name"
                                                             required
-                                                            value={doctor.name}
+                                                            value={admin.name}
                                                             onChange={(e)=>handleChange(e)}
                                                             variant="outlined"
                                                         />
                                                     </Grid>
-                                                    { doctorId && 
-                                                        <Grid item xs={12}>
-                                                            <AdminTextField
-                                                                fullWidth
-                                                                label="Id"
-                                                                name="_id"
-                                                                required
-                                                                value={doctor._id}
-                                                                onChange={(e)=>handleChange(e)}
-                                                                variant="outlined"
-                                                                disabled
-                                                            />
-                                                        </Grid>
-                                                    }
+                                                    <Grid item xs={12}>
+                                                        <AdminTextField
+                                                            fullWidth
+                                                            label="Id"
+                                                            name="_id"
+                                                            required
+                                                            value={admin._id}
+                                                            onChange={(e)=>handleChange(e)}
+                                                            variant="outlined"
+                                                            disabled
+                                                        />
+                                                    </Grid>
                                                     <Grid item md={6} xs={12}>
                                                         <AdminTextField
                                                             fullWidth
-                                                            label="Speciality"
-                                                            name="speciality"
+                                                            label="Email"
+                                                            name="email"
                                                             required
-                                                            value={doctor.speciality}
+                                                            value={admin.email}
                                                             onChange={(e)=>handleChange(e)}
                                                             variant="outlined"
                                                         />
@@ -250,33 +237,13 @@ const DoctorProfile = ({ match }) => {
                                                         <AdminTextField
                                                             fullWidth
                                                             label="Contact"
-                                                            name="contact"
+                                                            name="mobile"
                                                             required
-                                                            value={doctor.contact}
+                                                            value={admin.mobile}
                                                             onChange={(e)=>handleChange(e)}
                                                             variant="outlined"
                                                         />
                                                     </Grid>
-                                                    {doctorId &&
-                                                        <Grid item md={6} xs={12}>
-                                                            <AdminTextField
-                                                                fullWidth
-                                                                label="Rating"
-                                                                name="rating"
-                                                                required
-                                                                value={doctor.rating}
-                                                                onChange={(e)=>handleChange(e)}
-                                                                variant="outlined"
-                                                                disabled
-                                                            />
-                                                        </Grid>
-                                                    }
-                                                    <input
-								                        type="hidden"
-								                        name="approvedBy"
-								                        className="form-control my-3"
-								                        value={user._id}
-								                    />
                                                     <Grid item md={6} xs={12}>
                                                         {
                                                             // <AdminTextField
@@ -298,17 +265,7 @@ const DoctorProfile = ({ match }) => {
                                                             //                                                     </AdminTextField>
                                                                                                             }
                                                     </Grid>
-                                                    <Grid item xs={12}>
-                                                        <AdminTextField
-                                                            fullWidth
-                                                            label="Description"
-                                                            name="description"
-                                                            required
-                                                            value={doctor.description}
-                                                            onChange={(e)=>handleChange(e)}
-                                                            variant="outlined"
-                                                        />
-                                                    </Grid>
+                                                    
                                                 </Grid>
                                             </CardContent>
                                             <Divider />
@@ -320,17 +277,17 @@ const DoctorProfile = ({ match }) => {
                                                 <Button
                                                     color="primary"
                                                     variant="contained"
-                                                    onClick={doctorId ? deleteDoc : () => history.push('/admin/doctor/all')}
+                                                    onClick={()=>history.push("/admin/dashboard")}
                                                     
                                                 >
-                                                    {doctorId ? 'Delete' : 'Cancel'}
+                                                    Cancel
                                                 </Button>
                                                 <Button
                                                     color="primary"
                                                     variant="contained"
                                                     type="submit"
                                                 >
-                                                    Save
+                                                    Save details
                                                 </Button>
                                             </Box>
                                         </Card>
@@ -342,7 +299,7 @@ const DoctorProfile = ({ match }) => {
                     </div>
                 </div>
             </div>
-        
+        </div>
     );
 };
 

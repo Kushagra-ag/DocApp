@@ -34,7 +34,7 @@ const TopBar = ({ className, onMobileNavOpen, ...rest }) => {
             {...rest}
         >
             <Toolbar>
-                <RouterLink to="/">{'D'}</RouterLink>
+                <RouterLink to="/admin/dashboard">{'D'}</RouterLink>
                 <Box flexGrow={1} />
                 <Hidden mdDown>
                     <IconButton color="inherit">

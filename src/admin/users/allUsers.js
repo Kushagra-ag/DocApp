@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import axios from 'axios';
 import { Link, useHistory, Redirect } from 'react-router-dom';
-import { getDoctors, isAuthenticatedAdmin } from '../../core/helperMethods.js';
+import { getUsers, isAuthenticatedAdmin } from '../../core/helperMethods.js';
 import {
     Box,
     Button,
@@ -21,8 +21,6 @@ import {
     makeStyles
 } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-import NavBar from '../components/NavBar';
-import TopBar from '../components/TopBar';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -54,27 +52,27 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function AllDoctors() {
+export default function AllUsers() {
     const classes = useStyles();
     const [isMobileNavOpen, setMobileNavOpen] = useState(false);
-    const [doctors, setDoctors] = useState([]);
+    const [users, setUsers] = useState([]);
     const history = useHistory();
     const { user, token } = isAuthenticatedAdmin();
 
-    const editRecord = e => {
-        const doctorId = e.currentTarget.firstElementChild.innerHTML;
-        console.log(doctorId);
+    // const editRecord = e => {
+    //     const userId = e.currentTarget.firstElementChild.innerHTML;
+    //     console.log(userId);
 
-        history.push(`/admin/doctor/${doctorId}`);
-    };
+    //     history.push(`/admin/user/${userId}`);
+    // };
 
     useEffect(() => {
-        getDoctors(data => {
+        getUsers(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
                 console.log(data);
-                setDoctors(data);
+                setUsers(data);
             }
         });
     }, []);
@@ -89,7 +87,7 @@ export default function AllDoctors() {
                                 classes.root
                             )} col-lg-10 mt-5 mx-3 d-flex flex-column`}
                         >
-                            <CardHeader title={`Doctor List - Total ${doctors.length}`} />
+                            <CardHeader title={`User List - Total ${users.length}`} />
                             <Divider />
                             <CardContent>
                                 <Table>
@@ -99,7 +97,7 @@ export default function AllDoctors() {
                                                 Id
                                             </TableCell>
                                             <TableCell>Name</TableCell>
-                                            <TableCell>Speciality</TableCell>
+                                            <TableCell>Email</TableCell>
                                             {
                                                 // <TableCell sortDirection="desc">
                                                 //                                             <Tooltip
@@ -115,31 +113,30 @@ export default function AllDoctors() {
                                                 //                                             </Tooltip></TableCell>
                                             }
 
-                                            <TableCell>Rating</TableCell>
                                             <TableCell>Contact</TableCell>
+                                            <TableCell >Role</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        {doctors.map(doctor => (
+                                        {users.map(user => (
                                             <TableRow
                                                 hover
-                                                key={doctor._id}
-                                                onClick={editRecord}
+                                                key={user._id}
                                             >
                                                 <TableCell className="d-none">
-                                                    {doctor._id}
+                                                    {user._id}
                                                 </TableCell>
                                                 <TableCell>
-                                                    {doctor.name}
+                                                    {user.name}
                                                 </TableCell>
                                                 <TableCell>
-                                                    {doctor.speciality}
+                                                    {user.email}
                                                 </TableCell>
                                                 <TableCell>
-                                                    {doctor.rating}
+                                                    {user.mobile}
                                                 </TableCell>
                                                 <TableCell>
-                                                    {doctor.contact}
+                                                    {user.role}
                                                 </TableCell>
                                             </TableRow>
                                         ))}

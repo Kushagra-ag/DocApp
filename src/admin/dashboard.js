@@ -22,8 +22,6 @@ import {
     makeStyles
 } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-import NavBar from './components/NavBar';
-import TopBar from './components/TopBar';
 
 const data = [
     {
@@ -124,13 +122,6 @@ const DashboardLayout = () => {
     const [orders] = useState(data);
 
     return (
-        <div className={classes.root}>
-            <TopBar onMobileNavOpen={() => setMobileNavOpen(true)} />
-
-            <NavBar
-                onMobileClose={() => setMobileNavOpen(false)}
-                openMobile={isMobileNavOpen}
-            />
 
             <div className={classes.wrapper}>
                 <div className={classes.contentContainer}>
@@ -204,7 +195,7 @@ const DashboardLayout = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        
     );
 };
 
