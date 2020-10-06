@@ -14,7 +14,8 @@ const useStyles = makeStyles(theme => ({
     },
     imgContainer: {
         borderRadius: 10,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        maxWidth: '150px'
     }
 }));
 
@@ -49,10 +50,10 @@ export default function DoctorTile(props) {
                 />
             </div>
             <div className="mt-2 mx-sm-3">
-                <Typography className="font-weight-bold" variant="body1">
+                <Typography className="font-weight-bold text-truncate" style={{maxWidth:'170px'}} variant="body1" tooltip={props.name}>
                     {props.name}
                 </Typography>
-                <Typography className="text-black-50" variant="caption">
+                <Typography className="text-black-50 text-truncate" style={{maxWidth:'170px'}} variant="caption" display="block">
                     {props.speciality}
                 </Typography>
                 <div className="d-flex align-items-center mb-2">

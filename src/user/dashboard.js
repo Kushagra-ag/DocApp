@@ -50,7 +50,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         axios
-            .get(`${process.env.REACT_APP_API}/doctors?limit=2`)
+            .get(`${process.env.REACT_APP_API}/doctors?limit=4`)
             .then(res => {
                 setDoctorList(res.data);
                 setLoading(false);
