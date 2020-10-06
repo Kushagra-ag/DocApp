@@ -19,6 +19,7 @@ import doc1 from '../svg/doc1.jpg';
 import ExperienceIcon from '../components/ExperienceIcon.js';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import DoctorProfileIcons from '../components/doctor/DoctorProfileIcons.js';
+import { isAuthenticated, addToFav, readFav } from '../core/helperMethods.js';
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -40,13 +41,14 @@ export default function Profile({ match }) {
     const [favourite, setFavourite] = useState(false);
     const [profile, setProfile] = useState({});
     const [photo, setPhoto] = useState();
+    const { user, token} = isAuthenticated().data;
 
     useEffect(() => {
-        const id = match.params.id;
-        setPhoto(`${process.env.REACT_APP_API}/doctor/photo/${id}`);
+        const doctorId = match.params.id;
+        setPhoto(`${process.env.REACT_APP_API}/doctor/photo/${doctorId}`);
 
         axios
-            .get(`${process.env.REACT_APP_API}/doctor/${id}`)
+            .get(`${process.env.REACT_APP_API}/doctor/${doctorId}`)
             .then(res => {
                 setProfile(res.data);
                 console.log(res.data);
@@ -54,11 +56,41 @@ export default function Profile({ match }) {
             .catch(err => {
                 console.log(err);
             });
+
+        // Getting favourite doctor list
+
+        readFav(user._id, token, function(res) {
+
+            let fav=0;
+            res.data.forEach(doc => {
+                if(doc===doctorId && !fav) {
+                    console.log("matched")
+                    fav=1;
+                    
+                }
+            })
+            setFavourite(fav ? true : false)
+        })
+        
     }, []);
 
     const handleFav = () => {
-        setFavourite(!favourite);
-    };
+
+        if(!favourite) {
+
+            const data = {
+                favourite: match.params.id
+            }
+
+            addToFav(user._id, token, data, function(){
+                setFavourite(true)
+            })
+
+        } else {
+
+
+        }
+    }
 
     const txt = useMediaQuery('(max-width:767px)')
         ? 'textSecondary'
@@ -241,7 +273,7 @@ export default function Profile({ match }) {
                                             variant="subtitle2"
                                             align="center"
                                         >
-                                            Add{favourite ? 'ed' : ''} to <br />
+                                            {favourite ? 'Remove from' : 'Add to'} <br />
                                             favourites
                                         </Typography>
                                     </div>

@@ -125,6 +125,42 @@ export const getUsers = next => {
         });
 };
 
+//add doctor to favourites list
+export const addToFav = (userId, token, data, next) => {
+    axios
+        .put(`${API}/user/createFavourites/${userId}`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(res => {
+            console.log(res);
+            next()
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
+//read doctor favourites list of user
+export const readFav = (userId, token, next) => {
+    
+    console.log(token)
+    axios 
+        .get(`${API}/user/readFavourites/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(res => {
+            console.log(res);
+            next(res)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
 //get a particular user
 
 //create user

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CustomTextField from '../../components/CustomTextField.js';
 import {
     Typography,
@@ -17,6 +17,7 @@ import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import UserFav from '../../data/UserFav.js';
 import user1 from '../../svg/user1.jpg';
+import { isAuthenticated, readFav, getDoctor } from '../../core/helperMethods.js';
 
 const useStyles = makeStyles(theme => ({
     avatar: {
@@ -41,6 +42,21 @@ const useStyles = makeStyles(theme => ({
 
 export default function Favourites() {
     const classes = useStyles();
+    const [doctors, setDoctors] = useState([]);
+    const { user, token } = isAuthenticated().data;
+
+    useEffect(() => {
+
+        readFav(user._id, token, function(res){
+
+            res.data.forEach(id => {
+                getDoctor(id, function(data){
+                    setDoctors(doctors => [...doctors, data]);
+                })
+            })
+        })
+    }, [])
+
     return (
         <>
             <div className="col-md-4 text-center mb-4">
@@ -55,14 +71,14 @@ export default function Favourites() {
                 />
             </div>
             <div className="col-sm-8 text-center text-md-left">
-                {UserFav.map(doctor => (
-                    <div key={doctor.key}>
+                {doctors.map(doctor => (
+                    <div key={doctor._id}>
                         <Card className="p-3 mb-4">
                             <CardContent className="text-center text-md-left p-1">
                                 <div className="row w-100">
                                     <div className="col-12 d-flex justify-content-around align-items-center">
                                         <Avatar
-                                            src={user1}
+                                            src={`${process.env.REACT_APP_API}/doctor/photo/${doctor._id}` || user1}
                                             className={classes.avatar}
                                             variant="rounded"
                                             alt="contact"
@@ -175,7 +191,7 @@ export default function Favourites() {
                                                     variant="caption"
                                                     className={`ml-3 text-white-50 ${classes.margin}`}
                                                 >
-                                                    {doctor.distance} km
+                                                    {doctor.distance || 5} km
                                                 </Typography>
                                             </div>
                                         </Button>
