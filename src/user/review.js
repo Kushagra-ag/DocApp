@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -15,7 +16,7 @@ import AntSwitch from '../components/AntSwitch.js';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import Contact from './contact.js';
 import importedStyles from '../styles/styles.js';
-import { isAuthenticated } from '../core/helperMethods.js';
+import { isAuthenticated, createReview } from '../core/helperMethods.js';
 
 export default function Review({ match }) {
     const classes = importedStyles();
@@ -24,6 +25,7 @@ export default function Review({ match }) {
     const [comment, setComment] = useState('');
     const [state, setState] = useState(true);
     const [statusMsg, setStatusMsg] = useState();
+    const history = useHistory();
 
     const ratingChange = number => {
         setRating(number);
@@ -41,12 +43,15 @@ export default function Review({ match }) {
         setState(event.target.checked);
     };
 
-    async function onSubmit(e) {
+    function onSubmit(e) {
         e.preventDefault();
 
-        const user = await isAuthenticated();
-        const userId = user.data.user._id;
-        const token = user.data.token;
+        let userId, token;
+        isAuthenticated()
+            .then(profile => {
+                userId = profile.data.user._id;
+                token = profile.data.token
+            })
 
         const doctorId = match.params.doctorId;
 
@@ -59,31 +64,33 @@ export default function Review({ match }) {
             public: state
         };
 
-        axios
-            .post(
-                `${process.env.REACT_APP_API}/review/create/${doctorId}/${userId}`,
-                data,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }
-            )
-            .then(res => {
-                console.log(res);
-                setStatusMsg('success');
+        const success = () => {
+            setStatusMsg('success');
 
-                window.scrollTo(0, 0);
-                setComment('');
-                setRating(0);
-                setState(true);
-                setValue('Yes');
-            })
-            .catch(err => {
-                console.log(err);
-                setStatusMsg('error');
-            });
+            window.scrollTo(0, 0);
+            setComment('');
+            setRating(0);
+            setState(true);
+            setValue('Yes');
+        }
+
+        const failure = () => {
+            setStatusMsg('error')
+        }
+
+        createReview(doctorId, userId, token, data, success, failure)
     }
+
+    useLayoutEffect(() => {
+        
+        isAuthenticated()
+            .then(profile => {
+                if(!profile.data) {
+                    history.push('/auth/login')
+                }
+            })
+
+    }, [])
 
     return (
         <>

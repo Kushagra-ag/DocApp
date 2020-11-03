@@ -4,7 +4,6 @@ import {
     Typography,
     Card,
     CardContent,
-    MenuItem,
     InputAdornment,
     Avatar
 } from '@material-ui/core';

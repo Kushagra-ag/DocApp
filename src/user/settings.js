@@ -9,7 +9,7 @@ import About from '../components/user/settings/about.js';
 import Contact from './contact.js';
 import importedStyles from '../styles/styles.js';
 
-export default function Settings() {
+export default function Settings({ profile }) {
     const classes = importedStyles();
 
     return (

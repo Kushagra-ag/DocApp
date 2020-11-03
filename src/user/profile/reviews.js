@@ -4,7 +4,7 @@ import { Select, MenuItem } from '@material-ui/core';
 import UserReviewsData from '../../data/UserReviews.js';
 import UserReviews from '../../components/user/UserReviews.js';
 
-export default function Reviews() {
+export default function Reviews({ profile }) {
     const [filter, setFilter] = useState('date');
 
     const handleChange = event => {

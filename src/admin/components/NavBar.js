@@ -67,19 +67,17 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const NavBar = ({ onMobileClose, openMobile }) => {
+const NavBar = ({ onMobileClose, openMobile, profile }) => {
     const classes = useStyles();
     const location = useLocation();
 
-    const [profile, setProfile] = useState({});
+    const [admin, setAdmin] = useState(profile);
 
     useEffect(() => {
         if (openMobile && onMobileClose) {
             onMobileClose();
         }
 
-        const data = isAuthenticatedAdmin().data;
-        setProfile(data.user);
     }, [location.pathname]);
 
 
@@ -102,10 +100,10 @@ const NavBar = ({ onMobileClose, openMobile }) => {
                     color="textPrimary"
                     variant="h5"
                 >
-                    {profile.name}
+                    {admin.name}
                 </Typography>
                 <Typography className={'text-black-50'} variant="body2">
-                    {profile.email}
+                    {admin.email}
                 </Typography>
             </Box>
             <Divider />
@@ -124,7 +122,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
         </Box>
     );
 
-    return (
+    return admin ? (
         <>
             <Hidden lgUp>
                 <Drawer
@@ -148,7 +146,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
                 </Drawer>
             </Hidden>
         </>
-    );
+    ) : null
 };
 
 NavBar.propTypes = {

@@ -106,9 +106,15 @@ export default function SearchAppBar() {
     const [display, setDisplay] = useState('flex');
 
     useLayoutEffect(() => {
-        let data = isAuthenticated().data;
-        if (data) setUser(data.user.name.split(' ')[0]);
-        else setUser(undefined);
+
+        isAuthenticated()
+            .then(data => {
+                if(data.data) {
+                    setUser(data.data.user.name.split(' ')[0])
+                } else {
+                    setUser(undefined)
+                }
+            })
     }, []);
 
     let arr = useLocation().search.substr(1).split('&');
@@ -119,8 +125,8 @@ export default function SearchAppBar() {
 
     const [search, setSearch] = useState(arr['query'] || '');
 
-    async function signout() {
-        await deauthenticate();
+    function signout() {
+        deauthenticate();
         history.push('/auth/login');
     }
 

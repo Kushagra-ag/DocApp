@@ -2,49 +2,53 @@ import axios from 'axios';
 
 const API = process.env.REACT_APP_API
 
-export function authenticate(data, next) {
+export async function authenticate(data, next) {
     if (typeof window !== 'undefined') {
-        localStorage.setItem('_docto', JSON.stringify(data));
+        await localStorage.setItem('_docto', JSON.stringify(data));
         next();
     }
 }
 
-export const isAuthenticated = () => {
+export async function isAuthenticated() {
     if (typeof window !== 'undefined') {
-        if (localStorage.getItem('_docto')) {
-            return JSON.parse(localStorage.getItem('_docto'));
+        
+        const _docto = await localStorage.getItem('_docto')
+        if (_docto) {
+            return JSON.parse(_docto);
         }
     }
     return false;
 };
 
-export const deauthenticate = () => {
+export async function deauthenticate() {
     if (typeof window !== 'undefined') {
-        localStorage.removeItem('_docto');
+        await localStorage.removeItem('_docto');
     }
 };
 
 // ----------Admin methods----------------
 
-export function authenticateAdmin(data, next) {
+export async function authenticateAdmin(data, next) {
     if (typeof window !== 'undefined') {
-        localStorage.setItem('_docto__', JSON.stringify(data));
+        await localStorage.setItem('_docto__', JSON.stringify(data));
         next();
     }
 }
 
-export const isAuthenticatedAdmin = () => {
+export async function isAuthenticatedAdmin() {
     if (typeof window !== 'undefined') {
-        if (localStorage.getItem('_docto__')) {
-            return JSON.parse(localStorage.getItem('_docto__'));
+
+        const _docto__ = await localStorage.getItem('_docto__')
+        if (_docto__) {
+            return JSON.parse(_docto__);
         }
     }
     return false;
 };
 
-export const deauthenticateAdmin = () => {
+export async function deauthenticateAdmin() {
     if (typeof window !== 'undefined') {
-        localStorage.removeItem('_docto__');
+        await localStorage.removeItem('_docto__');
     }
 };
 
@@ -54,7 +58,7 @@ export const getDoctor = (doctorId, next) => {
         .get(`${API}/doctor/${doctorId}`)
         .then(res => {
             console.log(res);
-            return next(res.data);
+            next(res.data);
         })
         .catch(err => {
             next(err.response.data);
@@ -78,8 +82,8 @@ export const getDoctors = next => {
 //delete doctor
 export const deleteDoctor = (doctorId, adminId, token, next) => {
     console.log(token)
-    axios.
-        delete(`${API}/doctor/${doctorId}/${adminId}`, {
+    axios
+        .delete(`${API}/doctor/${doctorId}/${adminId}`, {
             headers: {
                 'Accept': 'application/json',
                 'Authorization': `Bearer ${token}`
@@ -145,9 +149,26 @@ export const addToFav = (userId, token, data, next) => {
 //read doctor favourites list of user
 export const readFav = (userId, token, next) => {
     
-    console.log(token)
     axios 
         .get(`${API}/user/readFavourites/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(res => {
+            console.log(res);
+            next(res)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
+//remove doctor from favourites list
+export const delFav = (doctorId, userId, token, next) => {
+    console.log(token)
+    axios 
+        .delete(`${API}/user/deleteFavourite/${userId}/${doctorId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -167,4 +188,24 @@ export const readFav = (userId, token, next) => {
 
 
 // delete user
+
+
+//create review
+export const createReview = (doctorId, userId, token, data, success, failure) => {
+
+    axios 
+        .post(`${API}/review/create/${doctorId}/${userId}`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then((res) => {
+            console.log(res)
+            success();
+        })
+        .catch(err => {
+            console.log(err)
+            failure();
+        })
+}
 

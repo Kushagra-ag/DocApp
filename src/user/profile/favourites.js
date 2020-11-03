@@ -5,7 +5,6 @@ import {
     Button,
     Card,
     CardContent,
-    MenuItem,
     InputAdornment,
     Avatar,
     IconButton
@@ -15,9 +14,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import SearchRoundedIcon from '@material-ui/icons/SearchRounded';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
-import UserFav from '../../data/UserFav.js';
 import user1 from '../../svg/user1.jpg';
-import { isAuthenticated, readFav, getDoctor } from '../../core/helperMethods.js';
+import {
+    isAuthenticated,
+    readFav,
+    getDoctor
+} from '../../core/helperMethods.js';
 
 const useStyles = makeStyles(theme => ({
     avatar: {
@@ -40,24 +42,24 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function Favourites() {
+export default function Favourites({ profile }) {
     const classes = useStyles();
     const [doctors, setDoctors] = useState([]);
-    const { user, token } = isAuthenticated().data;
+    const [user, setUser] = useState(profile);
 
     useEffect(() => {
+        if (user) {
+            readFav(user._id, user.token, function (res) {
+                res.data.forEach(id => {
+                    getDoctor(id, function (data) {
+                        setDoctors(doctors => [...doctors, data]);
+                    });
+                });
+            });
+        }
+    }, [user]);
 
-        readFav(user._id, token, function(res){
-
-            res.data.forEach(id => {
-                getDoctor(id, function(data){
-                    setDoctors(doctors => [...doctors, data]);
-                })
-            })
-        })
-    }, [])
-
-    return (
+    return user ? (
         <>
             <div className="col-md-4 text-center mb-4">
                 <CustomTextField
@@ -78,7 +80,10 @@ export default function Favourites() {
                                 <div className="row w-100">
                                     <div className="col-12 d-flex justify-content-around align-items-center">
                                         <Avatar
-                                            src={`${process.env.REACT_APP_API}/doctor/photo/${doctor._id}` || user1}
+                                            src={
+                                                `${process.env.REACT_APP_API}/doctor/photo/${doctor._id}` ||
+                                                user1
+                                            }
                                             className={classes.avatar}
                                             variant="rounded"
                                             alt="contact"
@@ -203,5 +208,5 @@ export default function Favourites() {
                 ))}
             </div>
         </>
-    );
+    ) : null
 }

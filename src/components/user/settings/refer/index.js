@@ -1,10 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Button, Typography, MenuItem, Select } from '@material-ui/core';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import CustomTextField from '../../../CustomTextField.js';
 import Contact from '../../../../user/contact.js';
-import { isAuthenticated } from '../../../../core/helperMethods.js';
 
 const useStyles = makeStyles(theme => ({
     form: {
@@ -30,11 +29,12 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-function Form() {
+function Form(props) {
     const classes = useStyles();
 
     const [speciality, setSpeciality] = React.useState('');
     const [loading, setLoading] = React.useState(false);
+    const [user, setUser] = useState(props.profile)
     const handleChange = event => {
         setSpeciality(event.target.value);
     };
@@ -46,7 +46,7 @@ function Form() {
         let data = JSON.stringify(Object.fromEntries(new FormData(e.target)));
         console.log(data);
 
-        const userId = isAuthenticated().data.user._id;
+        const userId = user._id;
 
         const options = {
             'content-type': 'application/json'
@@ -116,7 +116,7 @@ function Form() {
     );
 }
 
-export default function Refer() {
+export default function Refer({profile}) {
     return (
         <>
             <div className="col-md-8 pl-md-5 overflow-hidden text-center text-sm-left">
@@ -134,7 +134,7 @@ export default function Refer() {
                 </div>
                 <div className="row my-3">
                     <div className="col-sm-6">
-                        <Form />
+                        <Form profile={profile} />
                     </div>
                 </div>
             </div>

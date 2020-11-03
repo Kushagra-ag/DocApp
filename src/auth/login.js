@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -6,7 +6,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Link, useHistory, Redirect } from 'react-router-dom';
 import CustomTextField from '../components/CustomTextField.js';
 import DoctoIcon from '../components/DoctoIcon.js';
-import { authenticate, authenticateAdmin } from '../core/helperMethods.js';
+import { isAuthenticated, isAuthenticatedAdmin, authenticate, authenticateAdmin } from '../core/helperMethods.js';
 import importedStyles from '../styles/styles.js';
 import FacebookIcon from '@material-ui/icons/Facebook';
 
@@ -15,6 +15,30 @@ function Form() {
     const history = useHistory();
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+
+        isAuthenticatedAdmin()
+            .then(data => {
+                
+                if(data) {
+                    const admin = data.data;
+                    if(admin) {
+                        console.log('to admin')
+                        history.push('/admin/dashboard')
+                    } 
+                } else {
+                    isAuthenticated()
+                        .then(data => {
+                            const user = data.data;
+                            if(user) {
+                                console.log('to user')
+                                history.push('/user/dashboard')
+                            }
+                        })
+                }
+            })
+    }, [])
 
     const onSubmitForm = e => {
         e.preventDefault();

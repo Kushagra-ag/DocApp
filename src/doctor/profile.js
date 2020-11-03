@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Avatar from '@material-ui/core/Avatar';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import {
+    Avatar,
+    Card,
+    CardContent,
+    IconButton,
+    Typography,
+    useMediaQuery
+} from '@material-ui/core';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from '@material-ui/core/styles';
@@ -19,7 +22,13 @@ import doc1 from '../svg/doc1.jpg';
 import ExperienceIcon from '../components/ExperienceIcon.js';
 import FavoriteRoundedIcon from '@material-ui/icons/FavoriteRounded';
 import DoctorProfileIcons from '../components/doctor/DoctorProfileIcons.js';
-import { isAuthenticated, addToFav, readFav } from '../core/helperMethods.js';
+import {
+    isAuthenticated,
+    addToFav,
+    readFav,
+    delFav,
+    getDoctor
+} from '../core/helperMethods.js';
 
 const useStyles = makeStyles(theme => ({
     margin: {
@@ -36,61 +45,53 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function Profile({ match }) {
+export default function Profile({ profile }) {
     const classes = useStyles();
+    const { doctorId } = useParams();
     const [favourite, setFavourite] = useState(false);
-    const [profile, setProfile] = useState({});
+    const [docProfile, setDocProfile] = useState({});
     const [photo, setPhoto] = useState();
-    const { user, token} = isAuthenticated().data;
+    const [user, setUser] = useState(profile);
 
     useEffect(() => {
-        const doctorId = match.params.id;
-        setPhoto(`${process.env.REACT_APP_API}/doctor/photo/${doctorId}`);
+        if (user) {
+            
+            setPhoto(`${process.env.REACT_APP_API}/doctor/photo/${doctorId}`);
 
-        axios
-            .get(`${process.env.REACT_APP_API}/doctor/${doctorId}`)
-            .then(res => {
-                setProfile(res.data);
-                console.log(res.data);
-            })
-            .catch(err => {
-                console.log(err);
+            getDoctor(doctorId, function (res) {
+                setDocProfile(res);
             });
 
-        // Getting favourite doctor list
+            // Getting favourite doctor list
 
-        readFav(user._id, token, function(res) {
-
-            let fav=0;
-            res.data.forEach(doc => {
-                if(doc===doctorId && !fav) {
-                    console.log("matched")
-                    fav=1;
-                    
-                }
-            })
-            setFavourite(fav ? true : false)
-        })
-        
-    }, []);
+            readFav(user._id, user.token, function (res) {
+                let fav = 0;
+                res.data.forEach(doc => {
+                    if (doc === doctorId && !fav) {
+                        console.log('matched');
+                        fav = 1;
+                    }
+                });
+                setFavourite(fav ? true : false);
+            });
+        }
+    }, [user]);
 
     const handleFav = () => {
-
-        if(!favourite) {
-
+        if (!favourite) {
             const data = {
-                favourite: match.params.id
-            }
+                favourite: doctorId
+            };
 
-            addToFav(user._id, token, data, function(){
-                setFavourite(true)
-            })
-
+            addToFav(user._id, user.token, data, function () {
+                setFavourite(true);
+            });
         } else {
-
-
+            delFav(doctorId, user._id, user.token, function () {
+                setFavourite(false);
+            });
         }
-    }
+    };
 
     const txt = useMediaQuery('(max-width:767px)')
         ? 'textSecondary'
@@ -110,18 +111,18 @@ export default function Profile({ match }) {
                     </div>
                     <div className="col-md-8 mt-3 mt-md-0 mb-n4 mb-md-n0 d-flex flex-column align-items-center align-items-md-start">
                         <Typography variant="h4" color={txt} gutterBottom>
-                            {profile.name}
+                            {docProfile.name}
                         </Typography>
                         <Typography
                             variant="subtitle1"
                             color={txt}
                             gutterBottom
                         >
-                            {profile.speciality}
+                            {docProfile.speciality}
                         </Typography>
                         <DoctorProfileIcons
-                            contact={profile.contact}
-                            id={profile._id}
+                            contact={docProfile.contact}
+                            id={docProfile._id}
                         />
                     </div>
                 </div>
@@ -208,7 +209,7 @@ export default function Profile({ match }) {
                                     style={{ color: '#fff' }}
                                 >
                                     <Typography variant="h6">
-                                        {profile.rating}
+                                        {docProfile.rating}
                                     </Typography>
                                     <Typography variant="subtitle2">
                                         1800 reviews
@@ -233,7 +234,7 @@ export default function Profile({ match }) {
                                     display="block"
                                     gutterBottom
                                 >
-                                    About Dr. {profile.name}
+                                    About Dr. {docProfile.name}
                                 </Typography>
                                 <Typography
                                     display="block"
@@ -241,7 +242,7 @@ export default function Profile({ match }) {
                                     style={{ opacity: '0.5' }}
                                     gutterBottom
                                 >
-                                    {profile.description}
+                                    {docProfile.description}
                                 </Typography>
                                 <div className="d-flex mt-3">
                                     <ExperienceIcon
@@ -252,31 +253,37 @@ export default function Profile({ match }) {
                                         type="recognition"
                                         number="10"
                                     />
-                                    <div
-                                        className="ml-auto"
-                                        onClick={handleFav}
-                                    >
-                                        <IconButton
-                                            className={classes.margin}
-                                            color={
-                                                favourite
-                                                    ? 'primary'
-                                                    : 'default'
-                                            }
-                                            aria-label="favourite"
-                                            component="span"
-                                            size="medium"
+
+                                    {user && (
+                                        <div
+                                            className="ml-auto"
+                                            onClick={handleFav}
                                         >
-                                            <FavoriteRoundedIcon fontSize="large" />
-                                        </IconButton>
-                                        <Typography
-                                            variant="subtitle2"
-                                            align="center"
-                                        >
-                                            {favourite ? 'Remove from' : 'Add to'} <br />
-                                            favourites
-                                        </Typography>
-                                    </div>
+                                            <IconButton
+                                                className={classes.margin}
+                                                color={
+                                                    favourite
+                                                        ? 'primary'
+                                                        : 'default'
+                                                }
+                                                aria-label="favourite"
+                                                component="span"
+                                                size="medium"
+                                            >
+                                                <FavoriteRoundedIcon fontSize="large" />
+                                            </IconButton>
+                                            <Typography
+                                                variant="subtitle2"
+                                                align="center"
+                                            >
+                                                {favourite
+                                                    ? 'Remove from'
+                                                    : 'Add to'}{' '}
+                                                <br />
+                                                favourites
+                                            </Typography>
+                                        </div>
+                                    )}
                                 </div>
                             </CardContent>
                         </Card>
@@ -288,6 +295,27 @@ export default function Profile({ match }) {
                                     gutterBottom
                                 >
                                     Expertise
+                                </Typography>
+                                <Typography
+                                    display="block"
+                                    variant="body1"
+                                    style={{ opacity: '0.5' }}
+                                >
+                                    Quis autem vel eum iure reprehenderit qui in
+                                    ea voluptate velit esse quam nihil molestiae
+                                    consequatur, vel illum qui dolorem eum
+                                    fugiat quo voluptas nulla pariatur
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                        <Card className="p-3 my-4" elevation={2}>
+                            <CardContent className="text-center text-md-left p-1">
+                                <Typography
+                                    variant="h5"
+                                    display="block"
+                                    gutterBottom
+                                >
+                                    Reviews
                                 </Typography>
                                 <Typography
                                     display="block"

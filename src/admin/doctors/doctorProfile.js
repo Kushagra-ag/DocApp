@@ -2,15 +2,9 @@ import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
-import Chip from '@material-ui/core/Chip';
-import Box from '@material-ui/core/Box';
 import {
     Divider,
+    Button,
     Table,
     TableBody,
     TableCell,
@@ -20,13 +14,13 @@ import {
     Tooltip,
     Container,
     Grid,
-    
+    Typography, Card, CardContent, CardHeader, Chip, Box,
     CardActions,
 } from '@material-ui/core';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import img from '../../svg/default.png'
 import AdminTextField from '../components/AdminTextField.js';
-import { createDoctor, getDoctor, deleteDoctor, isAuthenticatedAdmin } from '../../core/helperMethods.js';
+import { createDoctor, getDoctor, deleteDoctor } from '../../core/helperMethods.js';
 
 const useStyles = makeStyles(theme => ({
     wrapper: {
@@ -52,13 +46,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const DoctorProfile = ({ match }) => {
+const DoctorProfile = ({ profile, match }) => {
     const classes = useStyles();
     const history = useHistory();
-    const { user, token } = isAuthenticatedAdmin().data;
-    console.log(user);
 
-    console.log(match);
     const doctorId = match.params.id;
     const [doctor, setDoctor] = useState({
         name: 'q',
@@ -69,6 +60,7 @@ const DoctorProfile = ({ match }) => {
         description: 'q',
         
     });
+    const [admin, setAdmin] = useState(profile)
     const [photo, setPhoto] = useState(null);
     
 
@@ -87,7 +79,7 @@ const DoctorProfile = ({ match }) => {
 
     const deleteDoc = e => {
 
-        deleteDoctor(doctorId, user._id, token, () => {
+        deleteDoctor(doctorId, admin._id, admin.token, () => {
             console.log("Doctor deleted");
             history.push(`/admin/doctor/all`)
         })
@@ -125,7 +117,7 @@ const DoctorProfile = ({ match }) => {
         	console.log(Object.fromEntries(formData))
 
 
-        	createDoctor(user._id, token, formData, data => {
+        	createDoctor(admin._id, admin.token, formData, data => {
                 if (data.error) {
                     console.log(data.error);
                 } else {
@@ -275,7 +267,7 @@ const DoctorProfile = ({ match }) => {
 								                        type="hidden"
 								                        name="approvedBy"
 								                        className="form-control my-3"
-								                        value={user._id}
+								                        value={admin._id}
 								                    />
                                                     <Grid item md={6} xs={12}>
                                                         {

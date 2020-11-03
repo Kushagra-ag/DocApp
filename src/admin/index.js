@@ -26,14 +26,20 @@ export default function Admin() {
     const classes = useStyles();
     const [isMobileNavOpen, setMobileNavOpen] = useState(false);
     const [authorized, setAuthorized] = useState(null);
+    const [admin, setAdmin] = useState(null);
 
     useLayoutEffect(() => {
-        if (!isAuthenticatedAdmin()) {
-            history.push('/');
-        }
-        else {
-            setAuthorized(true)
-        }
+
+        isAuthenticatedAdmin()
+            .then(data => {
+                if(data.data.user.role) {
+                    setAdmin(data.data);
+                    setAuthorized(true);
+                    
+                } else {
+                    history.push('/')
+                }
+            })
 
     });
 
@@ -45,10 +51,11 @@ export default function Admin() {
             <NavBar
                 onMobileClose={() => setMobileNavOpen(false)}
                 openMobile={isMobileNavOpen}
+                profile={admin}
             />
             <Switch>
                 <Route path="/admin/dashboard" component={Dashboard} />
-                <Route path="/admin/doctor" component={Doctor} />
+                <Route path="/admin/doctor" render={props => (<Doctor {...props} profile={admin} />)} />
                 <Route path="/admin/user" component={User} />
                 <Route path="/admin/account" component={Account} />
                 <Route path="/admin/logout" component={Logout} />

@@ -1,8 +1,5 @@
 import React from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Paper from '@material-ui/core/Paper';
+import { IconButton, Typography, useMediaQuery, Paper } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import CallIcon from '@material-ui/icons/Call';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
@@ -37,6 +34,7 @@ export default function DoctorProfileIcons(props) {
                 >
                     <CallIcon />
                 </IconButton>
+                <Typography variant="caption" className="font-weight-bold" align="center" display="block" color="primary">Call</Typography>
             </a>
             <Link to="/doctor/places" className="m-2">
                 <IconButton
@@ -47,6 +45,7 @@ export default function DoctorProfileIcons(props) {
                 >
                     <LocationOnIcon />
                 </IconButton>
+                <Typography variant="caption" className="font-weight-bold" align="center" display="block" color="primary">Directions</Typography>
             </Link>
             <Link to={`/user/review/${props.id}`} className="m-2">
                 <IconButton
@@ -57,6 +56,7 @@ export default function DoctorProfileIcons(props) {
                 >
                     <StarsRoundedIcon />
                 </IconButton>
+                <Typography variant="caption" className="font-weight-bold" align="center" display="block" color="primary">Rate</Typography>
             </Link>
         </Paper>
     );

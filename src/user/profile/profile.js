@@ -30,25 +30,29 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function Profile() {
+export default function Profile({ profile }) {
     const classes = useStyles();
     const history = useHistory();
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(profile);
 
     const txt = useMediaQuery('(max-width:767px)')
         ? 'textSecondary'
         : 'primary';
 
     useLayoutEffect(() => {
-        let profile = isAuthenticated().data;
+        console.log(profile)
+    //     isAuthenticated()
+    //         .then(profile => {
+    //             if(profile.data) {
+    //                 setUser(profile.data.user)
+    //             } else {
+    //                 history.push('/auth/login')
+    //             }
+    //         })
 
-        if (profile) setUser(profile.user);
-        else history.push('/auth/login');
-
-        console.log(user);
     }, []);
 
-    return (
+    return user ? (
         <>
             <div className="col-md-10 col-xl-8 pl-md-5">
                 <div className="row pt-4 docProfile">
@@ -87,25 +91,25 @@ export default function Profile() {
                             exact
                             path="/user/profile"
                             render={() => (
-                                <Redirect to="/user/profile/reviews" />
+                                <Redirect to="/user/profile/reviews" profile={profile} />
                             )}
                         />
                         <Route
                             path="/user/profile/reviews"
-                            component={Reviews}
+                            render={props => (<Reviews {...props} profile={profile} />)}
                         />
                         <Route
                             path="/user/profile/contacts"
-                            component={Contacts}
+                            render={props => (<Contacts {...props} profile={profile} />)}
                         />
                         <Route
                             path="/user/profile/favourites"
-                            component={Favourites}
+                            render={props => (<Favourites {...props} profile={profile} />)}
                         />
                     </Switch>
                 </div>
             </div>
             <Contact />
         </>
-    );
+    ) : null
 }
